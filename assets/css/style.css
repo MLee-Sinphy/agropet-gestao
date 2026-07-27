@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+    background: #f5f6f8;
+    color: #1f2937;
+}
+
+
+/* Cabeçalho */
+
+.header {
+    height: 18vh;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+}
+
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+
+.header p {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+
+/* Área principal */
+
+.dashboard {
+    height: 82vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px;
+    padding: 40px;
+}
+
+
+/* Cartões */
+
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+
+.card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+
+.card p {
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+
+/* Organização dos painéis */
+
+.card-venda {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+.card-estoque {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+.card-inteligencia {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+
+/* Responsividade */
+
+@media(max-width: 800px) {
+
+    .dashboard {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+
+    .card-inteligencia {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+}
