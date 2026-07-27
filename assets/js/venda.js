@@ -1,15 +1,14 @@
 /* ==========================================================
    Venda - AgroPet Gestão
-   Lógica de autocomplete, resumo dinâmico e desambiguação
-   de pets homônimos (regras em docs/regras-negocio.md)
+   Autocomplete, resumo dinâmico, desambiguação de pets homônimos
+   e múltiplos responsáveis por venda.
+   Regras completas em docs/regras-negocio.md
    ========================================================== */
 
 let pessoas = [];
 let pets = [];
 let produtos = [];
 let vendas = [];
-
-let responsavelSelecionado = null; // objeto pessoa quando resolvido
 
 async function carregarDados() {
     const [rPessoas, rPets, rProdutos, rVendas] = await Promise.all([
@@ -40,6 +39,17 @@ function petPorId(id) {
     return pets.find(p => p.id === id);
 }
 
+/* IDs de todos os responsáveis já escolhidos em qualquer bloco da venda. */
+function responsaveisAtuaisIds() {
+    return Array.from(document.querySelectorAll(".responsavel-item"))
+        .map(item => Number(item.dataset.pessoaId))
+        .filter(id => !!id);
+}
+
+function responsaveisAtuais() {
+    return responsaveisAtuaisIds().map(pessoaPorId).filter(Boolean);
+}
+
 /* ---------------------- Responsável ---------------------- */
 
 function buscarPessoas(texto) {
@@ -51,31 +61,28 @@ function buscarPessoas(texto) {
         .slice(0, 8);
 }
 
-function preencherEnderecoResponsavel(pessoa) {
-    document.querySelector("#resp-telefone").value = pessoa.telefone || "";
-    document.querySelector("#resp-cep").value = pessoa.endereco?.cep || "";
-    document.querySelector("#resp-rua").value = pessoa.endereco?.rua || "";
-    document.querySelector("#resp-numero").value = pessoa.endereco?.numero || "";
-    document.querySelector("#resp-cidade").value = pessoa.endereco?.cidade || "Goiânia";
+function preencherEnderecoResponsavel(item, pessoa) {
+    item.querySelector(".resp-nome").value = pessoa.nome;
+    item.querySelector(".resp-telefone").value = pessoa.telefone || "";
+    item.querySelector(".resp-cep").value = pessoa.endereco?.cep || "";
+    item.querySelector(".resp-rua").value = pessoa.endereco?.rua || "";
+    item.querySelector(".resp-numero").value = pessoa.endereco?.numero || "";
+    item.querySelector(".resp-cidade").value = pessoa.endereco?.cidade || "Goiânia";
 }
 
-function selecionarResponsavel(pessoa) {
-    responsavelSelecionado = pessoa;
-    document.querySelector("#resp-nome").value = pessoa.nome;
-    preencherEnderecoResponsavel(pessoa);
-    document.querySelector("#sugestoes-resp").classList.remove("aberto");
-    // Reavalia todos os pets já digitados nos produtos, já que o responsável mudou.
-    document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
-    atualizarResumoAtivo();
-}
+function criarBlocoResponsavel() {
+    const tpl = document.querySelector("#tpl-responsavel");
+    const clone = tpl.content.cloneNode(true);
+    const item = clone.querySelector(".responsavel-item");
+    item.dataset.pessoaId = "";
 
-function iniciarAutocompleteResponsavel() {
-    const campo = document.querySelector("#resp-nome");
-    const area = document.querySelector("#sugestoes-resp");
+    const campoNome = item.querySelector(".resp-nome");
+    const area = item.querySelector(".sugestoes-resp");
+    const btnRemover = item.querySelector(".remover-responsavel");
 
-    campo.addEventListener("input", () => {
-        responsavelSelecionado = null;
-        const resultado = buscarPessoas(campo.value);
+    campoNome.addEventListener("input", () => {
+        item.dataset.pessoaId = "";
+        const resultado = buscarPessoas(campoNome.value);
         area.innerHTML = "";
 
         if (resultado.length === 0) {
@@ -87,16 +94,34 @@ function iniciarAutocompleteResponsavel() {
             const div = document.createElement("div");
             div.classList.add("sugestao");
             div.innerHTML = `<strong>${pessoa.nome}</strong><br><small>${pessoa.telefone}</small>`;
-            div.onclick = () => selecionarResponsavel(pessoa);
+            div.onclick = () => {
+                item.dataset.pessoaId = pessoa.id;
+                preencherEnderecoResponsavel(item, pessoa);
+                area.classList.remove("aberto");
+                document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
+                atualizarResumoAtivo();
+            };
             area.appendChild(div);
         });
 
         area.classList.add("aberto");
     });
 
-    campo.addEventListener("blur", () => {
+    campoNome.addEventListener("blur", () => {
         setTimeout(() => area.classList.remove("aberto"), 150);
     });
+
+    btnRemover.onclick = () => {
+        item.remove();
+        document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
+        atualizarResumoAtivo();
+        // sempre mantém ao menos um bloco de responsável na tela
+        if (document.querySelectorAll(".responsavel-item").length === 0) {
+            criarBlocoResponsavel();
+        }
+    };
+
+    document.querySelector("#lista-responsaveis").appendChild(clone);
 }
 
 /* ---------------------- Produtos ---------------------- */
@@ -110,12 +135,13 @@ function buscarProdutos(texto) {
         .slice(0, 8);
 }
 
-/* Pets com o mesmo nome digitado. Quando houver mais de um responsável
-   já escolhido na venda, priorizamos pets que já pertencem a ele. */
+/* Pets com o mesmo nome digitado. Quando há responsável(is) já
+   escolhido(s) na venda, priorizamos pets que já pertencem a eles. */
 function buscarPets(texto) {
     const busca = normalizar(texto);
     if (busca.length === 0) return [];
 
+    const respIds = responsaveisAtuaisIds();
     let candidatos = pets.filter(p => normalizar(p.nome).includes(busca));
 
     candidatos.sort((a, b) => {
@@ -123,9 +149,9 @@ function buscarPets(texto) {
         const bExato = normalizar(b.nome) === busca;
         if (aExato !== bExato) return bExato - aExato;
 
-        if (responsavelSelecionado) {
-            const aTem = a.responsaveis.includes(responsavelSelecionado.id);
-            const bTem = b.responsaveis.includes(responsavelSelecionado.id);
+        if (respIds.length) {
+            const aTem = a.responsaveis.some(id => respIds.includes(id));
+            const bTem = b.responsaveis.some(id => respIds.includes(id));
             if (aTem !== bTem) return bTem - aTem;
         }
         return 0;
@@ -138,6 +164,39 @@ function nomesResponsaveis(pet) {
     return pet.responsaveis.map(id => pessoaPorId(id)?.nome || "?").join(" e ");
 }
 
+/* Produto que o(s) responsável(is) atual(is) mais compra(m) no histórico,
+   para sugerir sem exigir digitação (regra 10 de regras-negocio.md). */
+function produtoMaisFrequente(respIds) {
+    if (!respIds.length) return null;
+    const contagem = {};
+    vendas.forEach(v => {
+        if (v.responsaveis.some(id => respIds.includes(id))) {
+            v.itens.forEach(i => {
+                contagem[i.produto_id] = (contagem[i.produto_id] || 0) + 1;
+            });
+        }
+    });
+    let melhorId = null, melhorQtd = 0;
+    Object.entries(contagem).forEach(([id, qtd]) => {
+        if (qtd > melhorQtd) { melhorQtd = qtd; melhorId = Number(id); }
+    });
+    if (!melhorId || melhorQtd < 2) return null; // só sugere se houver recorrência real
+    return produtos.find(p => p.id === melhorId) || null;
+}
+
+function ajustarCampoQuantidade(item, produto) {
+    const label = item.querySelector(".prod-qtd-label");
+    const input = item.querySelector(".prod-qtd");
+    if (produto && produto.vendido_a_granel) {
+        label.textContent = "Quantidade (kg)";
+        input.step = "0.1";
+        input.value = input.value === "1" ? "1.0" : input.value;
+    } else {
+        label.textContent = "Quantidade (un)";
+        input.step = "1";
+    }
+}
+
 function criarBlocoProduto() {
     const tpl = document.querySelector("#tpl-produto");
     const clone = tpl.content.cloneNode(true);
@@ -145,6 +204,7 @@ function criarBlocoProduto() {
 
     const campoProduto = item.querySelector(".prod-nome");
     const areaSugProduto = item.querySelector(".sugestoes-produto");
+    const sugestaoRapida = item.querySelector(".sugestao-rapida");
     const campoPet = item.querySelector(".prod-pet");
     const areaSugPet = item.querySelector(".sugestoes-pet");
     const detalhePet = item.querySelector(".prod-pet-detalhe");
@@ -152,9 +212,28 @@ function criarBlocoProduto() {
     const btnRemover = item.querySelector(".remover-produto");
 
     item.dataset.petId = "";
+    item.dataset.produtoId = "";
+
+    function aplicarProduto(prod) {
+        campoProduto.value = prod.descricao;
+        item.dataset.produtoId = prod.id;
+        ajustarCampoQuantidade(item, prod);
+        sugestaoRapida.style.display = "none";
+    }
+
+    // Sugestão automática por histórico do(s) responsável(is) já escolhido(s).
+    const respIds = responsaveisAtuaisIds();
+    const sugerido = produtoMaisFrequente(respIds);
+    if (sugerido && !item.dataset.produtoId) {
+        sugestaoRapida.style.display = "block";
+        sugestaoRapida.textContent = `Sugestão: ${sugerido.descricao} (comprado antes)`;
+        sugestaoRapida.onclick = () => aplicarProduto(sugerido);
+    }
 
     // --- autocomplete produto ---
     campoProduto.addEventListener("input", () => {
+        item.dataset.produtoId = "";
+        sugestaoRapida.style.display = "none";
         const resultado = buscarProdutos(campoProduto.value);
         areaSugProduto.innerHTML = "";
 
@@ -171,8 +250,7 @@ function criarBlocoProduto() {
                 : `${prod.estoque} un em estoque`;
             div.innerHTML = `<strong>${prod.descricao}</strong><br><small>R$ ${prod.preco.toFixed(2)} · ${estoqueTxt}</small>`;
             div.onclick = () => {
-                campoProduto.value = prod.descricao;
-                item.dataset.produtoId = prod.id;
+                aplicarProduto(prod);
                 areaSugProduto.classList.remove("aberto");
             };
             areaSugProduto.appendChild(div);
@@ -237,19 +315,22 @@ function criarBlocoProduto() {
 }
 
 function mostrarDetalhePet(pet, detalheEl) {
+    if (!pet.observacoes) {
+        detalheEl.style.display = "none";
+        return;
+    }
     detalheEl.style.display = "block";
-    detalheEl.innerHTML = `${pet.especie} · ${pet.raca} · ${pet.idade} ano(s)<br>${pet.observacoes || ""}`;
+    detalheEl.innerHTML = `${pet.especie} · ${pet.raca} · ${pet.idade} ano(s)<br>${pet.observacoes}`;
 }
 
-/* Verifica se o responsável atual da venda já é um dos donos do pet
-   selecionado nesse produto. Se não for, avisa (sem travar a venda,
-   mas deixando claro a regra: nomes repetidos podem ser pets diferentes
-   ou o mesmo pet com mais de um dono). */
+/* Se o pet escolhido não pertence a nenhum dos responsáveis atuais da
+   venda, avisa e oferece vincular (regra 3 de regras-negocio.md). */
 function atualizarVinculoProduto(item) {
     const avisoVinculo = item.querySelector(".prod-aviso");
     const petId = Number(item.dataset.petId);
+    const respAtuais = responsaveisAtuais();
 
-    if (!petId || !responsavelSelecionado) {
+    if (!petId || respAtuais.length === 0) {
         avisoVinculo.style.display = "none";
         return;
     }
@@ -260,20 +341,23 @@ function atualizarVinculoProduto(item) {
         return;
     }
 
-    if (!pet.responsaveis.includes(responsavelSelecionado.id)) {
+    const naoVinculados = respAtuais.filter(r => !pet.responsaveis.includes(r.id));
+
+    if (naoVinculados.length > 0) {
+        const nomes = naoVinculados.map(r => r.nome).join(" e ");
         avisoVinculo.style.display = "block";
         avisoVinculo.innerHTML = `
             ⚠ Este ${pet.nome} (${pet.especie}) está cadastrado apenas com
             <strong>${nomesResponsaveis(pet)}</strong> como responsável.
-            Se for o mesmo animal, confirme para vincular também a
-            <strong>${responsavelSelecionado.nome}</strong>. Se for um pet
-            diferente com o mesmo nome, ignore.
+            Se for o mesmo animal, confirme para vincular também
+            <strong>${nomes}</strong>. Se for um pet diferente com o mesmo
+            nome, ignore.
             <div class="acoes">
-                <button type="button" class="secondary btn-vincular">Vincular ${responsavelSelecionado.nome}</button>
+                <button type="button" class="secondary btn-vincular">Vincular ${nomes}</button>
             </div>
         `;
         avisoVinculo.querySelector(".btn-vincular").onclick = () => {
-            pet.responsaveis.push(responsavelSelecionado.id);
+            naoVinculados.forEach(r => pet.responsaveis.push(r.id));
             avisoVinculo.style.display = "none";
         };
     } else {
@@ -308,7 +392,7 @@ function renderizarResumo(pet) {
     const el = document.querySelector("#resumo-conteudo");
 
     if (!pet) {
-        el.innerHTML = `<p class="resumo-vazio">Digite o nome de um pet em algum produto para ver o histórico e alertas.</p>`;
+        el.innerHTML = `<p class="resumo-vazio">Digite o nome de um pet em algum produto para ver o histórico.</p>`;
         return;
     }
 
@@ -324,9 +408,10 @@ function renderizarResumo(pet) {
         }).join("")
         : `<p class="resumo-vazio">Sem compras anteriores registradas.</p>`;
 
+    // Regra 11: silêncio quando não há nada relevante — sem "tudo certo".
     let alertasHtml = alertas.length
-        ? alertas.map(a => `<p class="tag-alerta">${a}</p>`).join("")
-        : `<p class="tag-ok">✔ Nenhum alerta de estoque para os produtos deste pet.</p>`;
+        ? `<hr><h3>Alertas</h3>${alertas.map(a => `<p class="tag-alerta">${a}</p>`).join("")}`
+        : "";
 
     el.innerHTML = `
         <h3>Pet</h3>
@@ -340,22 +425,12 @@ function renderizarResumo(pet) {
         <h3>Últimas compras</h3>
         ${comprasHtml}
 
-        <hr>
-
-        <h3>Alertas</h3>
         ${alertasHtml}
     `;
 }
 
-/* Descobre qual pet deve orientar o resumo: usa o pet já resolvido
-   (com id) do produto mais recentemente editado; se nenhum tiver id
-   ainda, tenta achar por texto digitado no primeiro campo de pet
-   não vazio. */
-let ultimoPetAtivo = null;
-
 function atualizarResumoAtivo(petForcado) {
     if (petForcado) {
-        ultimoPetAtivo = petForcado;
         renderizarResumo(petForcado);
         return;
     }
@@ -364,14 +439,12 @@ function atualizarResumoAtivo(petForcado) {
     for (const item of itens) {
         const petId = Number(item.dataset.petId);
         if (petId) {
-            const pet = petPorId(petId);
-            ultimoPetAtivo = pet;
-            renderizarResumo(pet);
+            renderizarResumo(petPorId(petId));
             return;
         }
     }
 
-    // Nenhum pet resolvido ainda: tenta pelo texto digitado (match único).
+    // Nenhum pet resolvido ainda por clique: tenta pelo texto digitado (match único).
     for (const item of itens) {
         const texto = item.querySelector(".prod-pet").value;
         if (normalizar(texto).length >= 2) {
@@ -389,9 +462,10 @@ function atualizarResumoAtivo(petForcado) {
 /* ---------------------- Salvar venda ---------------------- */
 
 function salvarVenda() {
-    const nomeResp = document.querySelector("#resp-nome").value.trim();
-    if (!nomeResp) {
-        alert("Informe o nome do responsável.");
+    const respItens = Array.from(document.querySelectorAll(".responsavel-item"));
+    const nomesResp = respItens.map(i => i.querySelector(".resp-nome").value.trim()).filter(Boolean);
+    if (nomesResp.length === 0) {
+        alert("Informe ao menos um responsável.");
         return;
     }
 
@@ -412,7 +486,7 @@ function salvarVenda() {
 
     const msg = document.querySelector("#msg-sucesso");
     msg.style.display = "block";
-    msg.textContent = `✔ Venda registrada para ${nomeResp} (${itens.length} produto(s)). Protótipo: dados não são persistidos ainda.`;
+    msg.textContent = `✔ Venda registrada para ${nomesResp.join(" e ")} (${itens.length} produto(s)). Protótipo: dados não são persistidos ainda.`;
 }
 
 /* ---------------------- Boot ---------------------- */
@@ -420,9 +494,10 @@ function salvarVenda() {
 document.addEventListener("DOMContentLoaded", async () => {
     await carregarDados();
 
-    iniciarAutocompleteResponsavel();
+    criarBlocoResponsavel();
     criarBlocoProduto();
 
+    document.querySelector("#btn-add-responsavel").onclick = criarBlocoResponsavel;
     document.querySelector("#btn-add-produto").onclick = criarBlocoProduto;
     document.querySelector("#btn-salvar").onclick = salvarVenda;
 });

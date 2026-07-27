@@ -5,7 +5,7 @@
     "especie": "Cachorro",
     "raca": "Vira-lata",
     "idade": 4,
-    "observacoes": "Peso 18kg, porte médio, dócil. Mora com Maria e Paulo (mesma residência).",
+    "observacoes": "Peso 18kg, porte médio, dócil.",
     "responsaveis": [
       9001,
       9002
@@ -17,7 +17,7 @@
     "especie": "Cachorro",
     "raca": "Labrador",
     "idade": 2,
-    "observacoes": "Peso 25kg, porte grande, muito ativo. Não é o mesmo Rex de Maria/Paulo.",
+    "observacoes": "Peso 25kg, porte grande, muito ativo.",
     "responsaveis": [
       42
     ]

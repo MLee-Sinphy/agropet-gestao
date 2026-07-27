@@ -25,48 +25,23 @@
 
         <div id="msg-sucesso" class="msg-sucesso" style="display:none;"></div>
 
-        <div class="bloco">
-            <h2>👤 Responsável</h2>
-
-            <div class="input-group">
-                <label>Nome</label>
-                <input type="text" id="resp-nome" placeholder="Digite o nome do responsável..." autocomplete="off">
-                <div class="sugestoes" id="sugestoes-resp"></div>
+        <div class="bloco bloco-responsavel">
+            <div class="bloco-titulo">
+                <h2>👤 Responsável</h2>
             </div>
 
-            <div class="input-group">
-                <label>Telefone</label>
-                <input type="text" id="resp-telefone" placeholder="(62) 99999-9999" autocomplete="off">
-            </div>
+            <div id="lista-responsaveis"></div>
 
-            <details id="det-endereco">
-                <summary>Endereço</summary>
-
-                <div class="input-group">
-                    <label>CEP</label>
-                    <input type="text" id="resp-cep" placeholder="00000-000">
-                </div>
-
-                <div class="input-group">
-                    <label>Rua</label>
-                    <input type="text" id="resp-rua">
-                </div>
-
-                <div class="input-group">
-                    <label>Número</label>
-                    <input type="text" id="resp-numero">
-                </div>
-
-                <div class="input-group">
-                    <label>Cidade</label>
-                    <input type="text" id="resp-cidade" value="Goiânia">
-                </div>
-            </details>
+            <button type="button" class="secondary" id="btn-add-responsavel">
+                + Adicionar responsável
+            </button>
         </div>
 
 
-        <div class="bloco">
-            <h2>🛍️ Produtos</h2>
+        <div class="bloco bloco-produtos">
+            <div class="bloco-titulo">
+                <h2>🛍️ Produtos</h2>
+            </div>
 
             <div id="lista-produtos"></div>
 
@@ -86,19 +61,62 @@
     <aside class="resumo">
         <h2>Resumo</h2>
         <div id="resumo-conteudo" class="info-card">
-            <p class="resumo-vazio">Digite o nome de um pet em algum produto para ver o histórico e alertas.</p>
+            <p class="resumo-vazio">Digite o nome de um pet em algum produto para ver o histórico.</p>
         </div>
     </aside>
 
 </main>
 
+<template id="tpl-responsavel">
+    <div class="responsavel-item">
+        <button type="button" class="remover-item remover-responsavel" title="Remover responsável">✕</button>
+
+        <div class="input-group">
+            <label>Nome</label>
+            <input type="text" class="resp-nome" placeholder="Digite o nome do responsável..." autocomplete="off">
+            <div class="sugestoes sugestoes-resp"></div>
+        </div>
+
+        <div class="input-group">
+            <label>Telefone</label>
+            <input type="text" class="resp-telefone" placeholder="(62) 99999-9999" autocomplete="off">
+        </div>
+
+        <details class="endereco-gaveta">
+            <summary>Endereço</summary>
+            <div class="endereco-conteudo">
+                <div class="input-group">
+                    <label>CEP</label>
+                    <input type="text" class="resp-cep" placeholder="00000-000">
+                </div>
+
+                <div class="input-group">
+                    <label>Rua</label>
+                    <input type="text" class="resp-rua">
+                </div>
+
+                <div class="input-group">
+                    <label>Número</label>
+                    <input type="text" class="resp-numero">
+                </div>
+
+                <div class="input-group">
+                    <label>Cidade</label>
+                    <input type="text" class="resp-cidade" value="Goiânia">
+                </div>
+            </div>
+        </details>
+    </div>
+</template>
+
 <template id="tpl-produto">
     <div class="produto-item">
-        <button type="button" class="remover-produto" title="Remover produto">✕</button>
+        <button type="button" class="remover-item remover-produto" title="Remover produto">✕</button>
 
         <div class="input-group produto-campo">
             <label>Produto</label>
             <input type="text" class="prod-nome" placeholder="Digite o nome do produto..." autocomplete="off">
+            <div class="sugestao-rapida" style="display:none;"></div>
             <div class="sugestoes sugestoes-produto"></div>
         </div>
 
@@ -110,7 +128,7 @@
             </div>
 
             <div class="input-group">
-                <label>Quantidade</label>
+                <label class="prod-qtd-label">Quantidade</label>
                 <input type="number" class="prod-qtd" value="1" min="0" step="1">
             </div>
         </div>
