@@ -1,67 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+html, body {
+    height: 100%;
+    background: #f4f6f5;
+    color: #1f2a24;
+}
 
-    <title>AgroPet Gestão</title>
+.header {
+    padding: 22px 40px;
+    background: #ffffff;
+    border-bottom: 1px solid #e6e9e8;
+}
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="assets/js/app.js"></script>
-</head>
+.header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1f2a24;
+}
 
-<body>
+a {
+    color: inherit;
+}
 
-<header class="header">
-
-    <h1>🐾 AgroPet Gestão</h1>
-
-</header>
-
-
-<main class="dashboard">
-
-    <section class="card card-venda">
-
-        <div class="icon">🛒</div>
-
-        <h2>Nova Venda</h2>
-
-    </section>
-
-
-    <section class="card card-estoque">
-
-        <div class="icon">📦</div>
-
-        <h2>Estoque</h2>
-
-    </section>
-
-
-    <section class="card card-inteligencia">
-
-        <div class="icon">📊</div>
-
-        <h2>Inteligência</h2>
-
-    </section>
-
-</main>
-
-
-<footer>
-
-    <button class="config-button">
-
-        Alterar Registros
-
-    </button>
-
-</footer>
-
-
-</body>
-
-</html>
+.config-button, button.secondary, button.primary {
+    font-family: inherit;
+}

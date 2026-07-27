@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nova Venda - AgroPet Gestão</title>
+    <title>Venda - AgroPet Gestão</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/venda.css">
@@ -16,157 +16,109 @@
 <body>
 
 <header class="header">
-    <h1>Nova Venda</h1>
+    <h1>🐾 AgroPet Gestão</h1>
 </header>
 
 <main class="venda-container">
 
     <section class="venda-form">
 
-        <details open>
-            <summary>Responsável</summary>
+        <div id="msg-sucesso" class="msg-sucesso" style="display:none;"></div>
+
+        <div class="bloco">
+            <h2>👤 Responsável</h2>
 
             <div class="input-group">
                 <label>Nome</label>
-                <input type="text" placeholder="Digite o nome...">
+                <input type="text" id="resp-nome" placeholder="Digite o nome do responsável..." autocomplete="off">
+                <div class="sugestoes" id="sugestoes-resp"></div>
             </div>
 
             <div class="input-group">
                 <label>Telefone</label>
-                <input type="text" placeholder="(62) 99999-9999">
+                <input type="text" id="resp-telefone" placeholder="(62) 99999-9999" autocomplete="off">
             </div>
 
-            <details>
+            <details id="det-endereco">
                 <summary>Endereço</summary>
 
                 <div class="input-group">
                     <label>CEP</label>
-                    <input type="text">
+                    <input type="text" id="resp-cep" placeholder="00000-000">
                 </div>
 
                 <div class="input-group">
                     <label>Rua</label>
-                    <input type="text">
+                    <input type="text" id="resp-rua">
                 </div>
 
                 <div class="input-group">
                     <label>Número</label>
-                    <input type="text">
+                    <input type="text" id="resp-numero">
                 </div>
 
                 <div class="input-group">
                     <label>Cidade</label>
-                    <input type="text" value="Goiânia">
+                    <input type="text" id="resp-cidade" value="Goiânia">
                 </div>
-
             </details>
-
-        </details>
-
+        </div>
 
 
-        <details open>
+        <div class="bloco">
+            <h2>🛍️ Produtos</h2>
 
-            <summary>Pet</summary>
+            <div id="lista-produtos"></div>
 
-            <div class="input-group">
-                <label>Nome</label>
-                <input type="text" placeholder="Digite o nome do pet">
-            </div>
-
-            <div class="input-group">
-                <label>Espécie</label>
-                <input type="text">
-            </div>
-
-            <div class="input-group">
-                <label>Raça</label>
-                <input type="text">
-            </div>
-
-            <details>
-
-                <summary>Observações</summary>
-
-                <textarea
-                    placeholder="Cor, porte, peso, comportamento, alimentação, alergias ou qualquer informação útil para futuras análises."></textarea>
-
-            </details>
-
-        </details>
-
-
-
-
-        <details open>
-
-            <summary>Produtos</summary>
-
-            <div class="produto">
-
-                <input
-                    type="text"
-                    placeholder="Produto">
-
-                <input
-                    type="number"
-                    value="1">
-
-            </div>
-
-            <button class="secondary">
+            <button type="button" class="secondary" id="btn-add-produto">
                 + Adicionar Produto
             </button>
-
-        </details>
-
+        </div>
 
 
-        <button class="primary">
+        <button type="button" class="primary" id="btn-salvar">
             Salvar Venda
         </button>
 
     </section>
 
 
-
-
-
-    <aside class="historico">
-
+    <aside class="resumo">
         <h2>Resumo</h2>
-
-        <div class="info-card">
-
-            <h3>Pet</h3>
-
-            <p>🐶 Rex</p>
-
-            <h3>Responsáveis</h3>
-
-            <p>Fernanda</p>
-            <p>Paula</p>
-
-            <hr>
-
-            <h3>Últimas compras</h3>
-
-            <p>Golden 15 kg</p>
-            <p>NexGard</p>
-
-            <hr>
-
-            <h3>Alertas</h3>
-
-            <p>⚠ Ração próxima do fim</p>
-
-            <p>💡 Oferecer antipulgas</p>
-
+        <div id="resumo-conteudo" class="info-card">
+            <p class="resumo-vazio">Digite o nome de um pet em algum produto para ver o histórico e alertas.</p>
         </div>
-
     </aside>
 
 </main>
+
+<template id="tpl-produto">
+    <div class="produto-item">
+        <button type="button" class="remover-produto" title="Remover produto">✕</button>
+
+        <div class="input-group produto-campo">
+            <label>Produto</label>
+            <input type="text" class="prod-nome" placeholder="Digite o nome do produto..." autocomplete="off">
+            <div class="sugestoes sugestoes-produto"></div>
+        </div>
+
+        <div class="produto-linha">
+            <div class="input-group">
+                <label>Pet</label>
+                <input type="text" class="prod-pet" placeholder="Digite o nome do pet..." autocomplete="off">
+                <div class="sugestoes sugestoes-pet"></div>
+            </div>
+
+            <div class="input-group">
+                <label>Quantidade</label>
+                <input type="number" class="prod-qtd" value="1" min="0" step="1">
+            </div>
+        </div>
+
+        <div class="pet-detalhe prod-pet-detalhe" style="display:none;"></div>
+        <div class="aviso-vinculo prod-aviso" style="display:none;"></div>
+    </div>
+</template>
 
 </body>
 

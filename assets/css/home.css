@@ -1,0 +1,62 @@
+.home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px;
+    padding: 30px 40px 40px;
+    height: calc(100vh - 90px);
+}
+
+.card {
+    background: linear-gradient(160deg, #ffffff, #f0f4f2);
+    border-radius: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: .25s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .06);
+    border: 1px solid #e9ede9;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
+}
+
+.card .icon {
+    font-size: 3.6rem;
+    margin-bottom: 16px;
+}
+
+.card h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.venda {
+    grid-column: 1;
+    grid-row: 1;
+    background: linear-gradient(160deg, #eafaf0, #ffffff);
+}
+
+.estoque {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.inteligencia {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+@media (max-width: 900px) {
+    .home {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+}

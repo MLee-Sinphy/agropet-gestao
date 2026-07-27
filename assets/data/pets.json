@@ -1,0 +1,1122 @@
+[
+  {
+    "id": 1,
+    "nome": "Rex",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 4,
+    "observacoes": "Peso 18kg, porte médio, dócil. Mora com Maria e Paulo (mesma residência).",
+    "responsaveis": [
+      9001,
+      9002
+    ]
+  },
+  {
+    "id": 2,
+    "nome": "Rex",
+    "especie": "Cachorro",
+    "raca": "Labrador",
+    "idade": 2,
+    "observacoes": "Peso 25kg, porte grande, muito ativo. Não é o mesmo Rex de Maria/Paulo.",
+    "responsaveis": [
+      42
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "Luna",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 3,
+    "observacoes": "Peso 4kg, porte pequeno, dócil.",
+    "responsaveis": [
+      9003
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "Luna",
+    "especie": "Cachorro",
+    "raca": "Poodle",
+    "idade": 1,
+    "observacoes": "Filhote, em fase de vacinação. Dois responsáveis no mesmo endereço.",
+    "responsaveis": [
+      20,
+      51
+    ]
+  },
+  {
+    "id": 5,
+    "nome": "Thor",
+    "especie": "Cachorro",
+    "raca": "Husky Siberiano",
+    "idade": 8,
+    "observacoes": "Diabético, ração terapêutica.",
+    "responsaveis": [
+      8
+    ]
+  },
+  {
+    "id": 6,
+    "nome": "Bob",
+    "especie": "Cachorro",
+    "raca": "Golden Retriever",
+    "idade": 6,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      31
+    ]
+  },
+  {
+    "id": 7,
+    "nome": "Felix",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 3,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      8
+    ]
+  },
+  {
+    "id": 8,
+    "nome": "Felix",
+    "especie": "Gato",
+    "raca": "Vira-lata (SRD)",
+    "idade": 0.5,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      18
+    ]
+  },
+  {
+    "id": 9,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 9,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      24
+    ]
+  },
+  {
+    "id": 10,
+    "nome": "Amora",
+    "especie": "Cachorro",
+    "raca": "Golden Retriever",
+    "idade": 8,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      9003
+    ]
+  },
+  {
+    "id": 11,
+    "nome": "Simba",
+    "especie": "Cachorro",
+    "raca": "Chihuahua",
+    "idade": 8,
+    "observacoes": "Peso 5kg, porte pequeno, muito brincalhão.",
+    "responsaveis": [
+      41
+    ]
+  },
+  {
+    "id": 12,
+    "nome": "Bidu",
+    "especie": "Gato",
+    "raca": "Angorá",
+    "idade": 3,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      32
+    ]
+  },
+  {
+    "id": 13,
+    "nome": "Zeca",
+    "especie": "Gato",
+    "raca": "Bengal",
+    "idade": 5,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      37
+    ]
+  },
+  {
+    "id": 14,
+    "nome": "Max",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 6,
+    "observacoes": "Peso 3kg, porte pequeno, tímido.",
+    "responsaveis": [
+      44
+    ]
+  },
+  {
+    "id": 15,
+    "nome": "Mel",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 10,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      9002
+    ]
+  },
+  {
+    "id": 16,
+    "nome": "Frajola",
+    "especie": "Gato",
+    "raca": "Ragdoll",
+    "idade": 9,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      59
+    ]
+  },
+  {
+    "id": 17,
+    "nome": "Toby",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 11,
+    "observacoes": "Ansioso, evitar mudanças bruscas de rotina.",
+    "responsaveis": [
+      8
+    ]
+  },
+  {
+    "id": 18,
+    "nome": "Nala",
+    "especie": "Gato",
+    "raca": "Bengal",
+    "idade": 4,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      45
+    ]
+  },
+  {
+    "id": 19,
+    "nome": "Bidu",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 9,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      8
+    ]
+  },
+  {
+    "id": 20,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Vira-lata (SRD)",
+    "idade": 6,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      64
+    ]
+  },
+  {
+    "id": 21,
+    "nome": "Apolo",
+    "especie": "Cachorro",
+    "raca": "Pinscher",
+    "idade": 8,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      18
+    ]
+  },
+  {
+    "id": 22,
+    "nome": "Mel",
+    "especie": "Gato",
+    "raca": "Ragdoll",
+    "idade": 10,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      30,
+      20
+    ]
+  },
+  {
+    "id": 23,
+    "nome": "Luna",
+    "especie": "Cachorro",
+    "raca": "Bulldog Francês",
+    "idade": 10,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      63
+    ]
+  },
+  {
+    "id": 24,
+    "nome": "Toby",
+    "especie": "Cachorro",
+    "raca": "Shih Tzu",
+    "idade": 0.5,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      69
+    ]
+  },
+  {
+    "id": 25,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 7,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      9002,
+      51
+    ]
+  },
+  {
+    "id": 26,
+    "nome": "Luna",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 7,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      8
+    ]
+  },
+  {
+    "id": 27,
+    "nome": "Nina",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 2,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      7
+    ]
+  },
+  {
+    "id": 28,
+    "nome": "Pipoca",
+    "especie": "Cachorro",
+    "raca": "Poodle",
+    "idade": 8,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      47
+    ]
+  },
+  {
+    "id": 29,
+    "nome": "Thor",
+    "especie": "Cachorro",
+    "raca": "Husky Siberiano",
+    "idade": 3,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      20
+    ]
+  },
+  {
+    "id": 30,
+    "nome": "Bidu",
+    "especie": "Gato",
+    "raca": "Ragdoll",
+    "idade": 7,
+    "observacoes": "Peso 5kg, porte pequeno, muito brincalhão.",
+    "responsaveis": [
+      63
+    ]
+  },
+  {
+    "id": 31,
+    "nome": "Gato",
+    "especie": "Gato",
+    "raca": "Angorá",
+    "idade": 1,
+    "observacoes": "Ansioso, evitar mudanças bruscas de rotina.",
+    "responsaveis": [
+      44
+    ]
+  },
+  {
+    "id": 32,
+    "nome": "Gato",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 8,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      68
+    ]
+  },
+  {
+    "id": 33,
+    "nome": "Sansão",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 0.5,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      39
+    ]
+  },
+  {
+    "id": 34,
+    "nome": "Sansão",
+    "especie": "Cachorro",
+    "raca": "Husky Siberiano",
+    "idade": 4,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      22
+    ]
+  },
+  {
+    "id": 35,
+    "nome": "Lola",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 12,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      29
+    ]
+  },
+  {
+    "id": 36,
+    "nome": "Bruce",
+    "especie": "Cachorro",
+    "raca": "Bulldog Francês",
+    "idade": 6,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      30
+    ]
+  },
+  {
+    "id": 37,
+    "nome": "Bidu",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 0.5,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      61
+    ]
+  },
+  {
+    "id": 38,
+    "nome": "Sansão",
+    "especie": "Cachorro",
+    "raca": "Rottweiler",
+    "idade": 5,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      45
+    ]
+  },
+  {
+    "id": 39,
+    "nome": "Bidu",
+    "especie": "Cachorro",
+    "raca": "Golden Retriever",
+    "idade": 3,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      44
+    ]
+  },
+  {
+    "id": 40,
+    "nome": "Kiara",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 7,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      45,
+      11
+    ]
+  },
+  {
+    "id": 41,
+    "nome": "Odin",
+    "especie": "Cachorro",
+    "raca": "Pinscher",
+    "idade": 12,
+    "observacoes": "Peso 5kg, porte pequeno, muito brincalhão.",
+    "responsaveis": [
+      26
+    ]
+  },
+  {
+    "id": 42,
+    "nome": "Duke",
+    "especie": "Cachorro",
+    "raca": "Dachshund",
+    "idade": 10,
+    "observacoes": "Peso 5kg, porte pequeno, muito brincalhão.",
+    "responsaveis": [
+      51
+    ]
+  },
+  {
+    "id": 43,
+    "nome": "Nina",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 2,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      4,
+      20
+    ]
+  },
+  {
+    "id": 44,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Bengal",
+    "idade": 10,
+    "observacoes": "Diabético, ração terapêutica.",
+    "responsaveis": [
+      20,
+      9001
+    ]
+  },
+  {
+    "id": 45,
+    "nome": "Rex",
+    "especie": "Cachorro",
+    "raca": "Labrador",
+    "idade": 12,
+    "observacoes": "Ansioso, evitar mudanças bruscas de rotina.",
+    "responsaveis": [
+      14,
+      68
+    ]
+  },
+  {
+    "id": 46,
+    "nome": "Duke",
+    "especie": "Cachorro",
+    "raca": "Husky Siberiano",
+    "idade": 3,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      28,
+      4
+    ]
+  },
+  {
+    "id": 47,
+    "nome": "Zeus",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 3,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      42
+    ]
+  },
+  {
+    "id": 48,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 11,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      59
+    ]
+  },
+  {
+    "id": 49,
+    "nome": "Zeca",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 8,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      66
+    ]
+  },
+  {
+    "id": 50,
+    "nome": "Mia",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 12,
+    "observacoes": "Peso 3kg, porte pequeno, tímido.",
+    "responsaveis": [
+      23
+    ]
+  },
+  {
+    "id": 51,
+    "nome": "Kiara",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 8,
+    "observacoes": "Diabético, ração terapêutica.",
+    "responsaveis": [
+      67
+    ]
+  },
+  {
+    "id": 52,
+    "nome": "Tom",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 3,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      6
+    ]
+  },
+  {
+    "id": 53,
+    "nome": "Pantera",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 12,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      9,
+      57
+    ]
+  },
+  {
+    "id": 54,
+    "nome": "Sansão",
+    "especie": "Cachorro",
+    "raca": "Shih Tzu",
+    "idade": 7,
+    "observacoes": "Diabético, ração terapêutica.",
+    "responsaveis": [
+      62
+    ]
+  },
+  {
+    "id": 55,
+    "nome": "Sansão",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 4,
+    "observacoes": "Peso 3kg, porte pequeno, tímido.",
+    "responsaveis": [
+      26,
+      58
+    ]
+  },
+  {
+    "id": 56,
+    "nome": "Tom",
+    "especie": "Gato",
+    "raca": "Sphynx",
+    "idade": 7,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      31
+    ]
+  },
+  {
+    "id": 57,
+    "nome": "Nina",
+    "especie": "Cachorro",
+    "raca": "Chihuahua",
+    "idade": 4,
+    "observacoes": "Ansioso, evitar mudanças bruscas de rotina.",
+    "responsaveis": [
+      20
+    ]
+  },
+  {
+    "id": 58,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Angorá",
+    "idade": 2,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      29,
+      13
+    ]
+  },
+  {
+    "id": 59,
+    "nome": "Mia",
+    "especie": "Gato",
+    "raca": "Vira-lata (SRD)",
+    "idade": 2,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      66
+    ]
+  },
+  {
+    "id": 60,
+    "nome": "Mel",
+    "especie": "Gato",
+    "raca": "Vira-lata (SRD)",
+    "idade": 5,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      47
+    ]
+  },
+  {
+    "id": 61,
+    "nome": "Pantera",
+    "especie": "Gato",
+    "raca": "Bengal",
+    "idade": 7,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      50
+    ]
+  },
+  {
+    "id": 62,
+    "nome": "Zeca",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 1,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      30,
+      14
+    ]
+  },
+  {
+    "id": 63,
+    "nome": "Pandora",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 12,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      17
+    ]
+  },
+  {
+    "id": 64,
+    "nome": "Luna",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 8,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      64,
+      42
+    ]
+  },
+  {
+    "id": 65,
+    "nome": "Felix",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 6,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      35,
+      3
+    ]
+  },
+  {
+    "id": 66,
+    "nome": "Bruce",
+    "especie": "Cachorro",
+    "raca": "Shih Tzu",
+    "idade": 1,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      29
+    ]
+  },
+  {
+    "id": 67,
+    "nome": "Tom",
+    "especie": "Gato",
+    "raca": "Bengal",
+    "idade": 0.5,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      9001
+    ]
+  },
+  {
+    "id": 68,
+    "nome": "Kiara",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 0.5,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      31
+    ]
+  },
+  {
+    "id": 69,
+    "nome": "Toby",
+    "especie": "Cachorro",
+    "raca": "Labrador",
+    "idade": 2,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      40
+    ]
+  },
+  {
+    "id": 70,
+    "nome": "Zeca",
+    "especie": "Gato",
+    "raca": "Vira-lata (SRD)",
+    "idade": 4,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      23
+    ]
+  },
+  {
+    "id": 71,
+    "nome": "Miau",
+    "especie": "Gato",
+    "raca": "Angorá",
+    "idade": 0.5,
+    "observacoes": "Diabético, ração terapêutica.",
+    "responsaveis": [
+      65
+    ]
+  },
+  {
+    "id": 72,
+    "nome": "Bento",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 3,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      14,
+      56
+    ]
+  },
+  {
+    "id": 73,
+    "nome": "Pantera",
+    "especie": "Gato",
+    "raca": "Sphynx",
+    "idade": 8,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      28
+    ]
+  },
+  {
+    "id": 74,
+    "nome": "Amora",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 6,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      7,
+      17
+    ]
+  },
+  {
+    "id": 75,
+    "nome": "Bibi",
+    "especie": "Cachorro",
+    "raca": "Beagle",
+    "idade": 4,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      8
+    ]
+  },
+  {
+    "id": 76,
+    "nome": "Zeca",
+    "especie": "Gato",
+    "raca": "Angorá",
+    "idade": 9,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      38
+    ]
+  },
+  {
+    "id": 77,
+    "nome": "Mia",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 4,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      34
+    ]
+  },
+  {
+    "id": 78,
+    "nome": "Pantera",
+    "especie": "Gato",
+    "raca": "Ragdoll",
+    "idade": 3,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      40
+    ]
+  },
+  {
+    "id": 79,
+    "nome": "Mia",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 5,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      61
+    ]
+  },
+  {
+    "id": 80,
+    "nome": "Bidu",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 12,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      34
+    ]
+  },
+  {
+    "id": 81,
+    "nome": "Fred",
+    "especie": "Cachorro",
+    "raca": "Rottweiler",
+    "idade": 0.5,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      39
+    ]
+  },
+  {
+    "id": 82,
+    "nome": "Thor",
+    "especie": "Cachorro",
+    "raca": "Rottweiler",
+    "idade": 8,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      20,
+      50
+    ]
+  },
+  {
+    "id": 83,
+    "nome": "Simba",
+    "especie": "Gato",
+    "raca": "Angorá",
+    "idade": 11,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      19
+    ]
+  },
+  {
+    "id": 84,
+    "nome": "Zeca",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 8,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      9003
+    ]
+  },
+  {
+    "id": 85,
+    "nome": "Thor",
+    "especie": "Cachorro",
+    "raca": "Labrador",
+    "idade": 0.5,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      47
+    ]
+  },
+  {
+    "id": 86,
+    "nome": "Bilu",
+    "especie": "Gato",
+    "raca": "Persa",
+    "idade": 10,
+    "observacoes": "Pelagem longa, precisa de tosa frequente.",
+    "responsaveis": [
+      69
+    ]
+  },
+  {
+    "id": 87,
+    "nome": "Simba",
+    "especie": "Cachorro",
+    "raca": "Shih Tzu",
+    "idade": 0.5,
+    "observacoes": "Ansioso, evitar mudanças bruscas de rotina.",
+    "responsaveis": [
+      9
+    ]
+  },
+  {
+    "id": 88,
+    "nome": "Jade",
+    "especie": "Cachorro",
+    "raca": "Border Collie",
+    "idade": 1,
+    "observacoes": "Alérgico a frango, usar ração hipoalergênica.",
+    "responsaveis": [
+      61
+    ]
+  },
+  {
+    "id": 89,
+    "nome": "Mimosa",
+    "especie": "Cachorro",
+    "raca": "Shih Tzu",
+    "idade": 3,
+    "observacoes": "Castrado, sem restrições alimentares.",
+    "responsaveis": [
+      27
+    ]
+  },
+  {
+    "id": 90,
+    "nome": "Gato",
+    "especie": "Gato",
+    "raca": "Sphynx",
+    "idade": 1,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      37
+    ]
+  },
+  {
+    "id": 91,
+    "nome": "Thor",
+    "especie": "Cachorro",
+    "raca": "Rottweiler",
+    "idade": 2,
+    "observacoes": "Peso 30kg, porte grande, guarda.",
+    "responsaveis": [
+      39
+    ]
+  },
+  {
+    "id": 92,
+    "nome": "Rex",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 0.5,
+    "observacoes": "Ansioso, evitar mudanças bruscas de rotina.",
+    "responsaveis": [
+      13
+    ]
+  },
+  {
+    "id": 93,
+    "nome": "Jade",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 4,
+    "observacoes": "Peso 5kg, porte pequeno, muito brincalhão.",
+    "responsaveis": [
+      37
+    ]
+  },
+  {
+    "id": 94,
+    "nome": "Bilu",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 8,
+    "observacoes": "Peso 5kg, porte pequeno, muito brincalhão.",
+    "responsaveis": [
+      11
+    ]
+  },
+  {
+    "id": 95,
+    "nome": "Zeus",
+    "especie": "Cachorro",
+    "raca": "Vira-lata",
+    "idade": 1,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      58,
+      35
+    ]
+  },
+  {
+    "id": 96,
+    "nome": "Odin",
+    "especie": "Cachorro",
+    "raca": "Pastor Alemão",
+    "idade": 3,
+    "observacoes": "Peso 3kg, porte pequeno, tímido.",
+    "responsaveis": [
+      12
+    ]
+  },
+  {
+    "id": 97,
+    "nome": "Bidu",
+    "especie": "Gato",
+    "raca": "Maine Coon",
+    "idade": 9,
+    "observacoes": "Peso 22kg, porte grande, muito ativo.",
+    "responsaveis": [
+      66,
+      36
+    ]
+  },
+  {
+    "id": 98,
+    "nome": "Salem",
+    "especie": "Gato",
+    "raca": "Bengal",
+    "idade": 7,
+    "observacoes": "Peso 8kg, porte médio, dócil.",
+    "responsaveis": [
+      21
+    ]
+  },
+  {
+    "id": 99,
+    "nome": "Bilu",
+    "especie": "Gato",
+    "raca": "Sphynx",
+    "idade": 4,
+    "observacoes": "Idoso, atenção a articulações.",
+    "responsaveis": [
+      54
+    ]
+  },
+  {
+    "id": 100,
+    "nome": "Frajola",
+    "especie": "Gato",
+    "raca": "Siamês",
+    "idade": 5,
+    "observacoes": "Filhote, em fase de vacinação.",
+    "responsaveis": [
+      44
+    ]
+  }
+]
