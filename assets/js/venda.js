@@ -68,6 +68,7 @@ function preencherEnderecoResponsavel(item, pessoa) {
     item.querySelector(".resp-rua").value = pessoa.endereco?.rua || "";
     item.querySelector(".resp-numero").value = pessoa.endereco?.numero || "";
     item.querySelector(".resp-cidade").value = pessoa.endereco?.cidade || "Goiânia";
+    item.dataset.pessoaId = pessoa.id;
 }
 
 function criarBlocoResponsavel() {
@@ -95,7 +96,6 @@ function criarBlocoResponsavel() {
             div.classList.add("sugestao");
             div.innerHTML = `<strong>${pessoa.nome}</strong><br><small>${pessoa.telefone}</small>`;
             div.onclick = () => {
-                item.dataset.pessoaId = pessoa.id;
                 preencherEnderecoResponsavel(item, pessoa);
                 area.classList.remove("aberto");
                 document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
@@ -115,13 +115,25 @@ function criarBlocoResponsavel() {
         item.remove();
         document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
         atualizarResumoAtivo();
-        // sempre mantém ao menos um bloco de responsável na tela
-        if (document.querySelectorAll(".responsavel-item").length === 0) {
-            criarBlocoResponsavel();
-        }
     };
 
     document.querySelector("#lista-responsaveis").appendChild(clone);
+    return item;
+}
+
+/* Preenche (ou cria) um bloco de responsável vazio com os dados de uma
+   pessoa, sem forçar nada: é chamado apenas quando o usuário clica numa
+   sugestão explícita (regra 8 — nunca preenche sozinho, sempre a partir
+   de uma ação clara da pessoa que está vendendo). */
+function preencherResponsavelSugerido(pessoa) {
+    const itens = Array.from(document.querySelectorAll(".responsavel-item"));
+    let alvo = itens.find(i => !i.dataset.pessoaId);
+    if (!alvo) {
+        alvo = criarBlocoResponsavel();
+    }
+    preencherEnderecoResponsavel(alvo, pessoa);
+    document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
+    atualizarResumoAtivo();
 }
 
 /* ---------------------- Produtos ---------------------- */
@@ -184,17 +196,32 @@ function produtoMaisFrequente(respIds) {
     return produtos.find(p => p.id === melhorId) || null;
 }
 
+/* Quantidade sempre representa "quantas unidades/sacos" foram vendidos.
+   Só quando o produto é explicitamente a granel (picado/solto, fora do
+   pacote fechado) é que a quantidade passa a representar quilos direto.
+   Ver regra 7 de regras-negocio.md. */
 function ajustarCampoQuantidade(item, produto) {
     const label = item.querySelector(".prod-qtd-label");
     const input = item.querySelector(".prod-qtd");
+
     if (produto && produto.vendido_a_granel) {
         label.textContent = "Quantidade (kg)";
         input.step = "0.1";
-        input.value = input.value === "1" ? "1.0" : input.value;
+        if (input.value === "1") input.value = "1.0";
     } else {
-        label.textContent = "Quantidade (un)";
+        const pesoTxt = produto && produto.peso_kg_por_unidade
+            ? ` de ${produto.peso_kg_por_unidade}kg`
+            : "";
+        label.textContent = `Quantidade (unidades${pesoTxt})`;
         input.step = "1";
     }
+}
+
+function pesoTotalItem(produto, qtd) {
+    if (!produto) return null;
+    if (produto.vendido_a_granel) return Math.round(qtd * 100) / 100;
+    if (produto.peso_kg_por_unidade) return Math.round(qtd * produto.peso_kg_por_unidade * 100) / 100;
+    return null;
 }
 
 function criarBlocoProduto() {
@@ -209,6 +236,7 @@ function criarBlocoProduto() {
     const areaSugPet = item.querySelector(".sugestoes-pet");
     const detalhePet = item.querySelector(".prod-pet-detalhe");
     const avisoVinculo = item.querySelector(".prod-aviso");
+    const sugestaoResp = item.querySelector(".sugestao-responsavel");
     const btnRemover = item.querySelector(".remover-produto");
 
     item.dataset.petId = "";
@@ -270,6 +298,7 @@ function criarBlocoProduto() {
         areaSugPet.innerHTML = "";
         detalhePet.style.display = "none";
         avisoVinculo.style.display = "none";
+        sugestaoResp.style.display = "none";
 
         if (resultado.length === 0) {
             areaSugPet.classList.remove("aberto");
@@ -294,6 +323,7 @@ function criarBlocoProduto() {
                 mostrarDetalhePet(pet, detalhePet);
                 atualizarVinculoProduto(item);
                 atualizarResumoAtivo(pet);
+                mostrarSugestaoResponsavel(pet, sugestaoResp);
             };
             areaSugPet.appendChild(div);
         });
@@ -321,6 +351,34 @@ function mostrarDetalhePet(pet, detalheEl) {
     }
     detalheEl.style.display = "block";
     detalheEl.innerHTML = `${pet.especie} · ${pet.raca} · ${pet.idade} ano(s)<br>${pet.observacoes}`;
+}
+
+/* Sugere o(s) responsável(is) já cadastrado(s) do pet escolhido, como um
+   atalho clicável — nunca preenche o campo Responsável sozinho, porque
+   pode ser proposital registrar um responsável diferente nessa venda
+   (ex: alguém novo levando o pet). Ver regra 8 de regras-negocio.md. */
+function mostrarSugestaoResponsavel(pet, sugestaoEl) {
+    const jaSelecionados = responsaveisAtuaisIds();
+    const candidatos = pet.responsaveis
+        .map(pessoaPorId)
+        .filter(p => p && !jaSelecionados.includes(p.id));
+
+    if (candidatos.length === 0) {
+        sugestaoEl.style.display = "none";
+        return;
+    }
+
+    sugestaoEl.style.display = "block";
+    sugestaoEl.innerHTML = candidatos.map(p =>
+        `<span class="chip-sugestao" data-pessoa-id="${p.id}">+ ${p.nome} (${p.telefone})</span>`
+    ).join(" ");
+
+    sugestaoEl.querySelectorAll(".chip-sugestao").forEach(chip => {
+        chip.onclick = () => {
+            const pessoa = pessoaPorId(Number(chip.dataset.pessoaId));
+            if (pessoa) preencherResponsavelSugerido(pessoa);
+        };
+    });
 }
 
 /* Se o pet escolhido não pertence a nenhum dos responsáveis atuais da
@@ -388,6 +446,12 @@ function alertasEstoquePet(petId) {
     return alertas;
 }
 
+function descreverItem(i) {
+    const qtdTxt = i.unidade_venda === "kg" ? `${i.quantidade}kg` : `${i.quantidade}un`;
+    const pesoTxt = i.peso_total_kg ? ` (${i.peso_total_kg}kg)` : "";
+    return `${i.descricao} — ${qtdTxt}${pesoTxt}`;
+}
+
 function renderizarResumo(pet) {
     const el = document.querySelector("#resumo-conteudo");
 
@@ -403,7 +467,7 @@ function renderizarResumo(pet) {
 
     let comprasHtml = compras.length
         ? compras.map(v => {
-            const itens = v.itens.map(i => `${i.descricao} (${i.quantidade}${i.unidade})`).join(", ");
+            const itens = v.itens.map(descreverItem).join(", ");
             return `<p>${v.data} — ${itens}</p>`;
         }).join("")
         : `<p class="resumo-vazio">Sem compras anteriores registradas.</p>`;
@@ -462,31 +526,17 @@ function atualizarResumoAtivo(petForcado) {
 /* ---------------------- Salvar venda ---------------------- */
 
 function salvarVenda() {
+    // Regra 8: preenchimento incremental — não exigimos nenhum campo
+    // obrigatório para permitir salvar uma venda parcialmente preenchida.
     const respItens = Array.from(document.querySelectorAll(".responsavel-item"));
     const nomesResp = respItens.map(i => i.querySelector(".resp-nome").value.trim()).filter(Boolean);
-    if (nomesResp.length === 0) {
-        alert("Informe ao menos um responsável.");
-        return;
-    }
 
     const itens = Array.from(document.querySelectorAll(".produto-item"));
-    if (itens.length === 0) {
-        alert("Adicione ao menos um produto.");
-        return;
-    }
 
-    for (const item of itens) {
-        const nomeProd = item.querySelector(".prod-nome").value.trim();
-        const nomePet = item.querySelector(".prod-pet").value.trim();
-        if (!nomeProd || !nomePet) {
-            alert("Preencha produto e pet em todos os itens adicionados.");
-            return;
-        }
-    }
-
+    const quemLabel = nomesResp.length ? nomesResp.join(" e ") : "responsável não informado";
     const msg = document.querySelector("#msg-sucesso");
     msg.style.display = "block";
-    msg.textContent = `✔ Venda registrada para ${nomesResp.join(" e ")} (${itens.length} produto(s)). Protótipo: dados não são persistidos ainda.`;
+    msg.textContent = `✔ Venda registrada para ${quemLabel} (${itens.length} produto(s)). Protótipo: dados não são persistidos ainda.`;
 }
 
 /* ---------------------- Boot ---------------------- */

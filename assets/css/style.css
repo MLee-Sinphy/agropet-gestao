@@ -25,3 +25,9 @@ html, body {
 a {
     color: inherit;
 }
+
+.header-link {
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}

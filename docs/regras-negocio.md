@@ -90,40 +90,55 @@ visita — ela digita o nome dela uma única vez, e adiciona três produtos.
 
 ---
 
-## 7. Produto vendido a granel (por peso) vs. produto vendido por unidade fechada
+## 7. Produto vendido por unidade/saco fechado vs. produto vendido a granel
 
-Regra: todo produto tem um atributo que define como ele é medido: "a
-granel" (vendido por quantidade de quilos, tirado de um pacote maior) ou
-"unidade fechada" (cada item vendido é uma unidade inteira do estoque). Na
-venda, quando o produto é a granel, o campo de quantidade deve capturar o
-peso em quilos vendido (podendo ser fracionário, ex: 2,5kg), não a
-quantidade de "pacotes". Isso é indispensável para o controle de estoque
-futuro: o sistema vai calcular quanto ainda resta de um produto a granel
-subtraindo, do total em estoque, a soma de quilos já vendidos — não é
-possível saber "qual pacote" foi vendido, só quanto peso saiu.
+Regra: todo produto tem um atributo que define como ele é medido. A regra
+geral é: "quantidade" na venda representa quantas unidades/sacos foram
+vendidos — mesmo produtos como ração, que fisicamente são pesados em
+quilos, normalmente são vendidos em sacos fechados (ex: 1 saco de 15kg =
+1 unidade vendida). Só quando o produto é realmente "a granel" — vendido
+solto, picado de um pacote grande, sem embalagem fechada — é que a
+quantidade da venda passa a representar quilos diretamente (podendo ser
+fracionário, ex: 2,5kg).
 
-Exemplo: a loja tem um saco de 20kg de ração Golden aberto. Maria compra
-3,5kg dessa ração para o Rex. O sistema registra a venda como "3,5kg de
-Ração Golden", e quando o controle de estoque for implementado, o saldo
-desse produto no estoque será reduzido em 3,5kg (não em "1 unidade"). Já
-um "Antipulgas NexGard" é vendido por caixa fechada: a venda de 1 unidade
-reduz exatamente 1 unidade do estoque.
+Cada produto guarda também o peso por unidade (quando aplicável), para
+que o sistema saiba converter "quantidade vendida" em "peso total
+vendido" independentemente de como a venda foi registrada. Isso é
+indispensável para o controle de estoque futuro: o sistema vai calcular
+quanto ainda resta de um produto subtraindo, do total em estoque, a soma
+do peso já vendido.
+
+Exemplo: a loja vende "Ração Golden 15kg" em sacos fechados. Maria compra
+2 sacos para o Rex — a venda registra "quantidade: 2 (unidades)", e o
+sistema calcula automaticamente que isso equivale a 30kg vendidos (2 x
+15kg), porque o produto tem o peso por unidade cadastrado. Já a "Ração
+Golden a Granel" é vendida solta, tirada de um saco grande aberto na
+loja: se Maria pedir 3,5kg dessa ração, a venda registra diretamente
+"quantidade: 3,5 (kg)".
 
 ---
 
 ## 8. Preenchimento incremental, nunca um interrogatório
 
 Regra: o vendedor no balcão preenche apenas o que sabe naquele momento; os
-campos vazios não bloqueiam o salvamento da venda. Quando o mesmo
-responsável ou pet aparecer numa venda futura, e informações novas forem
-digitadas, o cadastro existente é atualizado (enriquecido) com essas
-informações — nunca duplicado.
+campos vazios não bloqueiam o salvamento da venda — incluindo o caso
+extremo de salvar uma venda sem nenhum responsável informado, se assim
+for necessário no momento. Quando o mesmo responsável ou pet aparecer numa
+venda futura, e informações novas forem digitadas, o cadastro existente é
+atualizado (enriquecido) com essas informações — nunca duplicado.
 
 Exemplo: hoje o vendedor só digita "Maria" e "Rex" e salva a venda sem
 telefone nenhum. Duas semanas depois, outro vendedor atende Maria de novo
 e ela informa o telefone dela. O sistema reconhece que é a mesma Maria
 (pelo cadastro já existente) e apenas completa o campo telefone que estava
 vazio — não cria um segundo cadastro de "Maria".
+
+Consequência prática: ao escolher um pet na venda, o sistema mostra os
+responsáveis já conhecidos daquele pet como sugestões clicáveis (nome +
+telefone), mas nunca preenche o campo Responsável sozinho. Pode ser
+proposital estar registrando um responsável diferente do usual naquela
+venda (ex: uma pessoa nova levando o pet ao petshop pela primeira vez), e
+o sistema não deve presumir isso por conta própria.
 
 ---
 

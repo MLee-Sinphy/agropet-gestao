@@ -1,1015 +1,1092 @@
 [
   {
-    "id": 103,
-    "data": "2025-06-23",
+    "id": 34,
+    "data": "2025-06-25",
+    "pet_id": 86,
+    "responsaveis": [
+      69
+    ],
+    "itens": [
+      {
+        "produto_id": 16,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 197.73,
+        "peso_total_kg": 3
+      }
+    ],
+    "total": 197.73
+  },
+  {
+    "id": 76,
+    "data": "2025-06-28",
+    "pet_id": 47,
+    "responsaveis": [
+      42
+    ],
+    "itens": [
+      {
+        "produto_id": 43,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 75.37,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 150.74
+  },
+  {
+    "id": 47,
+    "data": "2025-06-29",
+    "pet_id": 67,
+    "responsaveis": [
+      9001
+    ],
+    "itens": [
+      {
+        "produto_id": 68,
+        "descricao": "Shampoo Pet Vet Fresh",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 33.13,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 99.39
+  },
+  {
+    "id": 52,
+    "data": "2025-07-04",
+    "pet_id": 89,
+    "responsaveis": [
+      27
+    ],
+    "itens": [
+      {
+        "produto_id": 67,
+        "descricao": "Caixa de Transporte Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 200.56,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 601.68
+  },
+  {
+    "id": 104,
+    "data": "2025-07-04",
     "pet_id": 99,
     "responsaveis": [
       54
     ],
     "itens": [
       {
-        "produto_id": 23,
-        "descricao": "Shampoo Pet Sanol",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 76.35
-      },
-      {
-        "produto_id": 94,
-        "descricao": "Brinquedo Furacão Pet",
+        "produto_id": 62,
+        "descricao": "Brinquedo Chalesco",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 16.04
+        "unidade_venda": "un",
+        "preco_unitario": 34.38,
+        "peso_total_kg": null
       }
     ],
-    "total": 261.13
+    "total": 68.76
   },
   {
     "id": 74,
-    "data": "2025-06-28",
-    "pet_id": 74,
+    "data": "2025-07-05",
+    "pet_id": 26,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 74,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 24.13,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 72.39
+  },
+  {
+    "id": 105,
+    "data": "2025-07-07",
+    "pet_id": 27,
     "responsaveis": [
       7
     ],
     "itens": [
       {
-        "produto_id": 43,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 142.06
-      }
-    ],
-    "total": 284.12
-  },
-  {
-    "id": 107,
-    "data": "2025-07-03",
-    "pet_id": 33,
-    "responsaveis": [
-      39
-    ],
-    "itens": [
-      {
-        "produto_id": 85,
-        "descricao": "Petisco Pedigree Snacks",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 21.92
-      }
-    ],
-    "total": 21.92
-  },
-  {
-    "id": 51,
-    "data": "2025-07-04",
-    "pet_id": 20,
-    "responsaveis": [
-      64
-    ],
-    "itens": [
-      {
-        "produto_id": 67,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 200.56
-      }
-    ],
-    "total": 601.68
-  },
-  {
-    "id": 14,
-    "data": "2025-07-14",
-    "pet_id": 78,
-    "responsaveis": [
-      40
-    ],
-    "itens": [
-      {
-        "produto_id": 76,
-        "descricao": "Coleira Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 70.92
-      }
-    ],
-    "total": 70.92
-  },
-  {
-    "id": 62,
-    "data": "2025-07-18",
-    "pet_id": 89,
-    "responsaveis": [
-      27
-    ],
-    "itens": [
-      {
-        "produto_id": 16,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 129.05
-      },
-      {
-        "produto_id": 34,
-        "descricao": "Shampoo Pet Pet Clean",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 46.05
-      }
-    ],
-    "total": 221.15
-  },
-  {
-    "id": 80,
-    "data": "2025-07-19",
-    "pet_id": 52,
-    "responsaveis": [
-      6
-    ],
-    "itens": [
-      {
-        "produto_id": 14,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 59.17
-      }
-    ],
-    "total": 177.51
-  },
-  {
-    "id": 66,
-    "data": "2025-08-02",
-    "pet_id": 21,
-    "responsaveis": [
-      18
-    ],
-    "itens": [
-      {
-        "produto_id": 99,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 203.33
-      }
-    ],
-    "total": 406.66
-  },
-  {
-    "id": 88,
-    "data": "2025-08-02",
-    "pet_id": 57,
-    "responsaveis": [
-      20
-    ],
-    "itens": [
-      {
-        "produto_id": 55,
-        "descricao": "Shampoo Pet Vet Fresh",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 67.91
-      }
-    ],
-    "total": 67.91
-  },
-  {
-    "id": 57,
-    "data": "2025-08-03",
-    "pet_id": 67,
-    "responsaveis": [
-      9001
-    ],
-    "itens": [
-      {
-        "produto_id": 77,
-        "descricao": "Coleira Petix",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 112.12
-      }
-    ],
-    "total": 112.12
-  },
-  {
-    "id": 19,
-    "data": "2025-08-15",
-    "pet_id": 9,
-    "responsaveis": [
-      24
-    ],
-    "itens": [
-      {
-        "produto_id": 57,
-        "descricao": "Areia Higiênica Sanicat 10.1kg",
-        "quantidade": 16.4,
-        "unidade": "kg",
-        "preco_unitario": 7.26
-      },
-      {
-        "produto_id": 22,
-        "descricao": "Ração Cães Adulto GranPlus 10.1kg",
-        "quantidade": 2.5,
-        "unidade": "kg",
-        "preco_unitario": 21.69
-      }
-    ],
-    "total": 173.29
-  },
-  {
-    "id": 68,
-    "data": "2025-08-16",
-    "pet_id": 6,
-    "responsaveis": [
-      31
-    ],
-    "itens": [
-      {
-        "produto_id": 68,
-        "descricao": "Areia Higiênica Pipicat 20kg",
-        "quantidade": 3.2,
-        "unidade": "kg",
-        "preco_unitario": 13.75
-      }
-    ],
-    "total": 44.0
-  },
-  {
-    "id": 67,
-    "data": "2025-08-17",
-    "pet_id": 6,
-    "responsaveis": [
-      31
-    ],
-    "itens": [
-      {
-        "produto_id": 34,
+        "produto_id": 51,
         "descricao": "Shampoo Pet Pet Clean",
         "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 46.05
+        "unidade_venda": "un",
+        "preco_unitario": 44.86,
+        "peso_total_kg": null
       }
     ],
-    "total": 46.05
+    "total": 44.86
   },
   {
     "id": 43,
-    "data": "2025-08-19",
-    "pet_id": 98,
+    "data": "2025-07-16",
+    "pet_id": 85,
     "responsaveis": [
-      21
+      47
     ],
     "itens": [
       {
-        "produto_id": 41,
-        "descricao": "Ração Gatos Filhote Royal Canin Gatos 15kg",
-        "quantidade": 11.7,
-        "unidade": "kg",
-        "preco_unitario": 66.88
-      }
-    ],
-    "total": 782.5
-  },
-  {
-    "id": 70,
-    "data": "2025-08-25",
-    "pet_id": 4,
-    "responsaveis": [
-      51
-    ],
-    "itens": [
-      {
-        "produto_id": 14,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 59.17
-      }
-    ],
-    "total": 177.51
-  },
-  {
-    "id": 71,
-    "data": "2025-08-28",
-    "pet_id": 35,
-    "responsaveis": [
-      29
-    ],
-    "itens": [
-      {
-        "produto_id": 72,
-        "descricao": "Ração Gatos Filhote Royal Canin Gatos 10.1kg",
-        "quantidade": 6.7,
-        "unidade": "kg",
-        "preco_unitario": 18.8
-      }
-    ],
-    "total": 125.96
-  },
-  {
-    "id": 111,
-    "data": "2025-08-30",
-    "pet_id": 84,
-    "responsaveis": [
-      9003
-    ],
-    "itens": [
-      {
-        "produto_id": 2,
-        "descricao": "Vermífugo Endogard",
+        "produto_id": 69,
+        "descricao": "Antipulgas Simparic",
         "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 95.48
+        "unidade_venda": "un",
+        "preco_unitario": 149.66,
+        "peso_total_kg": null
       }
     ],
-    "total": 95.48
-  },
-  {
-    "id": 4,
-    "data": "2025-09-02",
-    "pet_id": 76,
-    "responsaveis": [
-      38
-    ],
-    "itens": [
-      {
-        "produto_id": 12,
-        "descricao": "Vermífugo Drontal",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 43.29
-      },
-      {
-        "produto_id": 9,
-        "descricao": "Ração Cães Filhote Premier 15kg",
-        "quantidade": 8.8,
-        "unidade": "kg",
-        "preco_unitario": 10.06
-      }
-    ],
-    "total": 175.11
-  },
-  {
-    "id": 39,
-    "data": "2025-09-04",
-    "pet_id": 88,
-    "responsaveis": [
-      61
-    ],
-    "itens": [
-      {
-        "produto_id": 80,
-        "descricao": "Petisco Cat Treats",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 26.15
-      },
-      {
-        "produto_id": 7,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 323.06
-      }
-    ],
-    "total": 698.42
-  },
-  {
-    "id": 13,
-    "data": "2025-09-05",
-    "pet_id": 78,
-    "responsaveis": [
-      40
-    ],
-    "itens": [
-      {
-        "produto_id": 60,
-        "descricao": "Ração Cães Adulto GranPlus 15kg",
-        "quantidade": 7.7,
-        "unidade": "kg",
-        "preco_unitario": 46.41
-      }
-    ],
-    "total": 357.36
-  },
-  {
-    "id": 23,
-    "data": "2025-09-05",
-    "pet_id": 95,
-    "responsaveis": [
-      35
-    ],
-    "itens": [
-      {
-        "produto_id": 54,
-        "descricao": "Ração Gatos Filhote Whiskas 15kg",
-        "quantidade": 11.8,
-        "unidade": "kg",
-        "preco_unitario": 75.66
-      }
-    ],
-    "total": 892.79
-  },
-  {
-    "id": 96,
-    "data": "2025-09-11",
-    "pet_id": 32,
-    "responsaveis": [
-      68
-    ],
-    "itens": [
-      {
-        "produto_id": 16,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 129.05
-      }
-    ],
-    "total": 387.15
-  },
-  {
-    "id": 113,
-    "data": "2025-09-11",
-    "pet_id": 23,
-    "responsaveis": [
-      63
-    ],
-    "itens": [
-      {
-        "produto_id": 15,
-        "descricao": "Ração Cães Adulto Royal Canin 20kg",
-        "quantidade": 12.4,
-        "unidade": "kg",
-        "preco_unitario": 27.57
-      }
-    ],
-    "total": 341.87
-  },
-  {
-    "id": 22,
-    "data": "2025-09-12",
-    "pet_id": 9,
-    "responsaveis": [
-      24
-    ],
-    "itens": [
-      {
-        "produto_id": 17,
-        "descricao": "Vermífugo Endogard",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 105.09
-      }
-    ],
-    "total": 210.18
-  },
-  {
-    "id": 29,
-    "data": "2025-09-16",
-    "pet_id": 34,
-    "responsaveis": [
-      22
-    ],
-    "itens": [
-      {
-        "produto_id": 17,
-        "descricao": "Vermífugo Endogard",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 105.09
-      }
-    ],
-    "total": 210.18
-  },
-  {
-    "id": 108,
-    "data": "2025-09-16",
-    "pet_id": 33,
-    "responsaveis": [
-      39
-    ],
-    "itens": [
-      {
-        "produto_id": 58,
-        "descricao": "Ração Gatos Filhote Royal Canin Gatos 3kg",
-        "quantidade": 9.9,
-        "unidade": "kg",
-        "preco_unitario": 100.09
-      },
-      {
-        "produto_id": 94,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 16.04
-      }
-    ],
-    "total": 1039.01
-  },
-  {
-    "id": 99,
-    "data": "2025-09-26",
-    "pet_id": 97,
-    "responsaveis": [
-      66
-    ],
-    "itens": [
-      {
-        "produto_id": 14,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 59.17
-      }
-    ],
-    "total": 59.17
-  },
-  {
-    "id": 26,
-    "data": "2025-09-28",
-    "pet_id": 94,
-    "responsaveis": [
-      11
-    ],
-    "itens": [
-      {
-        "produto_id": 16,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 129.05
-      },
-      {
-        "produto_id": 6,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 102.08
-      }
-    ],
-    "total": 231.13
-  },
-  {
-    "id": 55,
-    "data": "2025-09-30",
-    "pet_id": 90,
-    "responsaveis": [
-      37
-    ],
-    "itens": [
-      {
-        "produto_id": 35,
-        "descricao": "Ração Cães Filhote Premier 1kg",
-        "quantidade": 17.9,
-        "unidade": "kg",
-        "preco_unitario": 26.2
-      }
-    ],
-    "total": 468.98
-  },
-  {
-    "id": 63,
-    "data": "2025-10-02",
-    "pet_id": 89,
-    "responsaveis": [
-      27
-    ],
-    "itens": [
-      {
-        "produto_id": 44,
-        "descricao": "Brinquedo Chalesco",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 16.01
-      },
-      {
-        "produto_id": 4,
-        "descricao": "Brinquedo Chalesco",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 69.66
-      }
-    ],
-    "total": 155.33
-  },
-  {
-    "id": 20,
-    "data": "2025-10-08",
-    "pet_id": 9,
-    "responsaveis": [
-      24
-    ],
-    "itens": [
-      {
-        "produto_id": 29,
-        "descricao": "Ração Gatos Adulto Whiskas 1kg",
-        "quantidade": 16.0,
-        "unidade": "kg",
-        "preco_unitario": 44.93
-      }
-    ],
-    "total": 718.88
-  },
-  {
-    "id": 38,
-    "data": "2025-10-09",
-    "pet_id": 88,
-    "responsaveis": [
-      61
-    ],
-    "itens": [
-      {
-        "produto_id": 48,
-        "descricao": "Areia Higiênica Sanicat 3kg",
-        "quantidade": 9.8,
-        "unidade": "kg",
-        "preco_unitario": 9.61
-      }
-    ],
-    "total": 94.18
+    "total": 149.66
   },
   {
     "id": 112,
-    "data": "2025-10-12",
+    "data": "2025-07-16",
     "pet_id": 60,
     "responsaveis": [
       47
     ],
     "itens": [
       {
-        "produto_id": 65,
-        "descricao": "Comedouro Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 57.27
-      }
-    ],
-    "total": 171.81
-  },
-  {
-    "id": 84,
-    "data": "2025-10-24",
-    "pet_id": 29,
-    "responsaveis": [
-      20
-    ],
-    "itens": [
-      {
-        "produto_id": 44,
-        "descricao": "Brinquedo Chalesco",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 16.01
-      }
-    ],
-    "total": 32.02
-  },
-  {
-    "id": 79,
-    "data": "2025-10-29",
-    "pet_id": 52,
-    "responsaveis": [
-      6
-    ],
-    "itens": [
-      {
-        "produto_id": 39,
-        "descricao": "Brinquedo Kong",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 26.67
-      }
-    ],
-    "total": 80.01
-  },
-  {
-    "id": 33,
-    "data": "2025-11-02",
-    "pet_id": 30,
-    "responsaveis": [
-      63
-    ],
-    "itens": [
-      {
-        "produto_id": 61,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 88.01
-      }
-    ],
-    "total": 176.02
-  },
-  {
-    "id": 10,
-    "data": "2025-11-09",
-    "pet_id": 48,
-    "responsaveis": [
-      59
-    ],
-    "itens": [
-      {
-        "produto_id": 82,
-        "descricao": "Areia Higiênica Sanicat 10.1kg",
-        "quantidade": 14.7,
-        "unidade": "kg",
-        "preco_unitario": 16.2
-      }
-    ],
-    "total": 238.14
-  },
-  {
-    "id": 28,
-    "data": "2025-11-11",
-    "pet_id": 94,
-    "responsaveis": [
-      11
-    ],
-    "itens": [
-      {
-        "produto_id": 85,
-        "descricao": "Petisco Pedigree Snacks",
+        "produto_id": 48,
+        "descricao": "Shampoo Pet Pet Clean",
         "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 21.92
+        "unidade_venda": "un",
+        "preco_unitario": 26.37,
+        "peso_total_kg": null
       }
     ],
-    "total": 21.92
+    "total": 26.37
   },
   {
-    "id": 32,
-    "data": "2025-11-19",
-    "pet_id": 71,
-    "responsaveis": [
-      65
-    ],
-    "itens": [
-      {
-        "produto_id": 52,
-        "descricao": "Areia Higiênica Golden Cat 10.1kg",
-        "quantidade": 1.9,
-        "unidade": "kg",
-        "preco_unitario": 19.17
-      }
-    ],
-    "total": 36.42
-  },
-  {
-    "id": 58,
-    "data": "2025-11-22",
-    "pet_id": 67,
-    "responsaveis": [
-      9001
-    ],
-    "itens": [
-      {
-        "produto_id": 10,
-        "descricao": "Ração Gatos Filhote Whiskas 15kg",
-        "quantidade": 17.3,
-        "unidade": "kg",
-        "preco_unitario": 45.95
-      },
-      {
-        "produto_id": 52,
-        "descricao": "Areia Higiênica Golden Cat 10.1kg",
-        "quantidade": 15.9,
-        "unidade": "kg",
-        "preco_unitario": 19.17
-      }
-    ],
-    "total": 1099.74
-  },
-  {
-    "id": 56,
-    "data": "2025-11-23",
-    "pet_id": 90,
-    "responsaveis": [
-      37
-    ],
-    "itens": [
-      {
-        "produto_id": 26,
-        "descricao": "Areia Higiênica Sanicat 3kg",
-        "quantidade": 4.3,
-        "unidade": "kg",
-        "preco_unitario": 3.49
-      },
-      {
-        "produto_id": 47,
-        "descricao": "Areia Higiênica Sanicat 1kg",
-        "quantidade": 5.5,
-        "unidade": "kg",
-        "preco_unitario": 4.98
-      }
-    ],
-    "total": 42.4
-  },
-  {
-    "id": 101,
-    "data": "2025-11-23",
-    "pet_id": 28,
-    "responsaveis": [
-      47
-    ],
-    "itens": [
-      {
-        "produto_id": 85,
-        "descricao": "Petisco Pedigree Snacks",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 21.92
-      },
-      {
-        "produto_id": 49,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 22.94
-      }
-    ],
-    "total": 67.8
-  },
-  {
-    "id": 97,
-    "data": "2025-11-30",
-    "pet_id": 14,
+    "id": 63,
+    "data": "2025-07-18",
+    "pet_id": 39,
     "responsaveis": [
       44
     ],
     "itens": [
       {
-        "produto_id": 39,
-        "descricao": "Brinquedo Kong",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 26.67
+        "produto_id": 16,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 197.73,
+        "peso_total_kg": 3
       },
       {
-        "produto_id": 32,
-        "descricao": "Petisco Pedigree Snacks",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 9.3
+        "produto_id": 34,
+        "descricao": "Comedouro Furacão Pet",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 94.27,
+        "peso_total_kg": null
       }
     ],
-    "total": 81.24
+    "total": 386.27
   },
   {
-    "id": 81,
-    "data": "2025-12-03",
-    "pet_id": 37,
+    "id": 59,
+    "data": "2025-07-22",
+    "pet_id": 6,
     "responsaveis": [
-      61
+      31
     ],
     "itens": [
       {
-        "produto_id": 68,
-        "descricao": "Areia Higiênica Pipicat 20kg",
-        "quantidade": 5.0,
-        "unidade": "kg",
-        "preco_unitario": 13.75
+        "produto_id": 52,
+        "descricao": "Comedouro Petix",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 36.26,
+        "peso_total_kg": null
       }
     ],
-    "total": 68.75
+    "total": 108.78
+  },
+  {
+    "id": 93,
+    "data": "2025-07-23",
+    "pet_id": 58,
+    "responsaveis": [
+      13
+    ],
+    "itens": [
+      {
+        "produto_id": 48,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 26.37,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 52.74
   },
   {
     "id": 25,
-    "data": "2025-12-05",
+    "data": "2025-07-24",
+    "pet_id": 34,
+    "responsaveis": [
+      22
+    ],
+    "itens": [
+      {
+        "produto_id": 96,
+        "descricao": "Ração Gatos Adulto a Granel Whiskas",
+        "quantidade": 9.7,
+        "unidade_venda": "kg",
+        "preco_unitario": 6.9,
+        "peso_total_kg": 9.7
+      }
+    ],
+    "total": 66.93
+  },
+  {
+    "id": 35,
+    "data": "2025-07-27",
+    "pet_id": 86,
+    "responsaveis": [
+      69
+    ],
+    "itens": [
+      {
+        "produto_id": 65,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 214.41,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 428.82
+  },
+  {
+    "id": 58,
+    "data": "2025-08-01",
+    "pet_id": 21,
+    "responsaveis": [
+      18
+    ],
+    "itens": [
+      {
+        "produto_id": 60,
+        "descricao": "Shampoo Pet Vet Fresh",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 43.56,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 130.68
+  },
+  {
+    "id": 19,
+    "data": "2025-08-15",
     "pet_id": 2,
     "responsaveis": [
       42
     ],
     "itens": [
       {
-        "produto_id": 85,
-        "descricao": "Petisco Pedigree Snacks",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 21.92
+        "produto_id": 57,
+        "descricao": "Brinquedo Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 73.38,
+        "peso_total_kg": null
       },
       {
-        "produto_id": 67,
-        "descricao": "Caixa de Transporte Furacão Pet",
+        "produto_id": 11,
+        "descricao": "Petisco Cat Treats",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 200.56
+        "unidade_venda": "un",
+        "preco_unitario": 29.94,
+        "peso_total_kg": null
       }
     ],
-    "total": 466.88
+    "total": 133.26
   },
   {
-    "id": 11,
-    "data": "2025-12-15",
-    "pet_id": 48,
+    "id": 64,
+    "data": "2025-08-15",
+    "pet_id": 4,
     "responsaveis": [
-      59
+      51
     ],
     "itens": [
       {
-        "produto_id": 67,
-        "descricao": "Caixa de Transporte Furacão Pet",
+        "produto_id": 4,
+        "descricao": "Coleira Furacão Pet",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 200.56
-      },
-      {
-        "produto_id": 71,
-        "descricao": "Suplemento Vitamínico Vetnil",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 55.59
+        "unidade_venda": "un",
+        "preco_unitario": 106.44,
+        "peso_total_kg": null
       }
     ],
-    "total": 512.3
+    "total": 212.88
   },
   {
-    "id": 27,
-    "data": "2025-12-18",
+    "id": 82,
+    "data": "2025-08-19",
+    "pet_id": 72,
+    "responsaveis": [
+      14
+    ],
+    "itens": [
+      {
+        "produto_id": 77,
+        "descricao": "Shampoo Pet Sanol",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 28.73,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 28.73
+  },
+  {
+    "id": 29,
+    "data": "2025-08-21",
+    "pet_id": 30,
+    "responsaveis": [
+      63
+    ],
+    "itens": [
+      {
+        "produto_id": 69,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 149.66,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 299.32
+  },
+  {
+    "id": 85,
+    "data": "2025-08-24",
+    "pet_id": 24,
+    "responsaveis": [
+      69
+    ],
+    "itens": [
+      {
+        "produto_id": 18,
+        "descricao": "Suplemento Vitamínico Vetnil",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 34.96,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 12,
+        "descricao": "Antipulgas NexGard",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 249.27,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 817.73
+  },
+  {
+    "id": 72,
+    "data": "2025-08-30",
+    "pet_id": 26,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 77,
+        "descricao": "Shampoo Pet Sanol",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 28.73,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 72,
+        "descricao": "Ração Gatos Filhote Royal Canin Gatos 3kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 83.44,
+        "peso_total_kg": 6
+      }
+    ],
+    "total": 224.34
+  },
+  {
+    "id": 39,
+    "data": "2025-09-04",
+    "pet_id": 51,
+    "responsaveis": [
+      67
+    ],
+    "itens": [
+      {
+        "produto_id": 80,
+        "descricao": "Petisco Pedigree Snacks",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 30.64,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 7,
+        "descricao": "Caixa de Transporte Furacão Pet",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 323.06,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 707.4
+  },
+  {
+    "id": 23,
+    "data": "2025-09-05",
     "pet_id": 94,
     "responsaveis": [
       11
     ],
     "itens": [
       {
-        "produto_id": 2,
-        "descricao": "Vermífugo Endogard",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 95.48
-      }
-    ],
-    "total": 190.96
-  },
-  {
-    "id": 5,
-    "data": "2025-12-20",
-    "pet_id": 76,
-    "responsaveis": [
-      38
-    ],
-    "itens": [
-      {
-        "produto_id": 16,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 129.05
-      },
-      {
-        "produto_id": 78,
-        "descricao": "Comedouro Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 90.99
-      }
-    ],
-    "total": 402.02
-  },
-  {
-    "id": 40,
-    "data": "2025-12-23",
-    "pet_id": 88,
-    "responsaveis": [
-      61
-    ],
-    "itens": [
-      {
         "produto_id": 54,
-        "descricao": "Ração Gatos Filhote Whiskas 15kg",
-        "quantidade": 9.8,
-        "unidade": "kg",
-        "preco_unitario": 75.66
-      },
-      {
-        "produto_id": 32,
-        "descricao": "Petisco Pedigree Snacks",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 9.3
+        "descricao": "Ração Cães Filhote Golden 15kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 192.64,
+        "peso_total_kg": 45
       }
     ],
-    "total": 750.77
+    "total": 577.92
   },
   {
-    "id": 87,
-    "data": "2025-12-29",
+    "id": 13,
+    "data": "2025-09-08",
+    "pet_id": 81,
+    "responsaveis": [
+      39
+    ],
+    "itens": [
+      {
+        "produto_id": 46,
+        "descricao": "Vermífugo Drontal",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 71.91,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 215.73
+  },
+  {
+    "id": 15,
+    "data": "2025-09-08",
+    "pet_id": 75,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 76,
+        "descricao": "Caixa de Transporte Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 220.16,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 660.48
+  },
+  {
+    "id": 10,
+    "data": "2025-09-12",
+    "pet_id": 78,
+    "responsaveis": [
+      40
+    ],
+    "itens": [
+      {
+        "produto_id": 65,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 214.41,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 56,
+        "descricao": "Caixa de Transporte Chalesco",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 96.23,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 717.51
+  },
+  {
+    "id": 22,
+    "data": "2025-09-12",
+    "pet_id": 2,
+    "responsaveis": [
+      42
+    ],
+    "itens": [
+      {
+        "produto_id": 17,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 165.59,
+        "peso_total_kg": 6
+      }
+    ],
+    "total": 331.18
+  },
+  {
+    "id": 96,
+    "data": "2025-09-18",
+    "pet_id": 32,
+    "responsaveis": [
+      68
+    ],
+    "itens": [
+      {
+        "produto_id": 63,
+        "descricao": "Coleira Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 35.62,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 35.62
+  },
+  {
+    "id": 88,
+    "data": "2025-09-22",
+    "pet_id": 7,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 5,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 254.9,
+        "peso_total_kg": 9
+      },
+      {
+        "produto_id": 11,
+        "descricao": "Petisco Cat Treats",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 29.94,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 854.52
+  },
+  {
+    "id": 102,
+    "data": "2025-09-26",
+    "pet_id": 28,
+    "responsaveis": [
+      47
+    ],
+    "itens": [
+      {
+        "produto_id": 14,
+        "descricao": "Brinquedo Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 100.47,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 100.47
+  },
+  {
+    "id": 6,
+    "data": "2025-09-29",
+    "pet_id": 70,
+    "responsaveis": [
+      23
+    ],
+    "itens": [
+      {
+        "produto_id": 36,
+        "descricao": "Ração Cães Filhote Premier 1kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 170.09,
+        "peso_total_kg": 3
+      }
+    ],
+    "total": 510.27
+  },
+  {
+    "id": 20,
+    "data": "2025-10-08",
+    "pet_id": 2,
+    "responsaveis": [
+      42
+    ],
+    "itens": [
+      {
+        "produto_id": 29,
+        "descricao": "Ração Cães Adulto Golden 20kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 244.97,
+        "peso_total_kg": 20
+      }
+    ],
+    "total": 244.97
+  },
+  {
+    "id": 38,
+    "data": "2025-10-09",
+    "pet_id": 51,
+    "responsaveis": [
+      67
+    ],
+    "itens": [
+      {
+        "produto_id": 48,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 26.37,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 52.74
+  },
+  {
+    "id": 42,
+    "data": "2025-10-13",
+    "pet_id": 20,
+    "responsaveis": [
+      64
+    ],
+    "itens": [
+      {
+        "produto_id": 34,
+        "descricao": "Comedouro Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 94.27,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 60,
+        "descricao": "Shampoo Pet Vet Fresh",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 43.56,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 224.95
+  },
+  {
+    "id": 26,
+    "data": "2025-10-21",
+    "pet_id": 34,
+    "responsaveis": [
+      22
+    ],
+    "itens": [
+      {
+        "produto_id": 30,
+        "descricao": "Ração Gatos Adulto Whiskas 1kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 148.46,
+        "peso_total_kg": 1
+      }
+    ],
+    "total": 148.46
+  },
+  {
+    "id": 66,
+    "data": "2025-10-21",
+    "pet_id": 35,
+    "responsaveis": [
+      29
+    ],
+    "itens": [
+      {
+        "produto_id": 36,
+        "descricao": "Ração Cães Filhote Premier 1kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 170.09,
+        "peso_total_kg": 1
+      }
+    ],
+    "total": 170.09
+  },
+  {
+    "id": 84,
+    "data": "2025-10-28",
     "pet_id": 57,
     "responsaveis": [
       20
     ],
     "itens": [
       {
-        "produto_id": 26,
-        "descricao": "Areia Higiênica Sanicat 3kg",
-        "quantidade": 14.4,
-        "unidade": "kg",
-        "preco_unitario": 3.49
+        "produto_id": 65,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 214.41,
+        "peso_total_kg": null
       }
     ],
-    "total": 50.26
+    "total": 643.23
+  },
+  {
+    "id": 67,
+    "data": "2025-10-29",
+    "pet_id": 80,
+    "responsaveis": [
+      34
+    ],
+    "itens": [
+      {
+        "produto_id": 13,
+        "descricao": "Ração Cães Adulto Golden 15kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 263.8,
+        "peso_total_kg": 45
+      },
+      {
+        "produto_id": 90,
+        "descricao": "Areia Higiênica a Granel Pipicat",
+        "quantidade": 8.1,
+        "unidade_venda": "kg",
+        "preco_unitario": 7.11,
+        "peso_total_kg": 8.1
+      }
+    ],
+    "total": 848.99
+  },
+  {
+    "id": 33,
+    "data": "2025-10-30",
+    "pet_id": 98,
+    "responsaveis": [
+      21
+    ],
+    "itens": [
+      {
+        "produto_id": 7,
+        "descricao": "Caixa de Transporte Furacão Pet",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 323.06,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 646.12
+  },
+  {
+    "id": 109,
+    "data": "2025-11-09",
+    "pet_id": 84,
+    "responsaveis": [
+      9003
+    ],
+    "itens": [
+      {
+        "produto_id": 78,
+        "descricao": "Ração Gatos Adulto Golden Gatos 10.1kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 127.3,
+        "peso_total_kg": 30.3
+      },
+      {
+        "produto_id": 90,
+        "descricao": "Areia Higiênica a Granel Pipicat",
+        "quantidade": 8.3,
+        "unidade_venda": "kg",
+        "preco_unitario": 7.11,
+        "peso_total_kg": 8.3
+      }
+    ],
+    "total": 440.91
+  },
+  {
+    "id": 32,
+    "data": "2025-11-19",
+    "pet_id": 88,
+    "responsaveis": [
+      61
+    ],
+    "itens": [
+      {
+        "produto_id": 52,
+        "descricao": "Comedouro Petix",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 36.26,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 36.26
+  },
+  {
+    "id": 65,
+    "data": "2025-11-20",
+    "pet_id": 4,
+    "responsaveis": [
+      51
+    ],
+    "itens": [
+      {
+        "produto_id": 83,
+        "descricao": "Brinquedo Kong",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 97.29,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 291.87
+  },
+  {
+    "id": 4,
+    "data": "2025-11-22",
+    "pet_id": 76,
+    "responsaveis": [
+      38
+    ],
+    "itens": [
+      {
+        "produto_id": 62,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 34.38,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 45,
+        "descricao": "Coleira Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 29.04,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 63.42
+  },
+  {
+    "id": 73,
+    "data": "2025-11-22",
+    "pet_id": 26,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 23,
+        "descricao": "Areia Higiênica Pipicat 20kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 103.77,
+        "peso_total_kg": 60
+      }
+    ],
+    "total": 311.31
+  },
+  {
+    "id": 44,
+    "data": "2025-11-26",
+    "pet_id": 85,
+    "responsaveis": [
+      47
+    ],
+    "itens": [
+      {
+        "produto_id": 100,
+        "descricao": "Areia Higiênica a Granel Sanicat",
+        "quantidade": 8.4,
+        "unidade_venda": "kg",
+        "preco_unitario": 6.52,
+        "peso_total_kg": 8.4
+      }
+    ],
+    "total": 54.77
+  },
+  {
+    "id": 60,
+    "data": "2025-11-29",
+    "pet_id": 6,
+    "responsaveis": [
+      31
+    ],
+    "itens": [
+      {
+        "produto_id": 31,
+        "descricao": "Vermífugo Vetnil",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 32.07,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 92,
+        "descricao": "Areia Higiênica a Granel Sanicat",
+        "quantidade": 15.8,
+        "unidade_venda": "kg",
+        "preco_unitario": 5.74,
+        "peso_total_kg": 15.8
+      }
+    ],
+    "total": 186.9
+  },
+  {
+    "id": 100,
+    "data": "2025-11-30",
+    "pet_id": 44,
+    "responsaveis": [
+      9001
+    ],
+    "itens": [
+      {
+        "produto_id": 39,
+        "descricao": "Coleira Chalesco",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 46.15,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 32,
+        "descricao": "Vermífugo Drontal",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 85.2,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 347.9
+  },
+  {
+    "id": 40,
+    "data": "2025-12-23",
+    "pet_id": 51,
+    "responsaveis": [
+      67
+    ],
+    "itens": [
+      {
+        "produto_id": 54,
+        "descricao": "Ração Cães Filhote Golden 15kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 192.64,
+        "peso_total_kg": 30
+      },
+      {
+        "produto_id": 3,
+        "descricao": "Areia Higiênica Pipicat 4kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 105.08,
+        "peso_total_kg": 4
+      }
+    ],
+    "total": 490.36
+  },
+  {
+    "id": 12,
+    "data": "2025-12-26",
+    "pet_id": 61,
+    "responsaveis": [
+      50
+    ],
+    "itens": [
+      {
+        "produto_id": 41,
+        "descricao": "Comedouro Chalesco",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 71.57,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 49,
+        "descricao": "Comedouro Petix",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 50.65,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 223.52
+  },
+  {
+    "id": 108,
+    "data": "2025-12-26",
+    "pet_id": 33,
+    "responsaveis": [
+      39
+    ],
+    "itens": [
+      {
+        "produto_id": 57,
+        "descricao": "Brinquedo Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 73.38,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 220.14
+  },
+  {
+    "id": 90,
+    "data": "2025-12-29",
+    "pet_id": 7,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 26,
+        "descricao": "Ração Cães Filhote Premier 15kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 201.58,
+        "peso_total_kg": 45
+      }
+    ],
+    "total": 604.74
   },
   {
     "id": 1,
@@ -1021,322 +1098,345 @@
     "itens": [
       {
         "produto_id": 44,
-        "descricao": "Brinquedo Chalesco",
+        "descricao": "Caixa de Transporte Furacão Pet",
         "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 16.01
+        "unidade_venda": "un",
+        "preco_unitario": 142.06,
+        "peso_total_kg": null
       }
     ],
-    "total": 48.03
-  },
-  {
-    "id": 8,
-    "data": "2025-12-30",
-    "pet_id": 70,
-    "responsaveis": [
-      23
-    ],
-    "itens": [
-      {
-        "produto_id": 34,
-        "descricao": "Shampoo Pet Pet Clean",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 46.05
-      }
-    ],
-    "total": 46.05
-  },
-  {
-    "id": 94,
-    "data": "2025-12-30",
-    "pet_id": 58,
-    "responsaveis": [
-      29
-    ],
-    "itens": [
-      {
-        "produto_id": 92,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 39.94
-      }
-    ],
-    "total": 39.94
-  },
-  {
-    "id": 95,
-    "data": "2026-01-04",
-    "pet_id": 58,
-    "responsaveis": [
-      29
-    ],
-    "itens": [
-      {
-        "produto_id": 29,
-        "descricao": "Ração Gatos Adulto Whiskas 1kg",
-        "quantidade": 5.6,
-        "unidade": "kg",
-        "preco_unitario": 44.93
-      }
-    ],
-    "total": 251.61
-  },
-  {
-    "id": 36,
-    "data": "2026-01-10",
-    "pet_id": 25,
-    "responsaveis": [
-      9002
-    ],
-    "itens": [
-      {
-        "produto_id": 76,
-        "descricao": "Coleira Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 70.92
-      }
-    ],
-    "total": 141.84
-  },
-  {
-    "id": 50,
-    "data": "2026-01-15",
-    "pet_id": 51,
-    "responsaveis": [
-      67
-    ],
-    "itens": [
-      {
-        "produto_id": 53,
-        "descricao": "Ração Cães Adulto Pedigree 10.1kg",
-        "quantidade": 17.0,
-        "unidade": "kg",
-        "preco_unitario": 44.27
-      }
-    ],
-    "total": 752.59
-  },
-  {
-    "id": 15,
-    "data": "2026-01-18",
-    "pet_id": 78,
-    "responsaveis": [
-      40
-    ],
-    "itens": [
-      {
-        "produto_id": 59,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 55.44
-      }
-    ],
-    "total": 110.88
-  },
-  {
-    "id": 78,
-    "data": "2026-01-18",
-    "pet_id": 47,
-    "responsaveis": [
-      42
-    ],
-    "itens": [
-      {
-        "produto_id": 4,
-        "descricao": "Brinquedo Chalesco",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 69.66
-      },
-      {
-        "produto_id": 53,
-        "descricao": "Ração Cães Adulto Pedigree 10.1kg",
-        "quantidade": 19.0,
-        "unidade": "kg",
-        "preco_unitario": 44.27
-      }
-    ],
-    "total": 980.45
+    "total": 426.18
   },
   {
     "id": 98,
-    "data": "2026-01-31",
-    "pet_id": 97,
-    "responsaveis": [
-      66
-    ],
-    "itens": [
-      {
-        "produto_id": 8,
-        "descricao": "Coleira Petix",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 27.63
-      }
-    ],
-    "total": 82.89
-  },
-  {
-    "id": 6,
-    "data": "2026-02-07",
-    "pet_id": 70,
-    "responsaveis": [
-      23
-    ],
-    "itens": [
-      {
-        "produto_id": 36,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 250.83
-      }
-    ],
-    "total": 752.49
-  },
-  {
-    "id": 37,
-    "data": "2026-02-08",
-    "pet_id": 25,
-    "responsaveis": [
-      51
-    ],
-    "itens": [
-      {
-        "produto_id": 17,
-        "descricao": "Vermífugo Endogard",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 105.09
-      }
-    ],
-    "total": 315.27
-  },
-  {
-    "id": 12,
-    "data": "2026-02-15",
-    "pet_id": 78,
-    "responsaveis": [
-      40
-    ],
-    "itens": [
-      {
-        "produto_id": 79,
-        "descricao": "Vermífugo Drontal",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 124.99
-      }
-    ],
-    "total": 374.97
-  },
-  {
-    "id": 21,
-    "data": "2026-02-15",
-    "pet_id": 9,
-    "responsaveis": [
-      24
-    ],
-    "itens": [
-      {
-        "produto_id": 74,
-        "descricao": "Areia Higiênica Sanicat 15kg",
-        "quantidade": 4.5,
-        "unidade": "kg",
-        "preco_unitario": 4.36
-      },
-      {
-        "produto_id": 36,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 250.83
-      }
-    ],
-    "total": 521.28
-  },
-  {
-    "id": 72,
-    "data": "2026-02-17",
-    "pet_id": 35,
-    "responsaveis": [
-      29
-    ],
-    "itens": [
-      {
-        "produto_id": 91,
-        "descricao": "Suplemento Vitamínico Vetnil",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 78.74
-      },
-      {
-        "produto_id": 14,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 59.17
-      }
-    ],
-    "total": 256.25
-  },
-  {
-    "id": 7,
-    "data": "2026-02-18",
-    "pet_id": 70,
-    "responsaveis": [
-      23
-    ],
-    "itens": [
-      {
-        "produto_id": 14,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 59.17
-      }
-    ],
-    "total": 177.51
-  },
-  {
-    "id": 69,
-    "data": "2026-02-26",
-    "pet_id": 39,
+    "data": "2026-01-04",
+    "pet_id": 14,
     "responsaveis": [
       44
     ],
     "itens": [
       {
-        "produto_id": 73,
-        "descricao": "Caixa de Transporte Chalesco",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 146.29
+        "produto_id": 29,
+        "descricao": "Ração Cães Adulto Golden 20kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 244.97,
+        "peso_total_kg": 20
       }
     ],
-    "total": 438.87
+    "total": 244.97
   },
   {
-    "id": 102,
-    "data": "2026-02-26",
-    "pet_id": 41,
+    "id": 81,
+    "data": "2026-01-11",
+    "pet_id": 72,
     "responsaveis": [
-      26
+      56
+    ],
+    "itens": [
+      {
+        "produto_id": 75,
+        "descricao": "Suplemento Vitamínico Glicopan",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 118.23,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 236.46
+  },
+  {
+    "id": 9,
+    "data": "2026-01-14",
+    "pet_id": 78,
+    "responsaveis": [
+      40
+    ],
+    "itens": [
+      {
+        "produto_id": 67,
+        "descricao": "Caixa de Transporte Furacão Pet",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 200.56,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 401.12
+  },
+  {
+    "id": 45,
+    "data": "2026-01-15",
+    "pet_id": 90,
+    "responsaveis": [
+      37
+    ],
+    "itens": [
+      {
+        "produto_id": 4,
+        "descricao": "Coleira Furacão Pet",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 106.44,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 212.88
+  },
+  {
+    "id": 51,
+    "data": "2026-01-15",
+    "pet_id": 50,
+    "responsaveis": [
+      23
     ],
     "itens": [
       {
         "produto_id": 53,
-        "descricao": "Ração Cães Adulto Pedigree 10.1kg",
-        "quantidade": 3.2,
-        "unidade": "kg",
-        "preco_unitario": 44.27
+        "descricao": "Shampoo Pet Sanol",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 72.93,
+        "peso_total_kg": null
       }
     ],
-    "total": 141.66
+    "total": 218.79
+  },
+  {
+    "id": 86,
+    "data": "2026-01-23",
+    "pet_id": 24,
+    "responsaveis": [
+      69
+    ],
+    "itens": [
+      {
+        "produto_id": 65,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 214.41,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 214.41
+  },
+  {
+    "id": 101,
+    "data": "2026-01-31",
+    "pet_id": 28,
+    "responsaveis": [
+      47
+    ],
+    "itens": [
+      {
+        "produto_id": 8,
+        "descricao": "Antipulgas Bravecto",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 80.51,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 241.53
+  },
+  {
+    "id": 69,
+    "data": "2026-02-03",
+    "pet_id": 74,
+    "responsaveis": [
+      17
+    ],
+    "itens": [
+      {
+        "produto_id": 69,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 149.66,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 448.98
+  },
+  {
+    "id": 99,
+    "data": "2026-02-06",
+    "pet_id": 97,
+    "responsaveis": [
+      36
+    ],
+    "itens": [
+      {
+        "produto_id": 45,
+        "descricao": "Coleira Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 29.04,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 29.04
+  },
+  {
+    "id": 37,
+    "data": "2026-02-08",
+    "pet_id": 83,
+    "responsaveis": [
+      19
+    ],
+    "itens": [
+      {
+        "produto_id": 17,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 165.59,
+        "peso_total_kg": 9
+      }
+    ],
+    "total": 496.77
+  },
+  {
+    "id": 87,
+    "data": "2026-02-11",
+    "pet_id": 7,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 45,
+        "descricao": "Coleira Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 29.04,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 87.12
+  },
+  {
+    "id": 111,
+    "data": "2026-02-13",
+    "pet_id": 84,
+    "responsaveis": [
+      9003
+    ],
+    "itens": [
+      {
+        "produto_id": 83,
+        "descricao": "Brinquedo Kong",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 97.29,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 97.29
+  },
+  {
+    "id": 97,
+    "data": "2026-02-14",
+    "pet_id": 14,
+    "responsaveis": [
+      44
+    ],
+    "itens": [
+      {
+        "produto_id": 91,
+        "descricao": "Ração Gatos Adulto a Granel Whiskas",
+        "quantidade": 14.6,
+        "unidade_venda": "kg",
+        "preco_unitario": 20.47,
+        "peso_total_kg": 14.6
+      }
+    ],
+    "total": 298.86
+  },
+  {
+    "id": 21,
+    "data": "2026-02-15",
+    "pet_id": 2,
+    "responsaveis": [
+      42
+    ],
+    "itens": [
+      {
+        "produto_id": 74,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 24.13,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 36,
+        "descricao": "Ração Cães Filhote Premier 1kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 170.09,
+        "peso_total_kg": 2
+      }
+    ],
+    "total": 364.31
+  },
+  {
+    "id": 56,
+    "data": "2026-02-19",
+    "pet_id": 21,
+    "responsaveis": [
+      18
+    ],
+    "itens": [
+      {
+        "produto_id": 62,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 34.38,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 68.76
+  },
+  {
+    "id": 11,
+    "data": "2026-02-22",
+    "pet_id": 78,
+    "responsaveis": [
+      40
+    ],
+    "itens": [
+      {
+        "produto_id": 34,
+        "descricao": "Comedouro Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 94.27,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 282.81
+  },
+  {
+    "id": 68,
+    "data": "2026-02-25",
+    "pet_id": 80,
+    "responsaveis": [
+      34
+    ],
+    "itens": [
+      {
+        "produto_id": 86,
+        "descricao": "Vermífugo Vetnil",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 31.41,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 94.23
   },
   {
     "id": 2,
@@ -1350,190 +1450,262 @@
         "produto_id": 86,
         "descricao": "Vermífugo Vetnil",
         "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 31.41
+        "unidade_venda": "un",
+        "preco_unitario": 31.41,
+        "peso_total_kg": null
       },
       {
         "produto_id": 21,
-        "descricao": "Caixa de Transporte Furacão Pet",
+        "descricao": "Ração Gatos Filhote Whiskas 1kg",
         "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 191.67
+        "unidade_venda": "un",
+        "preco_unitario": 265.29,
+        "peso_total_kg": 3
       }
     ],
-    "total": 669.24
+    "total": 890.1
   },
   {
-    "id": 73,
+    "id": 75,
     "data": "2026-03-12",
-    "pet_id": 80,
+    "pet_id": 26,
     "responsaveis": [
-      34
+      8
     ],
     "itens": [
       {
         "produto_id": 7,
         "descricao": "Caixa de Transporte Furacão Pet",
         "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 323.06
+        "unidade_venda": "un",
+        "preco_unitario": 323.06,
+        "peso_total_kg": null
       }
     ],
     "total": 323.06
   },
   {
-    "id": 61,
-    "data": "2026-03-18",
-    "pet_id": 89,
+    "id": 8,
+    "data": "2026-03-14",
+    "pet_id": 48,
     "responsaveis": [
-      27
+      59
     ],
     "itens": [
       {
         "produto_id": 6,
-        "descricao": "Suplemento Vitamínico Glicopan",
+        "descricao": "Petisco Pedigree Snacks",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 102.08
+        "unidade_venda": "un",
+        "preco_unitario": 27.48,
+        "peso_total_kg": null
       }
     ],
-    "total": 204.16
+    "total": 54.96
   },
   {
-    "id": 49,
-    "data": "2026-03-19",
-    "pet_id": 51,
+    "id": 62,
+    "data": "2026-03-18",
+    "pet_id": 39,
     "responsaveis": [
-      67
+      44
+    ],
+    "itens": [
+      {
+        "produto_id": 6,
+        "descricao": "Petisco Pedigree Snacks",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 27.48,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 54.96
+  },
+  {
+    "id": 30,
+    "data": "2026-03-19",
+    "pet_id": 25,
+    "responsaveis": [
+      9002
+    ],
+    "itens": [
+      {
+        "produto_id": 70,
+        "descricao": "Ração Gatos Filhote Whiskas 10.1kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 74.18,
+        "peso_total_kg": 20.2
+      },
+      {
+        "produto_id": 8,
+        "descricao": "Antipulgas Bravecto",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 80.51,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 309.38
+  },
+  {
+    "id": 50,
+    "data": "2026-03-19",
+    "pet_id": 50,
+    "responsaveis": [
+      23
     ],
     "itens": [
       {
         "produto_id": 51,
-        "descricao": "Comedouro Petix",
+        "descricao": "Shampoo Pet Pet Clean",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 36.26
+        "unidade_venda": "un",
+        "preco_unitario": 44.86,
+        "peso_total_kg": null
       }
     ],
-    "total": 72.52
+    "total": 89.72
   },
   {
-    "id": 60,
-    "data": "2026-03-25",
-    "pet_id": 50,
+    "id": 80,
+    "data": "2026-03-20",
+    "pet_id": 29,
     "responsaveis": [
-      23
+      20
+    ],
+    "itens": [
+      {
+        "produto_id": 38,
+        "descricao": "Ração Gatos Filhote Whiskas 3kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 212.66,
+        "peso_total_kg": 3
+      }
+    ],
+    "total": 212.66
+  },
+  {
+    "id": 27,
+    "data": "2026-03-23",
+    "pet_id": 71,
+    "responsaveis": [
+      65
+    ],
+    "itens": [
+      {
+        "produto_id": 89,
+        "descricao": "Areia Higiênica a Granel Pipicat",
+        "quantidade": 10.7,
+        "unidade_venda": "kg",
+        "preco_unitario": 9.69,
+        "peso_total_kg": 10.7
+      }
+    ],
+    "total": 103.68
+  },
+  {
+    "id": 61,
+    "data": "2026-03-25",
+    "pet_id": 39,
+    "responsaveis": [
+      44
     ],
     "itens": [
       {
         "produto_id": 100,
-        "descricao": "Vermífugo Endogard",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 129.26
+        "descricao": "Areia Higiênica a Granel Sanicat",
+        "quantidade": 5.9,
+        "unidade_venda": "kg",
+        "preco_unitario": 6.52,
+        "peso_total_kg": 5.9
       },
       {
-        "produto_id": 18,
-        "descricao": "Ração Gatos Filhote Whiskas 1kg",
-        "quantidade": 4.6,
-        "unidade": "kg",
-        "preco_unitario": 62.33
+        "produto_id": 24,
+        "descricao": "Areia Higiênica Sanicat 4kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 152.84,
+        "peso_total_kg": 12
       }
     ],
-    "total": 545.24
+    "total": 496.99
   },
   {
-    "id": 44,
-    "data": "2026-03-28",
-    "pet_id": 86,
+    "id": 57,
+    "data": "2026-03-26",
+    "pet_id": 21,
     "responsaveis": [
-      69
+      18
     ],
     "itens": [
       {
-        "produto_id": 6,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 102.08
-      },
-      {
-        "produto_id": 12,
-        "descricao": "Vermífugo Drontal",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 43.29
+        "produto_id": 100,
+        "descricao": "Areia Higiênica a Granel Sanicat",
+        "quantidade": 17.4,
+        "unidade_venda": "kg",
+        "preco_unitario": 6.52,
+        "peso_total_kg": 17.4
       }
     ],
-    "total": 436.11
+    "total": 113.45
   },
   {
-    "id": 54,
+    "id": 55,
     "data": "2026-03-30",
-    "pet_id": 85,
+    "pet_id": 91,
     "responsaveis": [
-      47
+      39
     ],
     "itens": [
       {
         "produto_id": 69,
-        "descricao": "Ração Gatos Adulto Golden Gatos 20kg",
-        "quantidade": 19.1,
-        "unidade": "kg",
-        "preco_unitario": 38.8
-      },
-      {
-        "produto_id": 38,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 28.28
-      }
-    ],
-    "total": 825.92
-  },
-  {
-    "id": 59,
-    "data": "2026-03-31",
-    "pet_id": 50,
-    "responsaveis": [
-      23
-    ],
-    "itens": [
-      {
-        "produto_id": 83,
-        "descricao": "Ração Cães Filhote Premier 10.1kg",
-        "quantidade": 14.6,
-        "unidade": "kg",
-        "preco_unitario": 37.81
-      },
-      {
-        "produto_id": 87,
-        "descricao": "Shampoo Pet Sanol",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 60.94
-      }
-    ],
-    "total": 612.97
-  },
-  {
-    "id": 41,
-    "data": "2026-04-03",
-    "pet_id": 98,
-    "responsaveis": [
-      21
-    ],
-    "itens": [
-      {
-        "produto_id": 4,
-        "descricao": "Brinquedo Chalesco",
+        "descricao": "Antipulgas Simparic",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 69.66
+        "unidade_venda": "un",
+        "preco_unitario": 149.66,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 86,
+        "descricao": "Vermífugo Vetnil",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 31.41,
+        "peso_total_kg": null
       }
     ],
-    "total": 139.32
+    "total": 393.55
+  },
+  {
+    "id": 94,
+    "data": "2026-04-03",
+    "pet_id": 58,
+    "responsaveis": [
+      29,
+      13
+    ],
+    "itens": [
+      {
+        "produto_id": 27,
+        "descricao": "Antipulgas Bravecto",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 189.77,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 48,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 26.37,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 405.91
   },
   {
     "id": 3,
@@ -1545,96 +1717,49 @@
     "itens": [
       {
         "produto_id": 74,
-        "descricao": "Areia Higiênica Sanicat 15kg",
-        "quantidade": 6.1,
-        "unidade": "kg",
-        "preco_unitario": 4.36
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 24.13,
+        "peso_total_kg": null
       }
     ],
-    "total": 26.6
+    "total": 48.26
   },
   {
-    "id": 64,
+    "id": 95,
     "data": "2026-04-10",
-    "pet_id": 91,
+    "pet_id": 58,
     "responsaveis": [
-      39
+      29
     ],
     "itens": [
       {
-        "produto_id": 96,
-        "descricao": "Antipulgas Bravecto",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 242.01
-      }
-    ],
-    "total": 484.02
-  },
-  {
-    "id": 86,
-    "data": "2026-04-12",
-    "pet_id": 72,
-    "responsaveis": [
-      14
-    ],
-    "itens": [
-      {
-        "produto_id": 26,
-        "descricao": "Areia Higiênica Sanicat 3kg",
-        "quantidade": 9.3,
-        "unidade": "kg",
-        "preco_unitario": 3.49
-      },
-      {
-        "produto_id": 97,
+        "produto_id": 75,
         "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 36.18
-      }
-    ],
-    "total": 68.64
-  },
-  {
-    "id": 114,
-    "data": "2026-04-15",
-    "pet_id": 23,
-    "responsaveis": [
-      63
-    ],
-    "itens": [
-      {
-        "produto_id": 33,
-        "descricao": "Comedouro Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 94.27
-      },
-      {
-        "produto_id": 14,
-        "descricao": "Comedouro Chalesco",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 59.17
+        "unidade_venda": "un",
+        "preco_unitario": 118.23,
+        "peso_total_kg": null
       }
     ],
-    "total": 212.61
+    "total": 236.46
   },
   {
-    "id": 76,
+    "id": 78,
     "data": "2026-04-21",
-    "pet_id": 26,
+    "pet_id": 37,
     "responsaveis": [
-      8
+      61
     ],
     "itens": [
       {
         "produto_id": 86,
         "descricao": "Vermífugo Vetnil",
         "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 31.41
+        "unidade_venda": "un",
+        "preco_unitario": 31.41,
+        "peso_total_kg": null
       }
     ],
     "total": 94.23
@@ -1642,660 +1767,651 @@
   {
     "id": 18,
     "data": "2026-04-22",
-    "pet_id": 75,
+    "pet_id": 95,
     "responsaveis": [
-      8
+      35
     ],
     "itens": [
       {
         "produto_id": 84,
-        "descricao": "Ração Cães Adulto Premier 10.1kg",
-        "quantidade": 14.3,
-        "unidade": "kg",
-        "preco_unitario": 70.41
+        "descricao": "Areia Higiênica Sanicat 12kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 77.34,
+        "peso_total_kg": 36
       }
     ],
-    "total": 1006.86
+    "total": 232.02
   },
   {
-    "id": 53,
+    "id": 54,
     "data": "2026-04-22",
-    "pet_id": 85,
-    "responsaveis": [
-      47
-    ],
-    "itens": [
-      {
-        "produto_id": 97,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 36.18
-      }
-    ],
-    "total": 36.18
-  },
-  {
-    "id": 16,
-    "data": "2026-04-23",
-    "pet_id": 61,
-    "responsaveis": [
-      50
-    ],
-    "itens": [
-      {
-        "produto_id": 48,
-        "descricao": "Areia Higiênica Sanicat 3kg",
-        "quantidade": 17.0,
-        "unidade": "kg",
-        "preco_unitario": 9.61
-      }
-    ],
-    "total": 163.37
-  },
-  {
-    "id": 104,
-    "data": "2026-04-23",
-    "pet_id": 99,
-    "responsaveis": [
-      54
-    ],
-    "itens": [
-      {
-        "produto_id": 54,
-        "descricao": "Ração Gatos Filhote Whiskas 15kg",
-        "quantidade": 9.3,
-        "unidade": "kg",
-        "preco_unitario": 75.66
-      }
-    ],
-    "total": 703.64
-  },
-  {
-    "id": 48,
-    "data": "2026-04-25",
-    "pet_id": 51,
-    "responsaveis": [
-      67
-    ],
-    "itens": [
-      {
-        "produto_id": 31,
-        "descricao": "Vermífugo Drontal",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 85.2
-      },
-      {
-        "produto_id": 83,
-        "descricao": "Ração Cães Filhote Premier 10.1kg",
-        "quantidade": 5.7,
-        "unidade": "kg",
-        "preco_unitario": 37.81
-      }
-    ],
-    "total": 300.72
-  },
-  {
-    "id": 45,
-    "data": "2026-04-26",
-    "pet_id": 86,
-    "responsaveis": [
-      69
-    ],
-    "itens": [
-      {
-        "produto_id": 44,
-        "descricao": "Brinquedo Chalesco",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 16.01
-      },
-      {
-        "produto_id": 4,
-        "descricao": "Brinquedo Chalesco",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 69.66
-      }
-    ],
-    "total": 85.67
-  },
-  {
-    "id": 31,
-    "data": "2026-04-30",
-    "pet_id": 71,
-    "responsaveis": [
-      65
-    ],
-    "itens": [
-      {
-        "produto_id": 36,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 250.83
-      }
-    ],
-    "total": 250.83
-  },
-  {
-    "id": 92,
-    "data": "2026-04-30",
-    "pet_id": 7,
-    "responsaveis": [
-      8
-    ],
-    "itens": [
-      {
-        "produto_id": 65,
-        "descricao": "Comedouro Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 57.27
-      }
-    ],
-    "total": 57.27
-  },
-  {
-    "id": 93,
-    "data": "2026-05-01",
-    "pet_id": 3,
-    "responsaveis": [
-      9003
-    ],
-    "itens": [
-      {
-        "produto_id": 24,
-        "descricao": "Shampoo Pet Pet Clean",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 37.46
-      }
-    ],
-    "total": 37.46
-  },
-  {
-    "id": 105,
-    "data": "2026-05-01",
-    "pet_id": 27,
-    "responsaveis": [
-      7
-    ],
-    "itens": [
-      {
-        "produto_id": 97,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 36.18
-      }
-    ],
-    "total": 108.54
-  },
-  {
-    "id": 24,
-    "data": "2026-05-08",
-    "pet_id": 95,
-    "responsaveis": [
-      35,
-      58
-    ],
-    "itens": [
-      {
-        "produto_id": 62,
-        "descricao": "Ração Gatos Filhote Royal Canin Gatos 15kg",
-        "quantidade": 18.9,
-        "unidade": "kg",
-        "preco_unitario": 19.5
-      }
-    ],
-    "total": 368.55
-  },
-  {
-    "id": 52,
-    "data": "2026-05-11",
-    "pet_id": 20,
-    "responsaveis": [
-      64
-    ],
-    "itens": [
-      {
-        "produto_id": 64,
-        "descricao": "Comedouro Chalesco",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 28.62
-      }
-    ],
-    "total": 85.86
-  },
-  {
-    "id": 77,
-    "data": "2026-05-13",
-    "pet_id": 47,
-    "responsaveis": [
-      42
-    ],
-    "itens": [
-      {
-        "produto_id": 25,
-        "descricao": "Ração Cães Filhote Premier 15kg",
-        "quantidade": 11.3,
-        "unidade": "kg",
-        "preco_unitario": 36.81
-      },
-      {
-        "produto_id": 22,
-        "descricao": "Ração Cães Adulto GranPlus 10.1kg",
-        "quantidade": 11.8,
-        "unidade": "kg",
-        "preco_unitario": 21.69
-      }
-    ],
-    "total": 671.9
-  },
-  {
-    "id": 9,
-    "data": "2026-05-17",
-    "pet_id": 17,
-    "responsaveis": [
-      8
-    ],
-    "itens": [
-      {
-        "produto_id": 49,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 22.94
-      },
-      {
-        "produto_id": 59,
-        "descricao": "Brinquedo Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 55.44
-      }
-    ],
-    "total": 212.2
-  },
-  {
-    "id": 85,
-    "data": "2026-05-19",
-    "pet_id": 72,
-    "responsaveis": [
-      56
-    ],
-    "itens": [
-      {
-        "produto_id": 77,
-        "descricao": "Coleira Petix",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 112.12
-      }
-    ],
-    "total": 112.12
-  },
-  {
-    "id": 42,
-    "data": "2026-05-25",
-    "pet_id": 98,
-    "responsaveis": [
-      21
-    ],
-    "itens": [
-      {
-        "produto_id": 16,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 129.05
-      }
-    ],
-    "total": 387.15
-  },
-  {
-    "id": 65,
-    "data": "2026-05-26",
     "pet_id": 91,
     "responsaveis": [
       39
     ],
     "itens": [
       {
-        "produto_id": 10,
-        "descricao": "Ração Gatos Filhote Whiskas 15kg",
-        "quantidade": 13.6,
-        "unidade": "kg",
-        "preco_unitario": 45.95
-      },
-      {
-        "produto_id": 15,
-        "descricao": "Ração Cães Adulto Royal Canin 20kg",
-        "quantidade": 9.3,
-        "unidade": "kg",
-        "preco_unitario": 27.57
+        "produto_id": 97,
+        "descricao": "Ração Cães Adulto a Granel Golden",
+        "quantidade": 4.8,
+        "unidade_venda": "kg",
+        "preco_unitario": 20.28,
+        "peso_total_kg": 4.8
       }
     ],
-    "total": 881.32
+    "total": 97.34
   },
   {
-    "id": 75,
-    "data": "2026-05-30",
+    "id": 16,
+    "data": "2026-04-23",
+    "pet_id": 75,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 48,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 26.37,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 79.11
+  },
+  {
+    "id": 49,
+    "data": "2026-04-25",
+    "pet_id": 50,
+    "responsaveis": [
+      23
+    ],
+    "itens": [
+      {
+        "produto_id": 59,
+        "descricao": "Areia Higiênica Pipicat 20kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 94.98,
+        "peso_total_kg": 60
+      }
+    ],
+    "total": 284.94
+  },
+  {
+    "id": 71,
+    "data": "2026-04-26",
     "pet_id": 55,
     "responsaveis": [
       26
     ],
     "itens": [
       {
-        "produto_id": 76,
-        "descricao": "Coleira Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 70.92
+        "produto_id": 84,
+        "descricao": "Areia Higiênica Sanicat 12kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 77.34,
+        "peso_total_kg": 24
       }
     ],
-    "total": 70.92
+    "total": 154.68
   },
   {
-    "id": 82,
-    "data": "2026-05-30",
-    "pet_id": 37,
+    "id": 107,
+    "data": "2026-04-28",
+    "pet_id": 33,
     "responsaveis": [
-      61
+      39
     ],
     "itens": [
       {
-        "produto_id": 85,
-        "descricao": "Petisco Pedigree Snacks",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 21.92
+        "produto_id": 94,
+        "descricao": "Ração Gatos Adulto a Granel Golden Gatos",
+        "quantidade": 8.3,
+        "unidade_venda": "kg",
+        "preco_unitario": 7.62,
+        "peso_total_kg": 8.3
+      },
+      {
+        "produto_id": 71,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 30.4,
+        "peso_total_kg": null
       }
     ],
-    "total": 21.92
+    "total": 124.05
   },
   {
     "id": 110,
-    "data": "2026-05-31",
+    "data": "2026-04-30",
     "pet_id": 84,
     "responsaveis": [
       9003
     ],
     "itens": [
       {
-        "produto_id": 84,
-        "descricao": "Ração Cães Adulto Premier 10.1kg",
-        "quantidade": 5.0,
-        "unidade": "kg",
-        "preco_unitario": 70.41
-      }
-    ],
-    "total": 352.05
-  },
-  {
-    "id": 47,
-    "data": "2026-06-02",
-    "pet_id": 83,
-    "responsaveis": [
-      19
-    ],
-    "itens": [
-      {
-        "produto_id": 13,
-        "descricao": "Vermífugo Vetnil",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 85.14
-      }
-    ],
-    "total": 255.42
-  },
-  {
-    "id": 46,
-    "data": "2026-06-11",
-    "pet_id": 83,
-    "responsaveis": [
-      19
-    ],
-    "itens": [
-      {
-        "produto_id": 99,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 203.33
-      }
-    ],
-    "total": 609.99
-  },
-  {
-    "id": 35,
-    "data": "2026-06-12",
-    "pet_id": 25,
-    "responsaveis": [
-      51
-    ],
-    "itens": [
-      {
-        "produto_id": 63,
-        "descricao": "Areia Higiênica Golden Cat 1kg",
-        "quantidade": 7.0,
-        "unidade": "kg",
-        "preco_unitario": 5.71
-      }
-    ],
-    "total": 39.97
-  },
-  {
-    "id": 30,
-    "data": "2026-06-25",
-    "pet_id": 71,
-    "responsaveis": [
-      65
-    ],
-    "itens": [
-      {
-        "produto_id": 26,
-        "descricao": "Areia Higiênica Sanicat 3kg",
-        "quantidade": 3.3,
-        "unidade": "kg",
-        "preco_unitario": 3.49
-      }
-    ],
-    "total": 11.52
-  },
-  {
-    "id": 34,
-    "data": "2026-06-28",
-    "pet_id": 30,
-    "responsaveis": [
-      63
-    ],
-    "itens": [
-      {
-        "produto_id": 6,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 102.08
+        "produto_id": 3,
+        "descricao": "Areia Higiênica Pipicat 4kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 105.08,
+        "peso_total_kg": 8
       },
       {
-        "produto_id": 7,
-        "descricao": "Caixa de Transporte Furacão Pet",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 323.06
+        "produto_id": 12,
+        "descricao": "Antipulgas NexGard",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 249.27,
+        "peso_total_kg": null
       }
     ],
-    "total": 425.14
+    "total": 957.97
   },
   {
-    "id": 83,
-    "data": "2026-07-01",
+    "id": 24,
+    "data": "2026-05-08",
+    "pet_id": 94,
+    "responsaveis": [
+      11
+    ],
+    "itens": [
+      {
+        "produto_id": 62,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 34.38,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 103.14
+  },
+  {
+    "id": 53,
+    "data": "2026-05-11",
+    "pet_id": 89,
+    "responsaveis": [
+      27
+    ],
+    "itens": [
+      {
+        "produto_id": 64,
+        "descricao": "Ração Gatos Adulto Royal Canin Gatos 1kg",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 50.18,
+        "peso_total_kg": 3
+      }
+    ],
+    "total": 150.54
+  },
+  {
+    "id": 79,
+    "data": "2026-05-13",
     "pet_id": 29,
     "responsaveis": [
       20
     ],
     "itens": [
       {
-        "produto_id": 80,
-        "descricao": "Petisco Cat Treats",
+        "produto_id": 25,
+        "descricao": "Brinquedo Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 39.79,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 68,
+        "descricao": "Shampoo Pet Vet Fresh",
         "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 26.15
+        "unidade_venda": "un",
+        "preco_unitario": 33.13,
+        "peso_total_kg": null
       }
     ],
-    "total": 26.15
+    "total": 152.5
+  },
+  {
+    "id": 31,
+    "data": "2026-05-26",
+    "pet_id": 88,
+    "responsaveis": [
+      61
+    ],
+    "itens": [
+      {
+        "produto_id": 36,
+        "descricao": "Ração Cães Filhote Premier 1kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 170.09,
+        "peso_total_kg": 1
+      }
+    ],
+    "total": 170.09
   },
   {
     "id": 106,
-    "data": "2026-07-05",
+    "data": "2026-05-29",
     "pet_id": 33,
     "responsaveis": [
       39
     ],
     "itens": [
       {
-        "produto_id": 91,
-        "descricao": "Suplemento Vitamínico Vetnil",
-        "quantidade": 1,
-        "unidade": "un",
-        "preco_unitario": 78.74
+        "produto_id": 71,
+        "descricao": "Shampoo Pet Pet Clean",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 30.4,
+        "peso_total_kg": null
       }
     ],
-    "total": 78.74
+    "total": 60.8
   },
   {
-    "id": 90,
-    "data": "2026-07-07",
-    "pet_id": 24,
+    "id": 77,
+    "data": "2026-05-30",
+    "pet_id": 52,
+    "responsaveis": [
+      6
+    ],
+    "itens": [
+      {
+        "produto_id": 76,
+        "descricao": "Caixa de Transporte Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 220.16,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 220.16
+  },
+  {
+    "id": 83,
+    "data": "2026-06-01",
+    "pet_id": 72,
+    "responsaveis": [
+      56
+    ],
+    "itens": [
+      {
+        "produto_id": 85,
+        "descricao": "Shampoo Pet Vet Fresh",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 45.63,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 63,
+        "descricao": "Coleira Furacão Pet",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 35.62,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 81.25
+  },
+  {
+    "id": 113,
+    "data": "2026-06-03",
+    "pet_id": 60,
+    "responsaveis": [
+      47
+    ],
+    "itens": [
+      {
+        "produto_id": 40,
+        "descricao": "Coleira Petix",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 43.36,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 43.36
+  },
+  {
+    "id": 7,
+    "data": "2026-06-17",
+    "pet_id": 17,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 69,
+        "descricao": "Antipulgas Simparic",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 149.66,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 149.66
+  },
+  {
+    "id": 36,
+    "data": "2026-06-20",
+    "pet_id": 86,
     "responsaveis": [
       69
     ],
     "itens": [
       {
-        "produto_id": 47,
-        "descricao": "Areia Higiênica Sanicat 1kg",
-        "quantidade": 17.1,
-        "unidade": "kg",
-        "preco_unitario": 4.98
-      },
-      {
-        "produto_id": 58,
-        "descricao": "Ração Gatos Filhote Royal Canin Gatos 3kg",
-        "quantidade": 11.1,
-        "unidade": "kg",
-        "preco_unitario": 100.09
+        "produto_id": 83,
+        "descricao": "Brinquedo Kong",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 97.29,
+        "peso_total_kg": null
       }
     ],
-    "total": 1196.16
+    "total": 194.58
   },
   {
-    "id": 100,
-    "data": "2026-07-08",
-    "pet_id": 44,
+    "id": 41,
+    "data": "2026-06-20",
+    "pet_id": 20,
     "responsaveis": [
-      20,
-      9001
+      64
+    ],
+    "itens": [
+      {
+        "produto_id": 29,
+        "descricao": "Ração Cães Adulto Golden 20kg",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 244.97,
+        "peso_total_kg": 40
+      },
+      {
+        "produto_id": 17,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 165.59,
+        "peso_total_kg": 3
+      }
+    ],
+    "total": 655.53
+  },
+  {
+    "id": 91,
+    "data": "2026-06-22",
+    "pet_id": 3,
+    "responsaveis": [
+      9003
+    ],
+    "itens": [
+      {
+        "produto_id": 55,
+        "descricao": "Ração Cães Adulto Premier 1kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 163.98,
+        "peso_total_kg": 1
+      }
+    ],
+    "total": 163.98
+  },
+  {
+    "id": 89,
+    "data": "2026-06-24",
+    "pet_id": 7,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 56,
+        "descricao": "Caixa de Transporte Chalesco",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 96.23,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 97,
+        "descricao": "Ração Cães Adulto a Granel Golden",
+        "quantidade": 5.2,
+        "unidade_venda": "kg",
+        "preco_unitario": 20.28,
+        "peso_total_kg": 5.2
+      }
+    ],
+    "total": 394.15
+  },
+  {
+    "id": 48,
+    "data": "2026-06-25",
+    "pet_id": 50,
+    "responsaveis": [
+      23
+    ],
+    "itens": [
+      {
+        "produto_id": 73,
+        "descricao": "Caixa de Transporte Chalesco",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 146.29,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 146.29
+  },
+  {
+    "id": 70,
+    "data": "2026-06-26",
+    "pet_id": 55,
+    "responsaveis": [
+      26
+    ],
+    "itens": [
+      {
+        "produto_id": 87,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 78.12,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 73,
+        "descricao": "Caixa de Transporte Chalesco",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 146.29,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 673.23
+  },
+  {
+    "id": 114,
+    "data": "2026-07-02",
+    "pet_id": 23,
+    "responsaveis": [
+      63
+    ],
+    "itens": [
+      {
+        "produto_id": 83,
+        "descricao": "Brinquedo Kong",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 97.29,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 75,
+        "descricao": "Suplemento Vitamínico Glicopan",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 118.23,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 215.52
+  },
+  {
+    "id": 103,
+    "data": "2026-07-08",
+    "pet_id": 41,
+    "responsaveis": [
+      26
     ],
     "itens": [
       {
         "produto_id": 25,
-        "descricao": "Ração Cães Filhote Premier 15kg",
-        "quantidade": 13.4,
-        "unidade": "kg",
-        "preco_unitario": 36.81
+        "descricao": "Brinquedo Furacão Pet",
+        "quantidade": 3,
+        "unidade_venda": "un",
+        "preco_unitario": 39.79,
+        "peso_total_kg": null
       }
     ],
-    "total": 493.25
+    "total": 119.37
   },
   {
     "id": 17,
     "data": "2026-07-13",
-    "pet_id": 81,
+    "pet_id": 9,
     "responsaveis": [
-      39
+      24
     ],
     "itens": [
       {
         "produto_id": 88,
-        "descricao": "Antipulgas Simparic",
+        "descricao": "Areia Higiênica Golden Cat 12kg",
         "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 325.08
+        "unidade_venda": "un",
+        "preco_unitario": 133.98,
+        "peso_total_kg": 36
       },
       {
         "produto_id": 17,
-        "descricao": "Vermífugo Endogard",
+        "descricao": "Ração Cães Adulto Premier 3kg",
         "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 105.09
+        "unidade_venda": "un",
+        "preco_unitario": 165.59,
+        "peso_total_kg": 6
       }
     ],
-    "total": 1185.42
+    "total": 733.12
   },
   {
-    "id": 89,
-    "data": "2026-07-15",
-    "pet_id": 57,
+    "id": 46,
+    "data": "2026-07-13",
+    "pet_id": 90,
     "responsaveis": [
-      20
+      37
+    ],
+    "itens": [
+      {
+        "produto_id": 87,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 2,
+        "unidade_venda": "un",
+        "preco_unitario": 78.12,
+        "peso_total_kg": null
+      },
+      {
+        "produto_id": 90,
+        "descricao": "Areia Higiênica a Granel Pipicat",
+        "quantidade": 19.1,
+        "unidade_venda": "kg",
+        "preco_unitario": 7.11,
+        "peso_total_kg": 19.1
+      }
+    ],
+    "total": 292.04
+  },
+  {
+    "id": 14,
+    "data": "2026-07-15",
+    "pet_id": 75,
+    "responsaveis": [
+      8
+    ],
+    "itens": [
+      {
+        "produto_id": 87,
+        "descricao": "Brinquedo Chalesco",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 78.12,
+        "peso_total_kg": null
+      }
+    ],
+    "total": 78.12
+  },
+  {
+    "id": 92,
+    "data": "2026-07-15",
+    "pet_id": 3,
+    "responsaveis": [
+      9003
     ],
     "itens": [
       {
         "produto_id": 97,
-        "descricao": "Suplemento Vitamínico Glicopan",
-        "quantidade": 3,
-        "unidade": "un",
-        "preco_unitario": 36.18
+        "descricao": "Ração Cães Adulto a Granel Golden",
+        "quantidade": 14.1,
+        "unidade_venda": "kg",
+        "preco_unitario": 20.28,
+        "peso_total_kg": 14.1
       }
     ],
-    "total": 108.54
+    "total": 285.95
   },
   {
-    "id": 91,
-    "data": "2026-07-25",
-    "pet_id": 24,
+    "id": 5,
+    "data": "2026-07-16",
+    "pet_id": 76,
     "responsaveis": [
-      69
+      38
     ],
     "itens": [
       {
-        "produto_id": 34,
-        "descricao": "Shampoo Pet Pet Clean",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 46.05
-      },
-      {
-        "produto_id": 19,
-        "descricao": "Shampoo Pet Pet Clean",
-        "quantidade": 2,
-        "unidade": "un",
-        "preco_unitario": 58.15
+        "produto_id": 99,
+        "descricao": "Ração Gatos Adulto a Granel Whiskas",
+        "quantidade": 8.9,
+        "unidade_venda": "kg",
+        "preco_unitario": 28.04,
+        "peso_total_kg": 8.9
       }
     ],
-    "total": 208.4
+    "total": 249.56
   },
   {
-    "id": 109,
-    "data": "2026-07-26",
-    "pet_id": 33,
+    "id": 28,
+    "data": "2026-07-20",
+    "pet_id": 30,
     "responsaveis": [
-      39
+      63
     ],
     "itens": [
       {
-        "produto_id": 52,
-        "descricao": "Areia Higiênica Golden Cat 10.1kg",
-        "quantidade": 16.0,
-        "unidade": "kg",
-        "preco_unitario": 19.17
+        "produto_id": 16,
+        "descricao": "Ração Cães Adulto Premier 3kg",
+        "quantidade": 1,
+        "unidade_venda": "un",
+        "preco_unitario": 197.73,
+        "peso_total_kg": 3
       }
     ],
-    "total": 306.72
+    "total": 197.73
   }
 ]

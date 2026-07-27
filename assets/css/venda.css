@@ -37,7 +37,7 @@
 }
 
 .bloco-titulo h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 16px;
     color: #23282a;
 }
@@ -54,18 +54,18 @@ details {
 }
 
 .input-group label {
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     font-weight: 600;
-    font-size: .85rem;
+    font-size: .95rem;
     color: #52585a;
 }
 
 .input-group input,
 .input-group textarea {
-    padding: 12px 14px;
+    padding: 13px 15px;
     border-radius: 12px;
     border: 1px solid #dcdfdd;
-    font-size: .95rem;
+    font-size: 1.05rem;
     background: #ffffff;
     outline: none;
     transition: border-color .2s;
@@ -188,10 +188,11 @@ details {
 }
 
 .sugestao {
-    padding: 10px 14px;
+    padding: 11px 14px;
     cursor: pointer;
     border-bottom: 1px solid #f1f1f0;
-    line-height: 1.35;
+    line-height: 1.4;
+    font-size: .98rem;
 }
 
 .sugestao:last-child {
@@ -203,12 +204,13 @@ details {
 }
 
 .sugestao strong {
-    font-size: .95rem;
+    font-size: 1rem;
 }
 
 .sugestao small {
     color: #6b7280;
     display: block;
+    font-size: .88rem;
 }
 
 .sugestao .match-tag {
@@ -221,10 +223,32 @@ details {
     border: 1px solid #e6e8e6;
     border-radius: 10px;
     padding: 10px 12px;
-    font-size: .85rem;
+    font-size: .92rem;
     color: #52585a;
     margin-top: -6px;
     margin-bottom: 14px;
+}
+
+.sugestao-responsavel {
+    margin: -6px 0 14px;
+}
+
+.chip-sugestao {
+    display: inline-block;
+    background: #eef4f0;
+    color: #2f6f47;
+    border: 1px solid #d6e6da;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.chip-sugestao:hover {
+    background: #e2efe6;
 }
 
 .aviso-vinculo {
@@ -232,7 +256,7 @@ details {
     border: 1px solid #e9dcb8;
     border-radius: 12px;
     padding: 12px 14px;
-    font-size: .87rem;
+    font-size: .93rem;
     margin-bottom: 14px;
     color: #6b5a2d;
 }
@@ -264,15 +288,15 @@ button {
 }
 
 button.primary {
-    background: #23282a;
+    background: #2f8f5b;
     color: white;
     width: 100%;
     padding: 15px;
-    font-size: 1rem;
+    font-size: 1.05rem;
 }
 
 button.primary:hover {
-    background: #14171a;
+    background: #257a4c;
 }
 
 button.secondary {
@@ -293,8 +317,8 @@ button.secondary:hover {
 
 .info-card {
     color: #3a4038;
-    line-height: 1.65;
-    font-size: .92rem;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 .info-card h3 {
