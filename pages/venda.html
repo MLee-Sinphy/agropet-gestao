@@ -2,92 +2,165 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Venda - AgroPet Gestão</title>
+    <title>Nova Venda - AgroPet Gestão</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/venda.css">
 
     <script defer src="../assets/js/venda.js"></script>
-
 </head>
 
 <body>
 
 <header class="header">
-
-    <h1>Venda</h1>
-
+    <h1>Nova Venda</h1>
 </header>
 
-<main class="venda-layout">
+<main class="venda-container">
 
-    <aside class="menu-lateral">
+    <section class="venda-form">
 
-        <button class="menu-item ativo">🐶 Pet</button>
+        <details open>
+            <summary>Responsável</summary>
 
-        <button class="menu-item">👤 Responsável</button>
+            <div class="input-group">
+                <label>Nome</label>
+                <input type="text" placeholder="Digite o nome...">
+            </div>
 
-        <button class="menu-item">📦 Produtos</button>
+            <div class="input-group">
+                <label>Telefone</label>
+                <input type="text" placeholder="(62) 99999-9999">
+            </div>
 
-        <button class="menu-item">💳 Pagamento</button>
+            <details>
+                <summary>Endereço</summary>
 
-    </aside>
+                <div class="input-group">
+                    <label>CEP</label>
+                    <input type="text">
+                </div>
 
-    <section class="conteudo">
+                <div class="input-group">
+                    <label>Rua</label>
+                    <input type="text">
+                </div>
 
-        <h2>Pet</h2>
+                <div class="input-group">
+                    <label>Número</label>
+                    <input type="text">
+                </div>
 
-        <div class="campo">
+                <div class="input-group">
+                    <label>Cidade</label>
+                    <input type="text" value="Goiânia">
+                </div>
 
-            <label>Nome</label>
+            </details>
 
-            <input
-                id="pet"
-                type="text"
-                placeholder="Comece digitando o nome do pet...">
+        </details>
 
-            <div class="sugestoes"></div>
 
-        </div>
 
-        <div class="campo">
+        <details open>
 
-            <label>Espécie</label>
+            <summary>Pet</summary>
 
-            <input type="text">
+            <div class="input-group">
+                <label>Nome</label>
+                <input type="text" placeholder="Digite o nome do pet">
+            </div>
 
-        </div>
+            <div class="input-group">
+                <label>Espécie</label>
+                <input type="text">
+            </div>
 
-        <div class="campo">
+            <div class="input-group">
+                <label>Raça</label>
+                <input type="text">
+            </div>
 
-            <label>Raça</label>
+            <details>
 
-            <input type="text">
+                <summary>Observações</summary>
 
-        </div>
+                <textarea
+                    placeholder="Cor, porte, peso, comportamento, alimentação, alergias ou qualquer informação útil para futuras análises."></textarea>
 
-        <div class="campo">
+            </details>
 
-            <label>Características</label>
+        </details>
 
-            <textarea
-                placeholder="Cor, porte, peso, alimentação, alergias ou qualquer outra informação útil."></textarea>
 
-        </div>
+
+
+        <details open>
+
+            <summary>Produtos</summary>
+
+            <div class="produto">
+
+                <input
+                    type="text"
+                    placeholder="Produto">
+
+                <input
+                    type="number"
+                    value="1">
+
+            </div>
+
+            <button class="secondary">
+                + Adicionar Produto
+            </button>
+
+        </details>
+
+
+
+        <button class="primary">
+            Salvar Venda
+        </button>
 
     </section>
 
-    <aside class="painel">
+
+
+
+
+    <aside class="historico">
 
         <h2>Resumo</h2>
 
-        <div class="placeholder">
+        <div class="info-card">
 
-            Selecione um pet para visualizar histórico, alertas e sugestões.
+            <h3>Pet</h3>
+
+            <p>🐶 Rex</p>
+
+            <h3>Responsáveis</h3>
+
+            <p>Fernanda</p>
+            <p>Paula</p>
+
+            <hr>
+
+            <h3>Últimas compras</h3>
+
+            <p>Golden 15 kg</p>
+            <p>NexGard</p>
+
+            <hr>
+
+            <h3>Alertas</h3>
+
+            <p>⚠ Ração próxima do fim</p>
+
+            <p>💡 Oferecer antipulgas</p>
 
         </div>
 

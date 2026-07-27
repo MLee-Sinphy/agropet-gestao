@@ -1,36 +1,67 @@
-*{
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-    margin:0;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    padding:0;
+    <title>AgroPet Gestão</title>
 
-    box-sizing:border-box;
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/app.js"></script>
+</head>
 
-    font-family:Arial, Helvetica, sans-serif;
+<body>
 
-}
+<header class="header">
 
+    <h1>🐾 AgroPet Gestão</h1>
 
-body{
-
-    background:#f5f7fa;
-
-    color:#222;
-
-}
-
-
-.header{
-
-    padding:25px 40px 5px;
-
-}
+</header>
 
 
-.header h1{
+<main class="dashboard">
 
-    font-size:2.8rem;
+    <section class="card card-venda">
 
-    font-weight:700;
+        <div class="icon">🛒</div>
 
-}
+        <h2>Nova Venda</h2>
+
+    </section>
+
+
+    <section class="card card-estoque">
+
+        <div class="icon">📦</div>
+
+        <h2>Estoque</h2>
+
+    </section>
+
+
+    <section class="card card-inteligencia">
+
+        <div class="icon">📊</div>
+
+        <h2>Inteligência</h2>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <button class="config-button">
+
+        Alterar Registros
+
+    </button>
+
+</footer>
+
+
+</body>
+
+</html>

@@ -1,179 +1,76 @@
-.venda-layout{
+.venda-container {
 
-    display:grid;
-
-    grid-template-columns:220px 1fr 340px;
-
-    gap:30px;
-
-    padding:20px 40px 35px;
-
-    height:calc(100vh - 110px);
+    height: 75vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    padding: 40px;
 
 }
 
-.menu-lateral{
 
-    background:#ffffff;
+.venda-form,
+.historico {
 
-    border-radius:20px;
-
-    padding:20px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-    box-shadow:0 8px 24px rgba(0,0,0,.05);
+    background: white;
+    border-radius: 24px;
+    padding: 35px;
 
 }
 
-.menu-item{
 
-    border:none;
+.input-group {
 
-    background:transparent;
-
-    border-radius:14px;
-
-    padding:16px 18px;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    font-size:1rem;
-
-    transition:.2s;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
 
 }
 
-.menu-item:hover{
 
-    background:#f3f4f6;
+.input-group label {
 
-}
-
-.menu-item.ativo{
-
-    background:#eceff3;
-
-    font-weight:600;
+    margin-bottom: 8px;
+    font-weight: bold;
 
 }
 
-.conteudo{
 
-    background:white;
+.input-group input {
 
-    border-radius:20px;
-
-    padding:35px;
-
-    overflow-y:auto;
-
-    box-shadow:0 8px 24px rgba(0,0,0,.05);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
 
 }
 
-.conteudo h2{
 
-    margin-bottom:30px;
+button {
 
-}
+    margin-top: 20px;
+    padding: 15px 30px;
 
-.campo{
+    border: none;
+    border-radius: 12px;
 
-    margin-bottom:28px;
+    cursor: pointer;
 
-}
-
-.campo label{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    font-size:.92rem;
-
-    font-weight:600;
+    font-size: 1rem;
 
 }
 
-.campo input,
-.campo textarea{
 
-    width:100%;
+.historico h2 {
 
-    padding:14px 16px;
-
-    border-radius:12px;
-
-    border:1px solid #d7dce2;
-
-    outline:none;
-
-    transition:.2s;
-
-    font-size:1rem;
+    margin-bottom: 20px;
 
 }
 
-.campo input:focus,
-.campo textarea:focus{
 
-    border-color:#7da6ff;
+.info-card {
 
-    box-shadow:0 0 0 4px rgba(125,166,255,.15);
-
-}
-
-textarea{
-
-    resize:vertical;
-
-    min-height:120px;
-
-}
-
-.sugestoes{
-
-    margin-top:10px;
-
-}
-
-.painel{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    box-shadow:0 8px 24px rgba(0,0,0,.05);
-
-}
-
-.placeholder{
-
-    margin-top:20px;
-
-    color:#6b7280;
-
-    line-height:1.8;
-
-}
-
-@media(max-width:1100px){
-
-    .venda-layout{
-
-        grid-template-columns:1fr;
-
-        height:auto;
-
-    }
+    color: #6b7280;
+    line-height: 1.8;
 
 }
