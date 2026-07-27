@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     venda.addEventListener("click", () => {
-        window.location.href = "pages/clientes.html";
+        window.location.href = "pages/venda.html";
     });
 
 
