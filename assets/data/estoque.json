@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "produto_id": 1,
+    "tipo": "lote",
+    "quantidade": 12,
+    "unidade": "pacote",
+    "validade": "2026-10-15",
+    "lote": "GOLD001"
+  },
+  {
+    "id": 2,
+    "produto_id": 1,
+    "tipo": "lote",
+    "quantidade": 8,
+    "unidade": "pacote",
+    "validade": "2027-01-20",
+    "lote": "GOLD002"
+  },
+  {
+    "id": 3,
+    "produto_id": 2,
+    "tipo": "lote",
+    "quantidade": 15,
+    "unidade": "pacote",
+    "validade": "2026-11-10",
+    "lote": "GOLD003"
+  },
+  {
+    "id": 4,
+    "produto_id": 3,
+    "tipo": "lote",
+    "quantidade": 10,
+    "unidade": "pacote",
+    "validade": "2026-12-05",
+    "lote": "PREM001"
+  },
+  {
+    "id": 5,
+    "produto_id": 4,
+    "tipo": "unidade",
+    "quantidade": 30,
+    "unidade": "comprimido",
+    "validade": "2027-03-01",
+    "lote": "NEX001"
+  },
+  {
+    "id": 6,
+    "produto_id": 5,
+    "tipo": "unidade",
+    "quantidade": 20,
+    "unidade": "frasco",
+    "validade": "2028-01-01",
+    "lote": "HIG001"
+  },
+  {
+    "id": 7,
+    "produto_id": 6,
+    "tipo": "lote",
+    "quantidade": 25,
+    "unidade": "pacote",
+    "validade": "2027-02-10",
+    "lote": "ARE001"
+  },
+  {
+    "id": 8,
+    "produto_id": 7,
+    "tipo": "unidade",
+    "quantidade": 18,
+    "unidade": "unidade",
+    "validade": null,
+    "lote": null
+  },
+  {
+    "id": 9,
+    "produto_id": 8,
+    "tipo": "unidade",
+    "quantidade": 35,
+    "unidade": "unidade",
+    "validade": null,
+    "lote": null
+  }
+]

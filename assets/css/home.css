@@ -1,0 +1,121 @@
+.home {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.35fr;
+    grid-template-rows: 1fr 1fr 120px;
+
+    gap: 24px;
+
+    padding: 20px 40px 30px;
+
+    height: calc(100vh - 120px);
+
+}
+
+.card {
+
+    background: white;
+
+    border-radius: 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: all .25s ease;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 18px 35px rgba(0,0,0,.10);
+
+}
+
+.icon {
+
+    font-size: 3rem;
+
+    margin-bottom: 16px;
+
+}
+
+.card h2 {
+
+    font-size: 2rem;
+    font-weight: 600;
+
+}
+
+.venda {
+
+    grid-column: 1;
+    grid-row: 1;
+
+}
+
+.estoque {
+
+    grid-column: 1;
+    grid-row: 2;
+
+}
+
+.inteligencia {
+
+    grid-column: 2;
+    grid-row: 1 / span 2;
+
+}
+
+.cadastros {
+
+    grid-column: 1 / span 2;
+    grid-row: 3;
+
+    flex-direction: row;
+
+    gap: 15px;
+
+}
+
+.cadastros .icon {
+
+    margin: 0;
+
+}
+
+@media (max-width: 900px){
+
+    .home{
+
+        grid-template-columns:1fr;
+        grid-template-rows:auto;
+
+        height:auto;
+
+    }
+
+    .venda,
+    .estoque,
+    .inteligencia,
+    .cadastros{
+
+        grid-column:auto;
+        grid-row:auto;
+
+        min-height:180px;
+
+    }
+
+}
