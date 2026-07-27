@@ -1,125 +1,67 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroPet Gestão</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/app.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+
+    <h1>🐾 AgroPet Gestão</h1>
+
+</header>
 
 
-body {
-    min-height: 100vh;
-    background: #f5f6f8;
-    color: #1f2937;
-}
+<main class="dashboard">
+
+    <section class="card card-venda">
+
+        <div class="icon">🛒</div>
+
+        <h2>Nova Venda</h2>
+
+    </section>
 
 
-/* Cabeçalho */
+    <section class="card card-estoque">
 
-.header {
-    height: 18vh;
-    display: flex;
-    align-items: center;
-    padding: 40px;
-}
+        <div class="icon">📦</div>
 
+        <h2>Estoque</h2>
 
-.header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-}
+    </section>
 
 
-.header p {
-    margin-top: 8px;
-    color: #6b7280;
-    font-size: 1.1rem;
-}
+    <section class="card card-inteligencia">
+
+        <div class="icon">📊</div>
+
+        <h2>Inteligência</h2>
+
+    </section>
+
+</main>
 
 
-/* Área principal */
+<footer>
 
-.dashboard {
-    height: 82vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 24px;
-    padding: 40px;
-}
+    <button class="config-button">
 
+        Alterar Registros
 
-/* Cartões */
+    </button>
 
-.card {
-    background: white;
-    border-radius: 24px;
-    padding: 32px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+</footer>
 
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-}
+</body>
 
-
-.icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-
-.card h2 {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
-}
-
-
-.card p {
-    color: #6b7280;
-    line-height: 1.5;
-}
-
-
-/* Organização dos painéis */
-
-.card-venda {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-
-.card-estoque {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-
-.card-inteligencia {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-}
-
-
-/* Responsividade */
-
-@media(max-width: 800px) {
-
-    .dashboard {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-
-
-    .card-inteligencia {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-}
+</html>

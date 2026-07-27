@@ -1,22 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
-    const venda = document.querySelector(".card-venda");
-    const estoque = document.querySelector(".card-estoque");
-    const inteligencia = document.querySelector(".card-inteligencia");
+document.querySelector(".card-venda").onclick=()=>{
 
+window.location.href="pages/venda.html";
 
-    venda.addEventListener("click", () => {
-        window.location.href = "pages/venda.html";
-    });
+};
 
+document.querySelector(".card-estoque").onclick=()=>{
 
-    estoque.addEventListener("click", () => {
-        window.location.href = "pages/produtos.html";
-    });
+window.location.href="pages/produtos.html";
 
+};
 
-    inteligencia.addEventListener("click", () => {
-        window.location.href = "pages/dashboard.html";
-    });
+document.querySelector(".card-inteligencia").onclick=()=>{
+
+window.location.href="pages/dashboard.html";
+
+};
+
+document.querySelector(".config-button").onclick=()=>{
+
+alert("Página de alteração de registros em desenvolvimento.");
+
+};
 
 });
