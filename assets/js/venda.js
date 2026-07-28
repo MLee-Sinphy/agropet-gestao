@@ -1,9 +1,17 @@
+/* ==========================================================
+   Venda - AgroPet Gestão
+   Autocomplete, resumo dinâmico, desambiguação de pets homônimos,
+   múltiplos responsáveis por venda, forma de atendimento e
+   persistência de rascunho (regras completas em docs/regras-negocio.md).
+   ========================================================== */
+
 let pessoas = [];
 let pets = [];
 let produtos = [];
 let vendas = [];
 
-let productIdCounter = 0; // Counter for unique product IDs
+let productIdCounter = 0;
+const DRAFT_KEY = "agropet_venda_draft";
 
 async function carregarDados() {
     const [rPessoas, rPets, rProdutos, rVendas] = await Promise.all([
@@ -22,7 +30,7 @@ function normalizar(texto) {
     return (texto || "")
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[̀-ͯ]/g, "")
+        .replace(/[\u0300-\u036f]/g, "")
         .trim();
 }
 
@@ -43,6 +51,59 @@ function responsaveisAtuaisIds() {
 
 function responsaveisAtuais() {
     return responsaveisAtuaisIds().map(pessoaPorId).filter(Boolean);
+}
+
+/* ---------------------- Rascunho (persistência local) ----------------------
+   Regra nova (ver docs/regras-negocio.md #20): se a página recarregar sem
+   querer, os campos já preenchidos não devem se perder. Salvamos o estado
+   da venda em andamento no localStorage e restauramos ao carregar. */
+
+function coletarEstadoVenda() {
+    const responsaveis = Array.from(document.querySelectorAll(".responsavel-item")).map(item => ({
+        pessoaId: item.dataset.pessoaId || "",
+        nome: item.querySelector(".resp-nome")?.value || "",
+        telefone: item.querySelector(".resp-telefone")?.value || "",
+        cep: item.querySelector(".resp-cep")?.value || "",
+        rua: item.querySelector(".resp-rua")?.value || "",
+        numero: item.querySelector(".resp-numero")?.value || "",
+        cidade: item.querySelector(".resp-cidade")?.value || "",
+    }));
+
+    const produtosForm = Array.from(document.querySelectorAll(".produto-item")).map(item => ({
+        produtoId: item.dataset.produtoId || "",
+        petId: item.dataset.petId || "",
+        nomeProduto: item.querySelector(".prod-nome")?.value || "",
+        nomePet: item.querySelector(".prod-pet")?.value || "",
+        quantidade: item.querySelector(".prod-qtd")?.value || "",
+        tipoQuantidade: item.querySelector(".flip-switch")?.dataset.value || "unidade",
+    }));
+
+    const atendimentoEl = document.querySelector("#atendimentoSwitch");
+
+    return {
+        responsaveis,
+        produtos: produtosForm,
+        formaAtendimento: atendimentoEl ? atendimentoEl.dataset.value : "presencial",
+    };
+}
+
+function salvarRascunho() {
+    try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(coletarEstadoVenda()));
+    } catch (e) { /* localStorage indisponível: ignora silenciosamente */ }
+}
+
+function limparRascunho() {
+    localStorage.removeItem(DRAFT_KEY);
+}
+
+function carregarRascunho() {
+    try {
+        const raw = localStorage.getItem(DRAFT_KEY);
+        return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+        return null;
+    }
 }
 
 /* ---------------------- Responsável ---------------------- */
@@ -66,15 +127,24 @@ function preencherEnderecoResponsavel(item, pessoa) {
     item.dataset.pessoaId = pessoa.id;
 }
 
-function criarBlocoResponsavel() {
+function criarBlocoResponsavel(dadosSalvos) {
     const tpl = document.querySelector("#tpl-responsavel");
     const clone = tpl.content.cloneNode(true);
     const item = clone.querySelector(".responsavel-item");
-    item.dataset.pessoaId = "";
+    item.dataset.pessoaId = dadosSalvos?.pessoaId || "";
 
     const campoNome = item.querySelector(".resp-nome");
     const area = item.querySelector(".sugestoes-resp");
     const btnRemover = item.querySelector(".remover-responsavel");
+
+    if (dadosSalvos) {
+        campoNome.value = dadosSalvos.nome || "";
+        item.querySelector(".resp-telefone").value = dadosSalvos.telefone || "";
+        item.querySelector(".resp-cep").value = dadosSalvos.cep || "";
+        item.querySelector(".resp-rua").value = dadosSalvos.rua || "";
+        item.querySelector(".resp-numero").value = dadosSalvos.numero || "";
+        item.querySelector(".resp-cidade").value = dadosSalvos.cidade || "";
+    }
 
     campoNome.addEventListener("input", () => {
         item.dataset.pessoaId = "";
@@ -83,6 +153,7 @@ function criarBlocoResponsavel() {
 
         if (resultado.length === 0) {
             area.classList.remove("aberto");
+            salvarRascunho();
             return;
         }
 
@@ -95,21 +166,26 @@ function criarBlocoResponsavel() {
                 area.classList.remove("aberto");
                 document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
                 atualizarResumoAtivo();
+                salvarRascunho();
             };
             area.appendChild(div);
         });
 
         area.classList.add("aberto");
+        salvarRascunho();
     });
 
     campoNome.addEventListener("blur", () => {
         setTimeout(() => area.classList.remove("aberto"), 150);
     });
 
+    item.querySelectorAll("input").forEach(inp => inp.addEventListener("input", salvarRascunho));
+
     btnRemover.onclick = () => {
         item.remove();
         document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
         atualizarResumoAtivo();
+        salvarRascunho();
     };
 
     document.querySelector("#lista-responsaveis").appendChild(clone);
@@ -129,6 +205,7 @@ function preencherResponsavelSugerido(pessoa) {
     preencherEnderecoResponsavel(alvo, pessoa);
     document.querySelectorAll(".produto-item").forEach(atualizarVinculoProduto);
     atualizarResumoAtivo();
+    salvarRascunho();
 }
 
 /* ---------------------- Produtos ---------------------- */
@@ -136,6 +213,9 @@ function preencherResponsavelSugerido(pessoa) {
 function buscarProdutos(texto) {
     const busca = normalizar(texto);
     if (busca.length === 0) return [];
+    // TODO (regra 21 de regras-negocio.md): ordenar por frequência real de
+    // entrada/saída quando tivermos histórico suficiente de movimentações,
+    // não apenas por "começa com"/"contém".
     return produtos
         .filter(p => normalizar(p.descricao).includes(busca))
         .sort((a, b) => normalizar(b.descricao).startsWith(busca) - normalizar(a.descricao).startsWith(busca))
@@ -191,31 +271,27 @@ function produtoMaisFrequente(respIds) {
     return produtos.find(p => p.id === melhorId) || null;
 }
 
-/* Quantidade sempre representa "quantas unidades/sacos" foram vendidos."
-   A label e o step do input são controlados pelo switch de Unidade/A granel. */
+/* Quantidade sempre representa "quantas unidades/sacos" foram vendidos.
+   A label e o step do input são controlados pelo flip-switch Unidade/A granel. */
 function ajustarCampoQuantidade(item, produto) {
     const label = item.querySelector(".prod-qtd-label");
     const input = item.querySelector(".prod-qtd");
-    const toggleSwitch = item.querySelector(".toggle-switch-checkbox");
+    const flipSwitch = item.querySelector(".flip-switch");
 
-    // Se o switch está CHECADO, significa 'Unidade'
-    // Se o switch está DESCHECADO (não marcado), significa 'A granel'
-    const modoUnidade = toggleSwitch.checked;
+    const modoUnidade = flipSwitch.dataset.value === "unidade";
 
-    if (modoUnidade) { // Modo "Unidade"
+    if (modoUnidade) {
         const pesoTxt = produto && produto.peso_kg_por_unidade
             ? ` de ${produto.peso_kg_por_unidade}kg`
             : "";
-        label.textContent = `Quantidade (unidades${pesoTxt})`;
+        label.textContent = `Qtd.${pesoTxt}`;
         input.step = "1";
-        // Garante que o valor seja inteiro se estiver no modo unidades
         if (input.value && !Number.isInteger(parseFloat(input.value))) {
             input.value = Math.round(parseFloat(input.value));
         }
-    } else { // Modo "A granel"
-        label.textContent = `Quantidade (kg)`;
+    } else {
+        label.textContent = `Qtd. (kg)`;
         input.step = "0.1";
-        // Garante que o valor tenha pelo menos uma casa decimal se estiver no modo a granel
         if (input.value && Number.isInteger(parseFloat(input.value))) {
             input.value = parseFloat(input.value).toFixed(1);
         }
@@ -229,9 +305,24 @@ function pesoTotalItem(produto, qtd) {
     return null;
 }
 
-function criarBlocoProduto() {
-    productIdCounter++; // Incrementa para cada bloco de produto criado
-    const currentProductId = productIdCounter; // Pega o ID único para este bloco
+/* Liga o comportamento de qualquer flip-switch (usado tanto para
+   Unidade/A granel quanto para Presencial/Online). onChange recebe o
+   novo valor (string) já refletido em dataset.value. */
+function ligarFlipSwitch(el, onChange) {
+    el.addEventListener("click", () => {
+        const opcoes = Array.from(el.querySelectorAll(".flip-opt")).map(o => o.dataset.opt);
+        const atual = el.dataset.value;
+        const idxAtual = opcoes.indexOf(atual);
+        const novo = opcoes[(idxAtual + 1) % opcoes.length];
+        el.dataset.value = novo;
+        el.classList.toggle("flip-alt", novo !== opcoes[0]);
+        if (onChange) onChange(novo);
+        salvarRascunho();
+    });
+}
+
+function criarBlocoProduto(dadosSalvos) {
+    productIdCounter++;
 
     const tpl = document.querySelector("#tpl-produto");
     const clone = tpl.content.cloneNode(true);
@@ -246,28 +337,33 @@ function criarBlocoProduto() {
     const avisoVinculo = item.querySelector(".prod-aviso");
     const sugestaoResp = item.querySelector(".sugestao-responsavel");
     const btnRemover = item.querySelector(".remover-produto");
+    const flipSwitch = item.querySelector(".flip-switch");
 
-    const toggleSwitchInput = item.querySelector(".toggle-switch-checkbox");
-    const toggleSwitchLabel = item.querySelector(".toggle-switch-label");
-    toggleSwitchInput.id = `tipoQuantidadeToggle_${currentProductId}`;
-    toggleSwitchLabel.htmlFor = `tipoQuantidadeToggle_${currentProductId}`;
+    item.dataset.petId = dadosSalvos?.petId || "";
+    item.dataset.produtoId = dadosSalvos?.produtoId || "";
 
-    item.dataset.petId = "";
-    item.dataset.produtoId = "";
+    if (dadosSalvos) {
+        campoProduto.value = dadosSalvos.nomeProduto || "";
+        campoPet.value = dadosSalvos.nomePet || "";
+        item.querySelector(".prod-qtd").value = dadosSalvos.quantidade || "1";
+        if (dadosSalvos.tipoQuantidade === "granel") {
+            flipSwitch.dataset.value = "granel";
+            flipSwitch.classList.add("flip-alt");
+        }
+    }
 
-    // Adiciona event listener ao switch
-    toggleSwitchInput.addEventListener("change", () => {
+    ligarFlipSwitch(flipSwitch, () => {
         const prod = produtos.find(p => p.id === Number(item.dataset.produtoId));
         ajustarCampoQuantidade(item, prod);
-        atualizarResumoAtivo(); // Atualiza o resumo ao mudar o tipo de quantidade
+        atualizarResumoAtivo();
     });
 
     function aplicarProduto(prod) {
         campoProduto.value = prod.descricao;
         item.dataset.produtoId = prod.id;
-        // Ao aplicar o produto, também ajusta o campo de quantidade com base no switch atual
         ajustarCampoQuantidade(item, prod);
         sugestaoRapida.style.display = "none";
+        salvarRascunho();
     }
 
     // Sugestão automática por histórico do(s) responsável(is) já escolhido(s).
@@ -288,6 +384,7 @@ function criarBlocoProduto() {
 
         if (resultado.length === 0) {
             areaSugProduto.classList.remove("aberto");
+            salvarRascunho();
             return;
         }
 
@@ -306,6 +403,7 @@ function criarBlocoProduto() {
         });
 
         areaSugProduto.classList.add("aberto");
+        salvarRascunho();
     });
 
     campoProduto.addEventListener("blur", () => {
@@ -324,6 +422,7 @@ function criarBlocoProduto() {
         if (resultado.length === 0) {
             areaSugPet.classList.remove("aberto");
             atualizarResumoAtivo();
+            salvarRascunho();
             return;
         }
 
@@ -345,24 +444,33 @@ function criarBlocoProduto() {
                 atualizarVinculoProduto(item);
                 atualizarResumoAtivo(pet);
                 mostrarSugestaoResponsavel(pet, sugestaoResp);
+                salvarRascunho();
             };
             areaSugPet.appendChild(div);
         });
 
         areaSugPet.classList.add("aberto");
         atualizarResumoAtivo();
+        salvarRascunho();
     });
 
     campoPet.addEventListener("blur", () => {
         setTimeout(() => areaSugPet.classList.remove("aberto"), 150);
     });
 
+    item.querySelector(".prod-qtd").addEventListener("input", salvarRascunho);
+
     btnRemover.onclick = () => {
         item.remove();
         atualizarResumoAtivo();
+        salvarRascunho();
     };
 
     document.querySelector("#lista-produtos").appendChild(clone);
+
+    // Ajusta a label inicial de acordo com o produto já vinculado (se houver).
+    const prodAtual = produtos.find(p => p.id === Number(item.dataset.produtoId));
+    ajustarCampoQuantidade(item, prodAtual);
 }
 
 function mostrarDetalhePet(pet, detalheEl) {
@@ -519,31 +627,30 @@ function atualizarResumoAtivo(petForcado) {
         renderizarResumo(petForcado);
         return;
     }
-    const petIdAtivo = Array.from(document.querySelectorAll(".produto-item"))
-        .map(item => Number(item.dataset.petId))
-        .filter(id => !!id)[0]; // Pega o primeiro pet preenchido
 
-    renderizarResumo(petPorId(petIdAtivo));
+    const itens = Array.from(document.querySelectorAll(".produto-item"));
+    for (const item of itens) {
+        const petId = Number(item.dataset.petId);
+        if (petId) {
+            renderizarResumo(petPorId(petId));
+            return;
+        }
+    }
+
+    // Nenhum pet resolvido ainda por clique: tenta pelo texto digitado (match único).
+    for (const item of itens) {
+        const texto = item.querySelector(".prod-pet").value;
+        if (normalizar(texto).length >= 2) {
+            const candidatos = buscarPets(texto);
+            if (candidatos.length >= 1) {
+                renderizarResumo(candidatos[0]);
+                return;
+            }
+        }
+    }
+
+    renderizarResumo(null);
 }
-
-
-/* ---------------------- Inicialização ---------------------- */
-
-document.addEventListener("DOMContentLoaded", async () => {
-    await carregarDados();
-    document.querySelector("#btn-add-responsavel").onclick = criarBlocoResponsavel;
-    document.querySelector("#btn-add-produto").onclick = criarBlocoProduto;
-    document.querySelector("#btn-salvar").onclick = () => {
-        document.querySelector("#msg-sucesso").style.display = "block";
-        setTimeout(() => document.querySelector("#msg-sucesso").style.display = "none", 3000);
-        console.log("Venda salva!");
-    };
-
-    criarBlocoResponsavel(); // Inicia com um bloco de responsável
-    criarBlocoProduto(); // Inicia com um bloco de produto
-});
-
-
 
 /* ---------------------- Salvar venda ---------------------- */
 
@@ -554,11 +661,27 @@ function salvarVenda() {
     const nomesResp = respItens.map(i => i.querySelector(".resp-nome").value.trim()).filter(Boolean);
 
     const itens = Array.from(document.querySelectorAll(".produto-item"));
+    const atendimentoEl = document.querySelector("#atendimentoSwitch");
+    const formaAtendimento = atendimentoEl ? atendimentoEl.dataset.value : "presencial";
+    const dataVenda = new Date().toISOString();
+
+    // Regra 20 (docs/regras-negocio.md): forma de atendimento e data ficam
+    // registradas junto da venda para uso futuro em estatística. Enquanto
+    // não existe backend/banco de dados, o rascunho concluído é apenas
+    // exibido — nada é persistido de fato ainda (protótipo estático).
+    console.log("Venda concluída (protótipo, sem persistência real):", {
+        responsaveis: nomesResp,
+        produtos: itens.length,
+        formaAtendimento,
+        data: dataVenda,
+    });
 
     const quemLabel = nomesResp.length ? nomesResp.join(" e ") : "responsável não informado";
     const msg = document.querySelector("#msg-sucesso");
     msg.style.display = "block";
-    msg.textContent = `✔ Venda registrada para ${quemLabel} (${itens.length} produto(s)). Protótipo: dados não são persistidos ainda.`;
+    msg.textContent = `✔ Venda registrada para ${quemLabel} (${itens.length} produto(s)) — atendimento ${formaAtendimento === "online" ? "Online" : "Presencial"}. Protótipo: dados não são persistidos ainda.`;
+
+    limparRascunho();
 }
 
 /* ---------------------- Boot ---------------------- */
@@ -566,10 +689,28 @@ function salvarVenda() {
 document.addEventListener("DOMContentLoaded", async () => {
     await carregarDados();
 
-    criarBlocoResponsavel();
-    criarBlocoProduto();
+    const rascunho = carregarRascunho();
 
-    document.querySelector("#btn-add-responsavel").onclick = criarBlocoResponsavel;
-    document.querySelector("#btn-add-produto").onclick = criarBlocoProduto;
+    if (rascunho && (rascunho.responsaveis?.length || rascunho.produtos?.length)) {
+        (rascunho.responsaveis.length ? rascunho.responsaveis : [null]).forEach(r => criarBlocoResponsavel(r || undefined));
+        (rascunho.produtos.length ? rascunho.produtos : [null]).forEach(p => criarBlocoProduto(p || undefined));
+
+        const atendimentoEl = document.querySelector("#atendimentoSwitch");
+        if (atendimentoEl && rascunho.formaAtendimento === "online") {
+            atendimentoEl.dataset.value = "online";
+            atendimentoEl.classList.add("flip-alt");
+        }
+    } else {
+        criarBlocoResponsavel();
+        criarBlocoProduto();
+    }
+
+    document.querySelector("#btn-add-responsavel").onclick = () => { criarBlocoResponsavel(); salvarRascunho(); };
+    document.querySelector("#btn-add-produto").onclick = () => { criarBlocoProduto(); salvarRascunho(); };
     document.querySelector("#btn-salvar").onclick = salvarVenda;
+
+    const atendimentoEl = document.querySelector("#atendimentoSwitch");
+    if (atendimentoEl) {
+        ligarFlipSwitch(atendimentoEl);
+    }
 });

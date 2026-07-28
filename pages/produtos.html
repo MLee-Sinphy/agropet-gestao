@@ -3,16 +3,138 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque - AgroPet Gestão</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/estoque.css">
+
+    <script defer src="../assets/js/estoque.js"></script>
 </head>
 
 <body>
 
-<h1>Estoque</h1>
+<header class="header">
+    <a href="../index.html" class="header-link"><h1>🐾 AgroPet Gestão</h1></a>
+    <nav class="header-nav">
+        <a href="configuracoes.html" title="Perfil da Loja" class="company-data-text">Perfil da Loja</a>
+    </nav>
+</header>
 
-<p>Página em desenvolvimento.</p>
+<main class="estoque-container">
 
-<a href="../index.html">Voltar</a>
+    <section class="estoque-form">
+
+        <div id="msg-sucesso-estoque" class="msg-sucesso" style="display:none;"></div>
+
+        <div class="bloco bloco-movimentos">
+            <div class="bloco-titulo">
+                <h2>📦 Movimentar Estoque</h2>
+                <p class="ajuda-estoque">
+                    Adicione itens que chegaram na loja ou remova itens (venceram,
+                    quebraram, foram devolvidos etc). Você pode incluir vários
+                    itens antes de confirmar tudo de uma vez.
+                </p>
+            </div>
+
+            <div id="lista-movimentos"></div>
+
+            <div class="acoes-add-movimento">
+                <button type="button" class="secondary" id="btn-add-entrada">+ Adicionar item (entrada)</button>
+                <button type="button" class="secondary secondary-saida" id="btn-add-saida">− Remover item (saída)</button>
+            </div>
+        </div>
+
+        <button type="button" class="primary" id="btn-atualizar-estoque">
+            Atualizar Estoque
+        </button>
+
+    </section>
+
+    <aside class="resumo">
+        <h2>Estoque Atual</h2>
+        <div class="busca-estoque-atual">
+            <input type="text" id="busca-estoque" placeholder="Buscar produto no estoque..." autocomplete="off">
+        </div>
+        <div id="lista-estoque-atual" class="info-card"></div>
+    </aside>
+
+</main>
+
+<template id="tpl-movimento-entrada">
+    <div class="movimento-item movimento-entrada">
+        <button type="button" class="remover-item remover-movimento" title="Remover">✕</button>
+        <span class="tag-tipo tag-entrada">Entrada</span>
+
+        <div class="input-group produto-campo">
+            <label>Produto</label>
+            <input type="text" class="mov-produto" placeholder="Digite o nome do produto..." autocomplete="off">
+            <div class="sugestoes mov-sugestoes-produto"></div>
+        </div>
+
+        <div class="produto-linha">
+            <div class="input-group">
+                <label class="mov-qtd-label">Qtd.</label>
+                <input type="number" class="mov-qtd" value="1" min="0" step="1">
+            </div>
+            <div class="input-group">
+                <label>Validade (opcional)</label>
+                <input type="date" class="mov-validade">
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-movimento-saida">
+    <div class="movimento-item movimento-saida">
+        <button type="button" class="remover-item remover-movimento" title="Remover">✕</button>
+        <span class="tag-tipo tag-saida">Saída</span>
+
+        <div class="input-group produto-campo">
+            <label>Produto</label>
+            <input type="text" class="mov-produto" placeholder="Digite o nome do produto..." autocomplete="off">
+            <div class="sugestoes mov-sugestoes-produto"></div>
+        </div>
+
+        <div class="produto-linha">
+            <div class="input-group">
+                <label class="mov-qtd-label">Qtd.</label>
+                <input type="number" class="mov-qtd" value="1" min="0" step="1">
+            </div>
+            <div class="input-group">
+                <label>Motivo (opcional agora)</label>
+                <select class="mov-motivo">
+                    <option value="">A definir ao confirmar</option>
+                    <option value="venceu">Venceu / vencendo</option>
+                    <option value="quebrou">Quebrou / avariou</option>
+                    <option value="devolucao">Devolução ao fornecedor</option>
+                    <option value="perda">Perda / extravio</option>
+                    <option value="ajuste">Ajuste de contagem</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</template>
+
+<div id="modal-motivo" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <h3>Motivo da remoção</h3>
+        <p id="modal-motivo-produto"></p>
+        <select id="modal-motivo-select">
+            <option value="venceu">Venceu / vencendo</option>
+            <option value="quebrou">Quebrou / avariou</option>
+            <option value="devolucao">Devolução ao fornecedor</option>
+            <option value="perda">Perda / extravio</option>
+            <option value="ajuste">Ajuste de contagem</option>
+            <option value="outro">Outro</option>
+        </select>
+        <input type="text" id="modal-motivo-outro" placeholder="Descreva o motivo..." style="display:none;">
+        <div class="modal-acoes">
+            <button type="button" class="primary" id="modal-motivo-confirmar">Confirmar</button>
+        </div>
+    </div>
+</div>
 
 </body>
 

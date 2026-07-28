@@ -282,3 +282,140 @@ Regra: qualquer regra nova adicionada a este documento deve, sempre que
 possível, reduzir cliques e digitação do dia a dia. Se uma regra torna o
 uso mais complicado sem um ganho claro de insight ou precisão de dado, ela
 provavelmente está errada e deve ser reconsiderada.
+
+---
+
+## 20. Forma de atendimento e data da venda são dados de negócio, não só de tela
+
+Regra: toda venda registra também se o atendimento foi Presencial ou
+Online, além da data/hora em que foi concluída. Esses dois campos não têm
+efeito na lógica de estoque, mas são essenciais para os relatórios de
+Inteligência (ex: comparar performance de canal online vs. loja física).
+Enquanto não existe banco de dados real, a interface já captura e exibe
+esse dado; ele deve ser persistido no banco de dados assim que o sistema
+tiver storage real.
+
+Exemplo: Maria compra pelo WhatsApp e recebe em casa — a venda é marcada
+como "Online". João entra na loja e compra no balcão — a venda é marcada
+como "Presencial". Ambas registram a data da conclusão.
+
+---
+
+## 21. Autocomplete deve aprender com a frequência real de uso (evolução futura)
+
+Regra: o autocomplete de produto (na Venda e no Estoque) hoje ordena
+sugestões por "começa com" vs. "contém" o texto digitado. A evolução
+planejada é ordenar pela frequência real de entrada/saída de cada produto
+— ou seja, ao digitar "ração", os produtos que mais aparecem em vendas e
+movimentações de estoque devem subir para o topo da lista de sugestões,
+não apenas pela correspondência textual.
+
+Exemplo: se "Ração Golden 15kg" é vendida com muito mais frequência do que
+"Ração Golden Filhotes 15kg", ao digitar "raçao gol" a primeira deve
+aparecer no topo da lista, mesmo que as duas combinem igualmente com o
+texto digitado.
+
+Status: **não implementado ainda** — anotado aqui para não ser perdido.
+Quando isso for implementado, a base é o histórico de `vendas.json` (para
+produtos vendidos) e o histórico de movimentações de estoque (para
+entradas/saídas registradas na tela de Estoque).
+
+---
+
+## 22. Estoque: entradas e saídas em lote, com motivo de remoção inteligente
+
+Regra: a tela de Estoque permite adicionar múltiplos itens de entrada
+(mercadoria chegando) e múltiplos itens de saída (item saindo por qualquer
+razão) antes de confirmar tudo de uma vez com um único botão "Atualizar
+Estoque". Cada item de saída deve, sempre que possível, ter seu motivo
+inferido automaticamente:
+
+- Se uma data de validade foi informada e já passou, o motivo é
+  automaticamente "venceu" — sem perguntar nada ao usuário.
+- Se o motivo não pôde ser inferido e o usuário não selecionou nenhum
+  motivo no campo do próprio item, o sistema pergunta o motivo através de
+  uma caixa de diálogo específica para aquele item, no momento da
+  confirmação. Se dois itens diferentes ficarem sem motivo, a pergunta
+  aparece duas vezes (uma por item), nunca agrupada.
+
+Exemplo: o vendedor adiciona 3 itens de saída. O primeiro tem validade
+20/01/2026 (já passada) — motivo "venceu" é aplicado automaticamente. O
+segundo já tem o motivo "Quebrou" selecionado manualmente no próprio
+formulário — nada é perguntado. O terceiro não tem validade nem motivo
+selecionado — ao clicar em "Atualizar Estoque", aparece uma caixa
+perguntando o motivo específico desse terceiro item.
+
+---
+
+## 23. Mapeamento de campos do Bling para produto e empresa
+
+Regra: para a integração futura com o Bling funcionar sem retrabalho, os
+formulários de Produto e de Perfil da Loja devem reservar campos
+compatíveis com o que o Bling exige/aceita, mesmo que hoje fiquem vazios
+ou escondidos em uma gaveta.
+
+**Empresa (Perfil da Loja) — campos já cobertos na tela `configuracoes.html`:**
+Razão social, nome fantasia, CNPJ/CPF, Inscrição Estadual, endereço,
+telefone, email, Client ID / API Key, Client Secret (OAuth2 Bling),
+usuário Bling, série padrão de NFe.
+
+**Produto — campos essenciais já existentes:** código, descrição,
+unidade de venda, preço, estoque, estoque mínimo, fornecedor, categoria,
+marca, se é vendido a granel, peso por unidade.
+
+**Produto — campos do Bling ainda não implementados, mas previstos** (ficam
+no objeto `bling_extra` de cada produto em `produtos.json`, hoje vazio,
+para não quebrar nada ao evoluir o cadastro):
+- `ncm` (Nomenclatura Comum do Mercosul, obrigatório para NFe)
+- `gtin_ean` (código de barras)
+- `origem` (nacional/importado, tabela do Bling)
+- `peso_bruto_kg` / `peso_liquido_kg`
+- `dimensoes` (altura/largura/profundidade, para frete)
+- `unidade_tributavel` e fator de conversão
+- `cest` (quando aplicável)
+- `tags` / `categoria_bling` (categoria como o Bling reconhece, pode
+  diferir da categoria interna usada aqui)
+- `preco_custo` (separado do preço de venda, para margem)
+
+Exemplo: hoje "Ração Golden 15kg" tem só os campos internos. Quando a
+integração Bling for implementada, o mesmo produto ganha
+`bling_extra: { ncm: "2309.90.90", gtin_ean: "7891234567890", origem: "0" }`
+sem precisar remodelar o restante do cadastro.
+
+---
+
+## 24. Base inicial de dados para simulação
+
+Regra: o catálogo de produtos (`assets/data/produtos.json`) deve manter
+pelo menos ~50 itens típicos de petshop para permitir simulações
+realistas de venda e estoque antes de qualquer integração real.
+
+Status: catálogo atual já possui 100 produtos cadastrados — requisito
+atendido e superado.
+
+---
+
+## 25. Fluxo de dados planejado até a integração completa com o Bling
+
+Regra (visão de produto, para orientar decisões técnicas futuras): o
+sistema deve evoluir na seguinte ordem lógica —
+
+1. Instalar o programa no computador do dono do petshop.
+2. Preencher o Perfil da Loja (dados da empresa) uma única vez.
+3. Conectar a conta Bling da loja via API (OAuth2).
+4. A partir daí, toda entrada de mercadoria (chegada) ou saída (venda,
+   vencimento, quebra) é registrada na tela de Estoque com o mínimo de
+   campos possível — o autocomplete deve preencher automaticamente todos
+   os campos de um produto no momento em que ele for identificado de forma
+   inequívoca (ex: só existe uma "Ração Golden 15kg" cadastrada). Quando
+   existir mais de um produto compatível com o texto digitado, os campos
+   seguintes mostram sugestões restritas às opções ainda possíveis, até
+   que a escolha se torne única.
+5. Ao concluir uma venda, o estoque é atualizado automaticamente e a nota
+   fiscal correspondente é emitida via API do Bling — sem passo manual
+   extra do vendedor.
+
+Este documento (regras 20 a 25) absorve e substitui o antigo arquivo
+`requisitos_futuros.md`, que tratava dos mesmos temas de forma mais
+resumida e sem exemplos.
+

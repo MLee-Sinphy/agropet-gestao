@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configurações - AgroPet Gestão</title>
+    <title>Perfil da Loja - AgroPet Gestão</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/configuracoes.css">
 </head>
@@ -19,47 +19,101 @@
 
     <main class="config-container">
         <section class="config-form">
+
             <div class="bloco bloco-empresa">
-                <div class="bloco-titulo"><h2>Dados da Empresa</h2></div>
+                <div class="bloco-titulo"><h2>Dados da Loja</h2></div>
+
                 <div class="input-group">
-                    <label for="empresa-nome">Nome da Empresa</label>
+                    <label for="empresa-nome">Nome da Loja / Razão Social</label>
                     <input type="text" id="empresa-nome" placeholder="AgroPet Gestão LTDA">
                 </div>
                 <div class="input-group">
-                    <label for="empresa-cnpj">CNPJ</label>
+                    <label for="empresa-fantasia">Nome Fantasia</label>
+                    <input type="text" id="empresa-fantasia" placeholder="AgroPet">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-cnpj">CNPJ / CPF</label>
                     <input type="text" id="empresa-cnpj" placeholder="XX.XXX.XXX/YYYY-ZZ">
                 </div>
                 <div class="input-group">
-                    <label for="empresa-endereco">Endereço</label>
-                    <input type="text" id="empresa-endereco" placeholder="Rua Exemplo, 123, Bairro, Cidade - UF">
+                    <label for="empresa-ie">Inscrição Estadual</label>
+                    <input type="text" id="empresa-ie" placeholder="Isento ou nº da IE (necessário para emissão de NFe no Bling)">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-numero-loja">Número da Loja (código interno)</label>
+                    <input type="text" id="empresa-numero-loja" placeholder="Ex: 001 (útil para redes com mais de uma unidade)">
                 </div>
                 <div class="input-group">
                     <label for="empresa-email">Email de Contato</label>
                     <input type="email" id="empresa-email" placeholder="contato@agropet.com">
                 </div>
                 <div class="input-group">
-                    <label for="empresa-telefone">Telefone</label>
+                    <label for="empresa-telefone">Telefone / WhatsApp</label>
                     <input type="tel" id="empresa-telefone" placeholder="(XX) XXXXX-XXXX">
                 </div>
                 <div class="input-group">
-                    <label for="empresa-instagram">Instagram</label>
-                    <input type="text" id="empresa-instagram" placeholder="@agropet_gestao">
+                    <label for="empresa-endereco">Endereço</label>
+                    <input type="text" id="empresa-endereco" placeholder="Rua Exemplo, 123, Bairro, Cidade - UF">
                 </div>
+
+                <details class="endereco-gaveta">
+                    <summary>Redes sociais e outras informações (opcional)</summary>
+                    <div class="endereco-conteudo">
+                        <div class="input-group">
+                            <label for="empresa-instagram">Instagram</label>
+                            <input type="text" id="empresa-instagram" placeholder="@agropet_gestao">
+                        </div>
+                        <div class="input-group">
+                            <label for="empresa-facebook">Facebook</label>
+                            <input type="text" id="empresa-facebook" placeholder="facebook.com/agropet">
+                        </div>
+                        <div class="input-group">
+                            <label for="empresa-site">Site</label>
+                            <input type="text" id="empresa-site" placeholder="www.agropet.com.br">
+                        </div>
+                        <div class="input-group">
+                            <label for="empresa-horario">Horário de Funcionamento</label>
+                            <input type="text" id="empresa-horario" placeholder="Seg a Sáb, 8h às 18h">
+                        </div>
+                        <div class="input-group">
+                            <label for="empresa-responsavel-legal">Responsável Legal / Contador</label>
+                            <input type="text" id="empresa-responsavel-legal" placeholder="Nome do responsável legal">
+                        </div>
+                    </div>
+                </details>
             </div>
 
             <div class="bloco bloco-bling">
-                <div class="bloco-titulo"><h2>Configurações Bling</h2></div>
+                <div class="bloco-titulo"><h2>Integração com Bling (NFe)</h2></div>
+                <p class="ajuda-bling">
+                    Esses dados serão usados para conectar com a conta Bling da
+                    loja e emitir Nota Fiscal automaticamente a partir das
+                    vendas. Ver mapeamento completo de campos em
+                    docs/regras-negocio.md.
+                </p>
                 <div class="input-group">
-                    <label for="bling-apikey">API Key Bling</label>
+                    <label for="bling-apikey">Client ID / API Key Bling</label>
                     <input type="password" id="bling-apikey" placeholder="Sua chave API do Bling">
                 </div>
                 <div class="input-group">
-                    <label for="bling-user">Usuário Bling</label>
+                    <label for="bling-secret">Client Secret Bling</label>
+                    <input type="password" id="bling-secret" placeholder="Client secret (OAuth2)">
+                </div>
+                <div class="input-group">
+                    <label for="bling-user">Usuário / Email Bling</label>
                     <input type="text" id="bling-user" placeholder="Seu usuário Bling">
                 </div>
+                <div class="input-group">
+                    <label for="bling-serie-nfe">Série da NFe padrão</label>
+                    <input type="text" id="bling-serie-nfe" placeholder="1">
                 </div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="bling-emitir-auto">
+                    Emitir NFe automaticamente a cada venda concluída
+                </label>
+            </div>
 
-            <button type="button" class="primary" id="btn-salvar-config">Salvar Configurações</button>
+            <button type="button" class="primary" id="btn-salvar-config">Salvar Perfil da Loja</button>
         </section>
     </main>
 

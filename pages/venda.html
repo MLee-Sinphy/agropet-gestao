@@ -18,7 +18,7 @@
 <header class="header">
     <a href="../index.html" class="header-link"><h1>🐾 AgroPet Gestão</h1></a>
     <nav class="header-nav">
-        <a href="cadastros.html" title="Perfil da Loja" class="company-data-text">Perfil da Loja</a>
+        <a href="configuracoes.html" title="Perfil da Loja" class="company-data-text">Perfil da Loja</a>
     </nav>
 </header>
 
@@ -53,14 +53,21 @@
             </button>
         </div>
 
-
-        
+        <div class="bloco bloco-atendimento">
+            <div class="bloco-titulo">
+                <h2>Forma de Atendimento</h2>
+            </div>
+            <div class="flip-switch" id="atendimentoSwitch" data-value="presencial">
+                <div class="flip-switch-track">
+                    <span class="flip-opt" data-opt="presencial">Presencial</span>
+                    <span class="flip-opt" data-opt="online">Online</span>
+                </div>
+            </div>
+        </div>
 
         <button type="button" class="primary" id="btn-salvar">
             Concluir Venda
         </button>
-
-
 
     </section>
 
@@ -129,25 +136,25 @@
 
         <div class="produto-linha">
             <div class="input-group">
-                <label>Pet</label>
-                <input type="text" class="prod-pet" placeholder="Digite o nome do pet..." autocomplete="off">
-                <div class="sugestoes sugestoes-pet"></div>
+                <label class="prod-qtd-label">Qtd.</label>
+                <input type="number" class="prod-qtd" value="1" min="0" step="1">
             </div>
 
             <div class="input-group tipo-quantidade-switch">
-                <div class="toggle-switch">
-                    <input type="checkbox" id="tipoQuantidadeToggle__{{ID}}" class="toggle-switch-checkbox" checked>
-                    <label for="tipoQuantidadeToggle__{{ID}}" class="toggle-switch-label">
-                        <span class="toggle-switch-inner" data-on="Unidade" data-off="A granel"></span>
-                        <span class="toggle-switch-switch"></span>
-                    </label>
+                <label>&nbsp;</label>
+                <div class="flip-switch flip-switch-small" data-value="unidade">
+                    <div class="flip-switch-track">
+                        <span class="flip-opt" data-opt="unidade">Unidade</span>
+                        <span class="flip-opt" data-opt="granel">A granel</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="input-group">
-                <label class="prod-qtd-label">Quantidade (unidades)</label>
-                <input type="number" class="prod-qtd" value="1" min="0" step="1">
-            </div>
+        <div class="input-group">
+            <label>Pet</label>
+            <input type="text" class="prod-pet" placeholder="Digite o nome do pet..." autocomplete="off">
+            <div class="sugestoes sugestoes-pet"></div>
         </div>
 
         <div class="pet-detalhe prod-pet-detalhe" style="display:none;"></div>

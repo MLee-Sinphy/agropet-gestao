@@ -72,6 +72,27 @@
     background: #257a4c;
 }
 
+.ajuda-bling {
+    font-size: .85rem;
+    color: #6b7671;
+    margin: -6px 0 16px;
+    line-height: 1.5;
+}
+
+.checkbox-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .92rem;
+    color: #52585a;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.checkbox-inline input {
+    width: auto;
+}
+
 .header-nav .config-icon {
     font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
     text-decoration: none;
