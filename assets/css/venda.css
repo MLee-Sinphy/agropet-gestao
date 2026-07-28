@@ -27,18 +27,18 @@
 }
 
 .bloco-responsavel {
-    background: #f6f7f5;
-    border: 1px solid #eceeec;
+    background: var(--primary-block-bg);
+    border: 1px solid var(--primary-block-border);
 }
 
 .bloco-produtos {
-    background: #f1f4f8;
-    border: 1px solid #e3e9f0;
+    background: var(--primary-block-bg);
+    border: 1px solid var(--primary-block-border);
 }
 
-bloco.tipo-venda{
-    background: #eef4f0;
-    border: 1px solid #d6e6da;
+.bloco.tipo-venda {
+    background: var(--primary-block-bg);
+    border: 1px solid var(--primary-block-border);
 }
 
 .bloco-titulo h2 {
@@ -375,10 +375,9 @@ button.secondary:hover {
     }
 }
 
-/* Estilos para o switch de toggle */
 .toggle-switch {
     position: relative;
-    width: 200px;
+    width: 110px; /* Reduzindo a largura */
     display: inline-block;
     vertical-align: middle;
     margin: 10px 0;
@@ -395,6 +394,7 @@ button.secondary:hover {
     cursor: pointer;
     border: 0 solid #ccc;
     border-radius: 20px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1), inset 0 2px 5px rgba(0,0,0,0.2); /* 3D effect */
 }
 
 .toggle-switch-inner {
@@ -407,11 +407,11 @@ button.secondary:hover {
 .toggle-switch-inner:before, .toggle-switch-inner:after {
     float: left;
     width: 50%;
-    height: 36px;
+    height: 30px; /* Reduzindo a altura */
     padding: 0;
-    line-height: 36px;
-    font-size: 14px;
-    color: white;
+    line-height: 30px; /* Ajustando a altura da linha */
+    font-size: 13px; /* Reduzindo a fonte */
+    color: #3d443f;
     font-weight: bold;
     box-sizing: border-box;
 }
@@ -419,30 +419,30 @@ button.secondary:hover {
 .toggle-switch-inner:before {
     content: attr(data-on);
     padding-left: 10px;
-    background-color: #5cb85c; /* Verde para "Presencial" */
-    color: #fff;
+    background-color: var(--primary-block-bg);
 }
 
 .toggle-switch-inner:after {
     content: attr(data-off);
     padding-right: 10px;
-    background-color: #d9534f; /* Vermelho para "Online" */
-    color: #fff;
+    background-color: var(--primary-block-bg);
+    color: #3d443f;
     text-align: right;
 }
 
 .toggle-switch-switch {
     display: block;
-    width: 24px;
-    margin: 6px;
+    width: 20px; /* Reduzindo a largura do botão deslizante */
+    margin: 5px;
     background: #fff;
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 160px;
+    right: 80px; /* Ajustado para 110px - 20px - 5px*2 = 80px */
     border: 0 solid #ccc;
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adicionando sombra para efeito 3D */
 }
 
 .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
@@ -461,12 +461,13 @@ button.secondary:hover {
     padding-right: 20px; /* Espaçamento da margem */
 }
 
-.config-icon {
-    font-size: 2em; /* Tamanho do ícone */
+.company-data-icon, .company-data-text {
+    font-size: 1.1em; /* Tamanho ajustado para texto */
     text-decoration: none;
-    color: #333; /* Cor do ícone */
+    color: #333; /* Cor do texto */
+    font-weight: 600;
 }
 
-.config-icon:hover {
+.company-data-icon:hover, .company-data-text:hover {
     color: #007bff; /* Cor ao passar o mouse */
 }

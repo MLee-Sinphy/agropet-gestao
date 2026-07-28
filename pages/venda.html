@@ -18,7 +18,7 @@
 <header class="header">
     <a href="../index.html" class="header-link"><h1>🐾 AgroPet Gestão</h1></a>
     <nav class="header-nav">
-        <a href="configuracoes.html" title="Configurações" class="config-icon">⚙️</a>
+        <a href="cadastros.html" title="Perfil da Loja" class="company-data-text">Perfil da Loja</a>
     </nav>
 </header>
 
@@ -54,21 +54,10 @@
         </div>
 
 
-        <div class="bloco tipo-venda">
-            <div class="bloco-titulo">
-                <h2>Tipo de Venda</h2>
-            </div>
-            <div class="toggle-switch">
-                <input type="checkbox" id="tipoVendaToggle" class="toggle-switch-checkbox" checked>
-                <label for="tipoVendaToggle" class="toggle-switch-label">
-                    <span class="toggle-switch-inner" data-on="Presencial" data-off="Online"></span>
-                    <span class="toggle-switch-switch"></span>
-                </label>
-            </div>
-        </div>
+        
 
         <button type="button" class="primary" id="btn-salvar">
-            Salvar Venda
+            Concluir Venda
         </button>
 
 
@@ -143,6 +132,16 @@
                 <label>Pet</label>
                 <input type="text" class="prod-pet" placeholder="Digite o nome do pet..." autocomplete="off">
                 <div class="sugestoes sugestoes-pet"></div>
+            </div>
+
+            <div class="input-group tipo-quantidade-switch">
+                <div class="toggle-switch">
+                    <input type="checkbox" id="tipoQuantidadeToggle__{{ID}}" class="toggle-switch-checkbox" checked>
+                    <label for="tipoQuantidadeToggle__{{ID}}" class="toggle-switch-label">
+                        <span class="toggle-switch-inner" data-on="Unidade" data-off="A granel"></span>
+                        <span class="toggle-switch-switch"></span>
+                    </label>
+                </div>
             </div>
 
             <div class="input-group">

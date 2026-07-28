@@ -1,14 +1,9 @@
-/* ==========================================================
-   Venda - AgroPet Gestão
-   Autocomplete, resumo dinâmico, desambiguação de pets homônimos
-   e múltiplos responsáveis por venda.
-   Regras completas em docs/regras-negocio.md
-   ========================================================== */
-
 let pessoas = [];
 let pets = [];
 let produtos = [];
 let vendas = [];
+
+let productIdCounter = 0; // Counter for unique product IDs
 
 async function carregarDados() {
     const [rPessoas, rPets, rProdutos, rVendas] = await Promise.all([
@@ -27,7 +22,7 @@ function normalizar(texto) {
     return (texto || "")
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[̀-ͯ]/g, "")
         .trim();
 }
 
@@ -196,24 +191,34 @@ function produtoMaisFrequente(respIds) {
     return produtos.find(p => p.id === melhorId) || null;
 }
 
-/* Quantidade sempre representa "quantas unidades/sacos" foram vendidos.
-   Só quando o produto é explicitamente a granel (picado/solto, fora do
-   pacote fechado) é que a quantidade passa a representar quilos direto.
-   Ver regra 7 de regras-negocio.md. */
+/* Quantidade sempre representa "quantas unidades/sacos" foram vendidos."
+   A label e o step do input são controlados pelo switch de Unidade/A granel. */
 function ajustarCampoQuantidade(item, produto) {
     const label = item.querySelector(".prod-qtd-label");
     const input = item.querySelector(".prod-qtd");
+    const toggleSwitch = item.querySelector(".toggle-switch-checkbox");
 
-    if (produto && produto.vendido_a_granel) {
-        label.textContent = "Quantidade (kg)";
-        input.step = "0.1";
-        if (input.value === "1") input.value = "1.0";
-    } else {
+    // Se o switch está CHECADO, significa 'Unidade'
+    // Se o switch está DESCHECADO (não marcado), significa 'A granel'
+    const modoUnidade = toggleSwitch.checked;
+
+    if (modoUnidade) { // Modo "Unidade"
         const pesoTxt = produto && produto.peso_kg_por_unidade
             ? ` de ${produto.peso_kg_por_unidade}kg`
             : "";
         label.textContent = `Quantidade (unidades${pesoTxt})`;
         input.step = "1";
+        // Garante que o valor seja inteiro se estiver no modo unidades
+        if (input.value && !Number.isInteger(parseFloat(input.value))) {
+            input.value = Math.round(parseFloat(input.value));
+        }
+    } else { // Modo "A granel"
+        label.textContent = `Quantidade (kg)`;
+        input.step = "0.1";
+        // Garante que o valor tenha pelo menos uma casa decimal se estiver no modo a granel
+        if (input.value && Number.isInteger(parseFloat(input.value))) {
+            input.value = parseFloat(input.value).toFixed(1);
+        }
     }
 }
 
@@ -225,6 +230,9 @@ function pesoTotalItem(produto, qtd) {
 }
 
 function criarBlocoProduto() {
+    productIdCounter++; // Incrementa para cada bloco de produto criado
+    const currentProductId = productIdCounter; // Pega o ID único para este bloco
+
     const tpl = document.querySelector("#tpl-produto");
     const clone = tpl.content.cloneNode(true);
     const item = clone.querySelector(".produto-item");
@@ -239,12 +247,25 @@ function criarBlocoProduto() {
     const sugestaoResp = item.querySelector(".sugestao-responsavel");
     const btnRemover = item.querySelector(".remover-produto");
 
+    const toggleSwitchInput = item.querySelector(".toggle-switch-checkbox");
+    const toggleSwitchLabel = item.querySelector(".toggle-switch-label");
+    toggleSwitchInput.id = `tipoQuantidadeToggle_${currentProductId}`;
+    toggleSwitchLabel.htmlFor = `tipoQuantidadeToggle_${currentProductId}`;
+
     item.dataset.petId = "";
     item.dataset.produtoId = "";
+
+    // Adiciona event listener ao switch
+    toggleSwitchInput.addEventListener("change", () => {
+        const prod = produtos.find(p => p.id === Number(item.dataset.produtoId));
+        ajustarCampoQuantidade(item, prod);
+        atualizarResumoAtivo(); // Atualiza o resumo ao mudar o tipo de quantidade
+    });
 
     function aplicarProduto(prod) {
         campoProduto.value = prod.descricao;
         item.dataset.produtoId = prod.id;
+        // Ao aplicar o produto, também ajusta o campo de quantidade com base no switch atual
         ajustarCampoQuantidade(item, prod);
         sugestaoRapida.style.display = "none";
     }
@@ -498,30 +519,31 @@ function atualizarResumoAtivo(petForcado) {
         renderizarResumo(petForcado);
         return;
     }
+    const petIdAtivo = Array.from(document.querySelectorAll(".produto-item"))
+        .map(item => Number(item.dataset.petId))
+        .filter(id => !!id)[0]; // Pega o primeiro pet preenchido
 
-    const itens = Array.from(document.querySelectorAll(".produto-item"));
-    for (const item of itens) {
-        const petId = Number(item.dataset.petId);
-        if (petId) {
-            renderizarResumo(petPorId(petId));
-            return;
-        }
-    }
-
-    // Nenhum pet resolvido ainda por clique: tenta pelo texto digitado (match único).
-    for (const item of itens) {
-        const texto = item.querySelector(".prod-pet").value;
-        if (normalizar(texto).length >= 2) {
-            const candidatos = buscarPets(texto);
-            if (candidatos.length >= 1) {
-                renderizarResumo(candidatos[0]);
-                return;
-            }
-        }
-    }
-
-    renderizarResumo(null);
+    renderizarResumo(petPorId(petIdAtivo));
 }
+
+
+/* ---------------------- Inicialização ---------------------- */
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarDados();
+    document.querySelector("#btn-add-responsavel").onclick = criarBlocoResponsavel;
+    document.querySelector("#btn-add-produto").onclick = criarBlocoProduto;
+    document.querySelector("#btn-salvar").onclick = () => {
+        document.querySelector("#msg-sucesso").style.display = "block";
+        setTimeout(() => document.querySelector("#msg-sucesso").style.display = "none", 3000);
+        console.log("Venda salva!");
+    };
+
+    criarBlocoResponsavel(); // Inicia com um bloco de responsável
+    criarBlocoProduto(); // Inicia com um bloco de produto
+});
+
+
 
 /* ---------------------- Salvar venda ---------------------- */
 
