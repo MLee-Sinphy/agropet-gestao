@@ -29,7 +29,29 @@
     <section class="dash-grid">
 
         <div class="dash-card dash-card-wide">
-            <h3>Vendas por mês</h3>
+            <div class="dash-chart-cabecalho clicavel-sutil" id="chart-vendas-mes-cabecalho">
+                <h3>Vendas por mês</h3>
+                <p class="dash-card-ajuda">Clique para navegar por período ou comparar o mesmo mês entre anos.</p>
+            </div>
+
+            <div class="dash-chart-controles" id="chart-vendas-mes-controles">
+                <div class="dash-chart-modo">
+                    <button type="button" class="dash-chart-modo-btn ativo" data-modo="recentes">Últimos períodos</button>
+                    <button type="button" class="dash-chart-modo-btn" data-modo="comparar">Comparar mesmo mês</button>
+                </div>
+
+                <div class="dash-chart-nav" id="chart-vendas-mes-nav">
+                    <button type="button" class="dash-chart-nav-btn" id="chart-vendas-mes-anterior">‹ período anterior</button>
+                    <span class="dash-chart-nav-label" id="chart-vendas-mes-periodo-label"></span>
+                    <button type="button" class="dash-chart-nav-btn" id="chart-vendas-mes-seguinte">período seguinte ›</button>
+                </div>
+
+                <div class="dash-chart-comparar" id="chart-vendas-mes-comparar" style="display:none;">
+                    <label for="chart-vendas-mes-mes-select">Mês a comparar entre os anos:</label>
+                    <select id="chart-vendas-mes-mes-select"></select>
+                </div>
+            </div>
+
             <div class="dash-chart" id="chart-vendas-mes"></div>
         </div>
 

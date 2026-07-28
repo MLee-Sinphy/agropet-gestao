@@ -66,38 +66,172 @@ function renderizarKPIs() {
     `;
 }
 
-/* ---------------------- Vendas por mês (gráfico simples) ---------------------- */
+/* ---------------------- Vendas por mês (gráfico com navegação) ---------------------- */
+
+const nomesMes = { "01": "Jan", "02": "Fev", "03": "Mar", "04": "Abr", "05": "Mai", "06": "Jun", "07": "Jul", "08": "Ago", "09": "Set", "10": "Out", "11": "Nov", "12": "Dez" };
+
+/* Estado do gráfico "Vendas por mês": controles ficam escondidos por padrão
+   (só aparecem ao clicar no cabeçalho, para não sobrecarregar a tela com
+   informação) e o usuário pode navegar para períodos mais antigos (offset
+   em blocos de 6 meses) ou comparar o mesmo mês entre anos diferentes. */
+const estadoChartMes = {
+    modo: "recentes", // "recentes" | "comparar"
+    offset: 0, // 0 = últimos 6 meses; 1 = os 6 anteriores a esses; etc.
+    mesComparar: null, // "01".."12"
+};
+
+function todosMesesOrdenados() {
+    const set = new Set();
+    vendas.forEach(v => set.add(v.data.slice(0, 7)));
+    return Array.from(set).sort();
+}
+
+function agruparReceitaPorMes() {
+    const porMes = {};
+    vendas.forEach(v => {
+        const mes = v.data.slice(0, 7);
+        porMes[mes] = (porMes[mes] || 0) + v.total;
+    });
+    return porMes;
+}
+
+function mesesParaExibirModoRecentes() {
+    const todos = todosMesesOrdenados();
+    const tamanhoBloco = 6;
+    // offset 0 = bloco mais recente; offset maior = mais para o passado
+    const fim = todos.length - estadoChartMes.offset * tamanhoBloco;
+    const inicio = Math.max(0, fim - tamanhoBloco);
+    return todos.slice(inicio, fim);
+}
+
+function mesesParaExibirModoComparar() {
+    const todos = todosMesesOrdenados();
+    const mes = estadoChartMes.mesComparar;
+    if (!mes) return [];
+    return todos.filter(m => m.slice(5, 7) === mes);
+}
+
+function atualizarControlesVendasPorMes() {
+    const todos = todosMesesOrdenados();
+    const tamanhoBloco = 6;
+    const maxOffset = Math.max(0, Math.ceil(todos.length / tamanhoBloco) - 1);
+
+    document.querySelectorAll(".dash-chart-modo-btn").forEach(btn => {
+        btn.classList.toggle("ativo", btn.dataset.modo === estadoChartMes.modo);
+    });
+
+    const nav = document.querySelector("#chart-vendas-mes-nav");
+    const comparar = document.querySelector("#chart-vendas-mes-comparar");
+    const label = document.querySelector("#chart-vendas-mes-periodo-label");
+    const btnAnterior = document.querySelector("#chart-vendas-mes-anterior");
+    const btnSeguinte = document.querySelector("#chart-vendas-mes-seguinte");
+
+    if (estadoChartMes.modo === "recentes") {
+        nav.style.display = "flex";
+        comparar.style.display = "none";
+        const exibidos = mesesParaExibirModoRecentes();
+        if (exibidos.length) {
+            const [anoIni] = exibidos[0].split("-");
+            const [anoFim] = exibidos[exibidos.length - 1].split("-");
+            label.textContent = anoIni === anoFim ? anoIni : `${anoIni}–${anoFim}`;
+        } else {
+            label.textContent = "-";
+        }
+        btnAnterior.disabled = estadoChartMes.offset >= maxOffset;
+        btnSeguinte.disabled = estadoChartMes.offset <= 0;
+    } else {
+        nav.style.display = "none";
+        comparar.style.display = "flex";
+        const select = document.querySelector("#chart-vendas-mes-mes-select");
+        if (!select.options.length) {
+            const mesesComVenda = Array.from(new Set(todos.map(m => m.slice(5, 7)))).sort();
+            select.innerHTML = mesesComVenda.map(m => `<option value="${m}">${nomesMes[m] || m}</option>`).join("");
+        }
+        if (!estadoChartMes.mesComparar && select.options.length) {
+            estadoChartMes.mesComparar = select.options[0].value;
+        }
+        select.value = estadoChartMes.mesComparar || "";
+    }
+}
 
 function renderizarVendasPorMes() {
     const el = document.querySelector("#chart-vendas-mes");
-    const porMes = {};
+    const porMes = agruparReceitaPorMes();
 
-    vendas.forEach(v => {
-        const mes = v.data.slice(0, 7); // YYYY-MM
-        porMes[mes] = (porMes[mes] || 0) + v.total;
-    });
+    atualizarControlesVendasPorMes();
 
-    const meses = Object.keys(porMes).sort().slice(-6); // últimos 6 meses com dados
+    const meses = estadoChartMes.modo === "recentes"
+        ? mesesParaExibirModoRecentes()
+        : mesesParaExibirModoComparar();
+
     if (meses.length === 0) {
         el.innerHTML = `<p class="dash-vazio">Sem vendas registradas ainda.</p>`;
         return;
     }
 
-    const maxValor = Math.max(...meses.map(m => porMes[m]));
-    const nomesMes = { "01": "Jan", "02": "Fev", "03": "Mar", "04": "Abr", "05": "Mai", "06": "Jun", "07": "Jul", "08": "Ago", "09": "Set", "10": "Out", "11": "Nov", "12": "Dez" };
+    const maxValor = Math.max(...meses.map(m => porMes[m] || 0));
 
     el.innerHTML = meses.map(m => {
-        const valor = porMes[m];
+        const valor = porMes[m] || 0;
         const altura = maxValor > 0 ? Math.max((valor / maxValor) * 100, 3) : 3;
         const [ano, mesNum] = m.split("-");
+        const rotulo = estadoChartMes.modo === "comparar"
+            ? ano
+            : `${nomesMes[mesNum] || mesNum}/${ano.slice(2)}`;
         return `
-            <div class="barra-mes">
+            <div class="barra-mes" style="--altura-final:${altura}%;">
                 <span class="barra-valor">${formatarMoeda(valor)}</span>
-                <div class="barra-visual" style="height:${altura}%;"></div>
-                <span class="barra-label">${nomesMes[mesNum] || mesNum}/${ano.slice(2)}</span>
+                <div class="barra-visual"></div>
+                <span class="barra-label">${rotulo}</span>
             </div>
         `;
     }).join("");
+
+    // Anima a subida das barras no próximo frame (precisa de um "0% -> valor
+    // real" real para a transição de height funcionar).
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            el.querySelectorAll(".barra-mes").forEach(b => b.classList.add("subiu"));
+        });
+    });
+}
+
+function configurarControlesVendasPorMes() {
+    const cabecalho = document.querySelector("#chart-vendas-mes-cabecalho");
+    const controles = document.querySelector("#chart-vendas-mes-controles");
+
+    cabecalho.addEventListener("click", () => {
+        controles.classList.toggle("aberto");
+    });
+
+    document.querySelectorAll(".dash-chart-modo-btn").forEach(btn => {
+        btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            estadoChartMes.modo = btn.dataset.modo;
+            estadoChartMes.offset = 0;
+            renderizarVendasPorMes();
+        });
+    });
+
+    document.querySelector("#chart-vendas-mes-anterior").addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        estadoChartMes.offset += 1;
+        renderizarVendasPorMes();
+    });
+
+    document.querySelector("#chart-vendas-mes-seguinte").addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        estadoChartMes.offset = Math.max(0, estadoChartMes.offset - 1);
+        renderizarVendasPorMes();
+    });
+
+    document.querySelector("#chart-vendas-mes-mes-select").addEventListener("click", (ev) => ev.stopPropagation());
+    document.querySelector("#chart-vendas-mes-mes-select").addEventListener("change", (ev) => {
+        estadoChartMes.mesComparar = ev.target.value;
+        renderizarVendasPorMes();
+    });
+
+    document.querySelector("#chart-vendas-mes-controles").addEventListener("click", (ev) => ev.stopPropagation());
 }
 
 /* ---------------------- Clientes em risco de churn ---------------------- */
@@ -349,6 +483,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await carregarDados();
 
     renderizarKPIs();
+    configurarControlesVendasPorMes();
     renderizarVendasPorMes();
     renderizarClientesRisco();
     renderizarClientesFieis();
