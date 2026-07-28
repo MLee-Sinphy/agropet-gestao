@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - AgroPet Gestão</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/configuracoes.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html" class="header-link"><h1>🐾 AgroPet Gestão</h1></a>
+        <nav class="header-nav">
+            <a href="venda.html" title="Voltar para Vendas" class="config-icon">❮</a>
+        </nav>
+    </header>
+
+    <main class="config-container">
+        <section class="config-form">
+            <div class="bloco bloco-empresa">
+                <div class="bloco-titulo"><h2>Dados da Empresa</h2></div>
+                <div class="input-group">
+                    <label for="empresa-nome">Nome da Empresa</label>
+                    <input type="text" id="empresa-nome" placeholder="AgroPet Gestão LTDA">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-cnpj">CNPJ</label>
+                    <input type="text" id="empresa-cnpj" placeholder="XX.XXX.XXX/YYYY-ZZ">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-endereco">Endereço</label>
+                    <input type="text" id="empresa-endereco" placeholder="Rua Exemplo, 123, Bairro, Cidade - UF">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-email">Email de Contato</label>
+                    <input type="email" id="empresa-email" placeholder="contato@agropet.com">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-telefone">Telefone</label>
+                    <input type="tel" id="empresa-telefone" placeholder="(XX) XXXXX-XXXX">
+                </div>
+                <div class="input-group">
+                    <label for="empresa-instagram">Instagram</label>
+                    <input type="text" id="empresa-instagram" placeholder="@agropet_gestao">
+                </div>
+            </div>
+
+            <div class="bloco bloco-bling">
+                <div class="bloco-titulo"><h2>Configurações Bling</h2></div>
+                <div class="input-group">
+                    <label for="bling-apikey">API Key Bling</label>
+                    <input type="password" id="bling-apikey" placeholder="Sua chave API do Bling">
+                </div>
+                <div class="input-group">
+                    <label for="bling-user">Usuário Bling</label>
+                    <input type="text" id="bling-user" placeholder="Seu usuário Bling">
+                </div>
+                </div>
+
+            <button type="button" class="primary" id="btn-salvar-config">Salvar Configurações</button>
+        </section>
+    </main>
+
+    <script defer src="../assets/js/configuracoes.js"></script>
+</body>
+
+</html>

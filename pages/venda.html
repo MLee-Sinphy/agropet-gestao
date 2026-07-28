@@ -17,6 +17,9 @@
 
 <header class="header">
     <a href="../index.html" class="header-link"><h1>🐾 AgroPet Gestão</h1></a>
+    <nav class="header-nav">
+        <a href="configuracoes.html" title="Configurações" class="config-icon">⚙️</a>
+    </nav>
 </header>
 
 <main class="venda-container">
@@ -51,9 +54,24 @@
         </div>
 
 
+        <div class="bloco tipo-venda">
+            <div class="bloco-titulo">
+                <h2>Tipo de Venda</h2>
+            </div>
+            <div class="toggle-switch">
+                <input type="checkbox" id="tipoVendaToggle" class="toggle-switch-checkbox" checked>
+                <label for="tipoVendaToggle" class="toggle-switch-label">
+                    <span class="toggle-switch-inner" data-on="Presencial" data-off="Online"></span>
+                    <span class="toggle-switch-switch"></span>
+                </label>
+            </div>
+        </div>
+
         <button type="button" class="primary" id="btn-salvar">
             Salvar Venda
         </button>
+
+
 
     </section>
 

@@ -36,6 +36,11 @@
     border: 1px solid #e3e9f0;
 }
 
+bloco.tipo-venda{
+    background: #eef4f0;
+    border: 1px solid #d6e6da;
+}
+
 .bloco-titulo h2 {
     font-size: 1.2rem;
     margin-bottom: 16px;
@@ -104,7 +109,7 @@ details {
 }
 
 .endereco-gaveta summary::before {
-    content: "› ";
+    content: "> ";
     color: #9aa39d;
 }
 
@@ -368,4 +373,100 @@ button.secondary:hover {
     .produto-linha {
         grid-template-columns: 1fr;
     }
+}
+
+/* Estilos para o switch de toggle */
+.toggle-switch {
+    position: relative;
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.toggle-switch-checkbox {
+    display: none;
+}
+
+.toggle-switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0 solid #ccc;
+    border-radius: 20px;
+}
+
+.toggle-switch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.toggle-switch-inner:before, .toggle-switch-inner:after {
+    float: left;
+    width: 50%;
+    height: 36px;
+    padding: 0;
+    line-height: 36px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.toggle-switch-inner:before {
+    content: attr(data-on);
+    padding-left: 10px;
+    background-color: #5cb85c; /* Verde para "Presencial" */
+    color: #fff;
+}
+
+.toggle-switch-inner:after {
+    content: attr(data-off);
+    padding-right: 10px;
+    background-color: #d9534f; /* Vermelho para "Online" */
+    color: #fff;
+    text-align: right;
+}
+
+.toggle-switch-switch {
+    display: block;
+    width: 24px;
+    margin: 6px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 160px;
+    border: 0 solid #ccc;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+    margin-left: 0;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+    right: 0px;
+}
+
+/* Estilos para o ícone de configurações */
+.header-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Alinha à direita */
+    padding-right: 20px; /* Espaçamento da margem */
+}
+
+.config-icon {
+    font-size: 2em; /* Tamanho do ícone */
+    text-decoration: none;
+    color: #333; /* Cor do ícone */
+}
+
+.config-icon:hover {
+    color: #007bff; /* Cor ao passar o mouse */
 }

@@ -1,0 +1,80 @@
+.config-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.config-form {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 28px 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .04);
+    border: 1px solid #ececec;
+    max-width: 600px;
+    width: 100%;
+}
+
+.bloco-empresa, .bloco-bling {
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 18px;
+    background: #f6f7f5;
+    border: 1px solid #eceeec;
+}
+
+.bloco-titulo h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: #23282a;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #52585a;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="tel"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1px solid #dcdfdd;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.input-group input:focus {
+    border-color: #9aa39d;
+}
+
+#btn-salvar-config {
+    background: #2f8f5b;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.05rem;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: background .15s;
+}
+
+#btn-salvar-config:hover {
+    background: #257a4c;
+}
+
+.header-nav .config-icon {
+    font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+}
