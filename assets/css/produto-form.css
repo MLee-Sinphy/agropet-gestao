@@ -1,0 +1,130 @@
+/* ==========================================================
+   Formulário de Produto (usado em Estoque e Gerenciar/Cadastros)
+   ========================================================== */
+
+.produto-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.produto-form-grid .pf-full {
+    grid-column: 1 / -1;
+}
+
+.produto-form .campos-gaveta {
+    margin-top: 14px;
+    background: #f6f7f5;
+    border: 1px solid #e6e8e6;
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.produto-form .campos-gaveta summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: .88rem;
+    color: #52585a;
+    list-style: none;
+}
+
+.produto-form .campos-gaveta summary::-webkit-details-marker {
+    display: none;
+}
+
+.produto-form .campos-gaveta summary::before {
+    content: "> ";
+    color: #9aa39d;
+}
+
+.produto-form .campos-gaveta[open] summary::before {
+    content: "⌄ ";
+}
+
+.produto-form .campos-gaveta .produto-form-grid {
+    margin-top: 14px;
+}
+
+.pf-barcode-ajuda {
+    font-size: .85rem;
+    color: #6b7671;
+    margin: 12px 0 10px;
+    line-height: 1.5;
+}
+
+.pf-barcode-preview canvas {
+    max-width: 100%;
+    background: #fff;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.pf-barcode-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.pf-barcode-acoes button {
+    margin-top: 0;
+}
+
+@media (max-width: 640px) {
+    .produto-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------------- Desconto por item (venda) ---------------------- */
+
+.prod-desconto-linha {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -2px 0 14px;
+    flex-wrap: wrap;
+}
+
+.prod-desconto-linha select {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #dcdfdd;
+    font-size: .9rem;
+    background: #fff;
+}
+
+.prod-preco-info {
+    font-size: .88rem;
+    color: #52585a;
+}
+
+.prod-preco-info .preco-original {
+    text-decoration: line-through;
+    color: #9aa39d;
+    margin-right: 6px;
+}
+
+.prod-preco-info .preco-final {
+    font-weight: 700;
+    color: #2f8f5b;
+}
+
+/* ---------------------- Total da venda ---------------------- */
+
+.venda-total {
+    background: #f6f7f5;
+    border: 1px solid #e6e8e6;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.venda-total strong {
+    font-size: 1.25rem;
+    color: #2f8f5b;
+}

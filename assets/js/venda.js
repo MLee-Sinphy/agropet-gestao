@@ -1,8 +1,9 @@
 /* ==========================================================
    Venda - AgroPets Gestão
    Autocomplete, resumo dinâmico, desambiguação de pets homônimos,
-   múltiplos responsáveis por venda, forma de atendimento e
-   persistência de rascunho (regras completas em docs/regras-negocio.md).
+   múltiplos responsáveis por venda, forma de atendimento, desconto por
+   item, bipagem de código de barras/EAN e persistência de rascunho
+   (regras completas em docs/regras-negocio.md, especialmente 27-31).
    ========================================================== */
 
 let pessoas = [];
@@ -14,16 +15,11 @@ let productIdCounter = 0;
 const DRAFT_KEY = "agropet_venda_draft";
 
 async function carregarDados() {
-    const [rPessoas, rPets, rProdutos, rVendas] = await Promise.all([
-        fetch("../assets/data/pessoas.json"),
-        fetch("../assets/data/pets.json"),
-        fetch("../assets/data/produtos.json"),
-        fetch("../assets/data/vendas.json"),
-    ]);
-    pessoas = await rPessoas.json();
-    pets = await rPets.json();
-    produtos = await rProdutos.json();
-    vendas = await rVendas.json();
+    const dados = await AgroStore.carregarTudo("../assets/data/");
+    pessoas = dados.pessoas;
+    pets = dados.pets;
+    produtos = dados.produtos;
+    vendas = dados.vendas;
 }
 
 function normalizar(texto) {
@@ -76,6 +72,7 @@ function coletarEstadoVenda() {
         nomePet: item.querySelector(".prod-pet")?.value || "",
         quantidade: item.querySelector(".prod-qtd")?.value || "",
         tipoQuantidade: item.querySelector(".flip-switch")?.dataset.value || "unidade",
+        desconto: item.querySelector(".prod-desconto")?.value || "0",
     }));
 
     const atendimentoEl = document.querySelector("#atendimentoSwitch");
@@ -210,6 +207,11 @@ function preencherResponsavelSugerido(pessoa) {
 
 /* ---------------------- Produtos ---------------------- */
 
+/* Regra 30 (docs/regras-negocio.md): a busca por produto aceita tanto
+   descrição digitada livremente quanto código interno/EAN — essencial
+   para reconhecer bipagem de leitor óptico, que "digita" o código
+   completo seguido de Enter. Match exato por código/EAN tem prioridade
+   sobre match textual de descrição. */
 function buscarProdutos(texto) {
     const busca = normalizar(texto);
     if (busca.length === 0) return [];
@@ -217,9 +219,23 @@ function buscarProdutos(texto) {
     // entrada/saída quando tivermos histórico suficiente de movimentações,
     // não apenas por "começa com"/"contém".
     return produtos
-        .filter(p => normalizar(p.descricao).includes(busca))
+        .filter(p => normalizar(p.descricao).includes(busca)
+            || normalizar(p.codigo || "").includes(busca)
+            || normalizar(p.bling_extra?.gtin_ean || "").includes(busca))
         .sort((a, b) => normalizar(b.descricao).startsWith(busca) - normalizar(a.descricao).startsWith(busca))
         .slice(0, 8);
+}
+
+/* Um código bipado (ou digitado) identifica o produto de forma unívoca —
+   diferente de um nome, que pode colidir. Considera match exato de
+   código interno ou de EAN. */
+function produtoPorCodigoExato(texto) {
+    const busca = normalizar(texto);
+    if (busca.length < 3) return null;
+    return produtos.find(p =>
+        normalizar(p.codigo || "") === busca ||
+        normalizar(p.bling_extra?.gtin_ean || "") === busca
+    ) || null;
 }
 
 /* Pets com o mesmo nome digitado. Quando há responsável(is) já
@@ -321,6 +337,107 @@ function ligarFlipSwitch(el, onChange) {
     });
 }
 
+/* ---------------------- Desconto por item (regra 28) ---------------------- */
+
+/* Recalcula e exibe o valor original/desconto/final de um item de produto,
+   com base no produto vinculado, na quantidade e no % de desconto
+   escolhido. Também recalcula o total geral da venda. */
+function atualizarPrecoItem(item) {
+    const produto = produtos.find(p => p.id === Number(item.dataset.produtoId));
+    const infoEl = item.querySelector(".prod-preco-info");
+    if (!produto) {
+        infoEl.innerHTML = "";
+        atualizarTotalVenda();
+        return;
+    }
+
+    const qtd = parseFloat(item.querySelector(".prod-qtd").value) || 0;
+    const descontoPct = parseFloat(item.querySelector(".prod-desconto").value) || 0;
+    const bruto = Math.round(produto.preco * qtd * 100) / 100;
+    const final = Math.round(bruto * (1 - descontoPct / 100) * 100) / 100;
+
+    if (descontoPct > 0) {
+        infoEl.innerHTML = `<span class="preco-original">R$ ${bruto.toFixed(2)}</span><span class="preco-final">R$ ${final.toFixed(2)}</span> (-${descontoPct}%)`;
+    } else {
+        infoEl.innerHTML = `<span class="preco-final">R$ ${final.toFixed(2)}</span>`;
+    }
+
+    atualizarTotalVenda();
+}
+
+function valorFinalItem(item) {
+    const produto = produtos.find(p => p.id === Number(item.dataset.produtoId));
+    if (!produto) return 0;
+    const qtd = parseFloat(item.querySelector(".prod-qtd").value) || 0;
+    const descontoPct = parseFloat(item.querySelector(".prod-desconto").value) || 0;
+    const bruto = produto.preco * qtd;
+    return Math.round(bruto * (1 - descontoPct / 100) * 100) / 100;
+}
+
+/* Regra 28: o total precisa refletir todos os descontos aplicados,
+   sempre visível antes de confirmar a venda. */
+function atualizarTotalVenda() {
+    const totalEl = document.querySelector("#venda-total-valor");
+    if (!totalEl) return;
+    const itens = Array.from(document.querySelectorAll(".produto-item"));
+    const total = itens.reduce((soma, item) => soma + valorFinalItem(item), 0);
+    totalEl.textContent = `R$ ${total.toFixed(2)}`;
+}
+
+/* ---------------------- Bipagem de código de barras/EAN (regra 30) ----------------------
+   Um leitor óptico USB simula digitação seguida de Enter. Quando o texto
+   digitado bate exatamente com um código/EAN cadastrado, o produto é
+   aplicado automaticamente. Se o item atual já estiver ocupado por outro
+   produto, um novo item é criado automaticamente para o produto bipado —
+   e se o mesmo produto já existir em algum item da venda, a quantidade
+   desse item existente é incrementada em vez de duplicar a linha. */
+function processarPossivelBipagem(item, campoProduto) {
+    const prodMatch = produtoPorCodigoExato(campoProduto.value);
+    if (!prodMatch) return false;
+
+    const existente = Array.from(document.querySelectorAll(".produto-item"))
+        .find(i => i !== item && Number(i.dataset.produtoId) === prodMatch.id);
+
+    if (existente) {
+        const qtdInput = existente.querySelector(".prod-qtd");
+        qtdInput.value = (parseFloat(qtdInput.value) || 0) + 1;
+        atualizarPrecoItem(existente);
+
+        // O item onde o usuário bipou fica limpo (a quantidade foi para o item já existente).
+        campoProduto.value = "";
+        item.dataset.produtoId = "";
+        item.querySelector(".prod-preco-info").innerHTML = "";
+        atualizarTotalVenda();
+        salvarRascunho();
+        return true;
+    }
+
+    if (item.dataset.produtoId && Number(item.dataset.produtoId) !== prodMatch.id) {
+        // Item atual já está ocupado por outro produto — cria um novo item
+        // automaticamente para o produto recém-bipado, sem exigir clique manual.
+        criarBlocoProduto();
+        const novoItem = document.querySelector("#lista-produtos .produto-item:last-child");
+        aplicarProdutoNoItem(novoItem, prodMatch);
+    } else {
+        aplicarProdutoNoItem(item, prodMatch);
+    }
+
+    salvarRascunho();
+    return true;
+}
+
+/* Aplica um produto reconhecido a um item de produto qualquer (usado tanto
+   pelo autocomplete manual quanto pela bipagem). */
+function aplicarProdutoNoItem(item, prod) {
+    const campoProduto = item.querySelector(".prod-nome");
+    const sugestaoRapida = item.querySelector(".sugestao-rapida");
+    campoProduto.value = prod.descricao;
+    item.dataset.produtoId = prod.id;
+    ajustarCampoQuantidade(item, prod);
+    if (sugestaoRapida) sugestaoRapida.style.display = "none";
+    atualizarPrecoItem(item);
+}
+
 function criarBlocoProduto(dadosSalvos) {
     productIdCounter++;
 
@@ -338,6 +455,7 @@ function criarBlocoProduto(dadosSalvos) {
     const sugestaoResp = item.querySelector(".sugestao-responsavel");
     const btnRemover = item.querySelector(".remover-produto");
     const flipSwitch = item.querySelector(".flip-switch");
+    const campoDesconto = item.querySelector(".prod-desconto");
 
     item.dataset.petId = dadosSalvos?.petId || "";
     item.dataset.produtoId = dadosSalvos?.produtoId || "";
@@ -350,19 +468,23 @@ function criarBlocoProduto(dadosSalvos) {
             flipSwitch.dataset.value = "granel";
             flipSwitch.classList.add("flip-alt");
         }
+        if (dadosSalvos.desconto) campoDesconto.value = dadosSalvos.desconto;
     }
 
     ligarFlipSwitch(flipSwitch, () => {
         const prod = produtos.find(p => p.id === Number(item.dataset.produtoId));
         ajustarCampoQuantidade(item, prod);
+        atualizarPrecoItem(item);
         atualizarResumoAtivo();
     });
 
+    campoDesconto.addEventListener("change", () => {
+        atualizarPrecoItem(item);
+        salvarRascunho();
+    });
+
     function aplicarProduto(prod) {
-        campoProduto.value = prod.descricao;
-        item.dataset.produtoId = prod.id;
-        ajustarCampoQuantidade(item, prod);
-        sugestaoRapida.style.display = "none";
+        aplicarProdutoNoItem(item, prod);
         salvarRascunho();
     }
 
@@ -375,15 +497,17 @@ function criarBlocoProduto(dadosSalvos) {
         sugestaoRapida.onclick = () => aplicarProduto(sugerido);
     }
 
-    // --- autocomplete produto ---
+    // --- autocomplete produto + bipagem ---
     campoProduto.addEventListener("input", () => {
         item.dataset.produtoId = "";
         sugestaoRapida.style.display = "none";
+        item.querySelector(".prod-preco-info").innerHTML = "";
         const resultado = buscarProdutos(campoProduto.value);
         areaSugProduto.innerHTML = "";
 
         if (resultado.length === 0) {
             areaSugProduto.classList.remove("aberto");
+            atualizarTotalVenda();
             salvarRascunho();
             return;
         }
@@ -403,7 +527,19 @@ function criarBlocoProduto(dadosSalvos) {
         });
 
         areaSugProduto.classList.add("aberto");
+        atualizarTotalVenda();
         salvarRascunho();
+    });
+
+    // Enter no campo de produto: se o texto bater exatamente com um
+    // código/EAN, trata como bipagem (regra 30) em vez de busca textual.
+    campoProduto.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        const tratado = processarPossivelBipagem(item, campoProduto);
+        if (tratado) {
+            e.preventDefault();
+            areaSugProduto.classList.remove("aberto");
+        }
     });
 
     campoProduto.addEventListener("blur", () => {
@@ -458,19 +594,24 @@ function criarBlocoProduto(dadosSalvos) {
         setTimeout(() => areaSugPet.classList.remove("aberto"), 150);
     });
 
-    item.querySelector(".prod-qtd").addEventListener("input", salvarRascunho);
+    item.querySelector(".prod-qtd").addEventListener("input", () => {
+        atualizarPrecoItem(item);
+        salvarRascunho();
+    });
 
     btnRemover.onclick = () => {
         item.remove();
         atualizarResumoAtivo();
+        atualizarTotalVenda();
         salvarRascunho();
     };
 
     document.querySelector("#lista-produtos").appendChild(clone);
 
-    // Ajusta a label inicial de acordo com o produto já vinculado (se houver).
+    // Ajusta a label inicial e o preço de acordo com o produto já vinculado (se houver).
     const prodAtual = produtos.find(p => p.id === Number(item.dataset.produtoId));
     ajustarCampoQuantidade(item, prodAtual);
+    atualizarPrecoItem(item);
 }
 
 function mostrarDetalhePet(pet, detalheEl) {
@@ -654,34 +795,90 @@ function atualizarResumoAtivo(petForcado) {
 
 /* ---------------------- Salvar venda ---------------------- */
 
+/* Regra 31 (docs/regras-negocio.md): quando um item da venda representa
+   uma quantidade agregada (ex: 2 unidades do mesmo produto, por bipagem
+   repetida ou digitação manual), a baixa real no estoque não decrementa
+   um contador genérico — consome lotes específicos por FIFO de validade.
+   Isso também é o que permite registrar, por venda, exatamente qual lote
+   saiu (útil para rastreabilidade futura). */
+function baixarEstoqueDaVenda(itensVenda) {
+    itensVenda.forEach(({ produto, qtdBaixa }) => {
+        if (!produto || qtdBaixa <= 0) return;
+        AgroLotes.consumirFIFO(produto, qtdBaixa);
+    });
+}
+
 function salvarVenda() {
     // Regra 8: preenchimento incremental — não exigimos nenhum campo
     // obrigatório para permitir salvar uma venda parcialmente preenchida.
     const respItens = Array.from(document.querySelectorAll(".responsavel-item"));
     const nomesResp = respItens.map(i => i.querySelector(".resp-nome").value.trim()).filter(Boolean);
+    const respIds = respItens.map(i => Number(i.dataset.pessoaId)).filter(Boolean);
 
-    const itens = Array.from(document.querySelectorAll(".produto-item"));
+    const itensDom = Array.from(document.querySelectorAll(".produto-item"));
     const atendimentoEl = document.querySelector("#atendimentoSwitch");
     const formaAtendimento = atendimentoEl ? atendimentoEl.dataset.value : "presencial";
     const dataVenda = new Date().toISOString();
 
-    // Regra 20 (docs/regras-negocio.md): forma de atendimento e data ficam
-    // registradas junto da venda para uso futuro em estatística. Enquanto
-    // não existe backend/banco de dados, o rascunho concluído é apenas
-    // exibido — nada é persistido de fato ainda (protótipo estático).
-    console.log("Venda concluída (protótipo, sem persistência real):", {
-        responsaveis: nomesResp,
-        produtos: itens.length,
-        formaAtendimento,
-        data: dataVenda,
+    const itensParaBaixa = [];
+    const itensVenda = [];
+    let totalVenda = 0;
+    let petIdPrincipal = null;
+
+    itensDom.forEach(item => {
+        const produtoId = Number(item.dataset.produtoId);
+        const produto = produtoId ? produtos.find(p => p.id === produtoId) : null;
+        const qtd = parseFloat(item.querySelector(".prod-qtd").value) || 0;
+        const petId = Number(item.dataset.petId) || null;
+        if (!produto || qtd <= 0) return;
+
+        if (!petIdPrincipal && petId) petIdPrincipal = petId;
+
+        const descontoPct = parseFloat(item.querySelector(".prod-desconto").value) || 0;
+        const precoFinal = valorFinalItem(item);
+        totalVenda += precoFinal;
+
+        itensParaBaixa.push({ produto, qtdBaixa: qtd });
+        itensVenda.push({
+            produto_id: produto.id,
+            descricao: produto.descricao,
+            quantidade: qtd,
+            unidade_venda: produto.vendido_a_granel ? "kg" : "un",
+            preco_unitario: produto.preco,
+            desconto_percentual: descontoPct,
+            peso_total_kg: pesoTotalItem(produto, qtd),
+        });
     });
+
+    // Regra 31: baixa real por lote/validade (FIFO), não por contador agregado.
+    baixarEstoqueDaVenda(itensParaBaixa);
+
+    if (itensVenda.length > 0) {
+        const novaVenda = {
+            id: AgroStore.proximoId(vendas),
+            data: dataVenda.slice(0, 10),
+            pet_id: petIdPrincipal,
+            responsaveis: respIds,
+            itens: itensVenda,
+            total: Math.round(totalVenda * 100) / 100,
+            forma_atendimento: formaAtendimento,
+        };
+        vendas.push(novaVenda);
+    }
+
+    // Persiste as alterações (protótipo com storage local — ver dados-store.js).
+    AgroStore.salvar("produtos", produtos);
+    AgroStore.salvar("vendas", vendas);
 
     const quemLabel = nomesResp.length ? nomesResp.join(" e ") : "responsável não informado";
     const msg = document.querySelector("#msg-sucesso");
     msg.style.display = "block";
-    msg.textContent = `✔ Venda registrada para ${quemLabel} (${itens.length} produto(s)) — atendimento ${formaAtendimento === "online" ? "Online" : "Presencial"}. Protótipo: dados não são persistidos ainda.`;
+    msg.textContent = `✔ Venda registrada para ${quemLabel} (${itensDom.length} produto(s)) — atendimento ${formaAtendimento === "online" ? "Online" : "Presencial"} — total R$ ${totalVenda.toFixed(2)}.`;
 
     limparRascunho();
+
+    // Recarrega a lista de produtos (estoque atualizado) para refletir nas próximas sugestões.
+    document.querySelectorAll(".produto-item").forEach(atualizarPrecoItem);
 }
 
 /* ---------------------- Boot ---------------------- */
@@ -713,4 +910,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (atendimentoEl) {
         ligarFlipSwitch(atendimentoEl);
     }
+
+    atualizarTotalVenda();
 });

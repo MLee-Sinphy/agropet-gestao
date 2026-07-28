@@ -9,7 +9,10 @@
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/venda.css">
+    <link rel="stylesheet" href="../assets/css/produto-form.css">
 
+    <script defer src="../assets/js/dados-store.js"></script>
+    <script defer src="../assets/js/lotes.js"></script>
     <script defer src="../assets/js/venda.js"></script>
 </head>
 
@@ -51,6 +54,11 @@
             <button type="button" class="secondary" id="btn-add-produto">
                 + Adicionar Produto
             </button>
+        </div>
+
+        <div class="venda-total">
+            <span>Total da venda</span>
+            <strong id="venda-total-valor">R$ 0,00</strong>
         </div>
 
         <div class="bloco bloco-atendimento">
@@ -128,8 +136,8 @@
         <button type="button" class="remover-item remover-produto" title="Remover produto">✕</button>
 
         <div class="input-group produto-campo">
-            <label>Produto</label>
-            <input type="text" class="prod-nome" placeholder="Digite o nome do produto..." autocomplete="off">
+            <label>Produto (digite o nome ou bipe o código/EAN)</label>
+            <input type="text" class="prod-nome" placeholder="Digite o nome ou bipe o código..." autocomplete="off">
             <div class="sugestao-rapida" style="display:none;"></div>
             <div class="sugestoes sugestoes-produto"></div>
         </div>
@@ -149,6 +157,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="prod-desconto-linha">
+            <label>Desconto:</label>
+            <select class="prod-desconto">
+                <option value="0">Sem desconto</option>
+                <option value="5">5%</option>
+                <option value="10">10%</option>
+                <option value="15">15%</option>
+                <option value="20">20%</option>
+                <option value="25">25%</option>
+                <option value="30">30%</option>
+                <option value="50">50%</option>
+            </select>
+            <span class="prod-preco-info"></span>
         </div>
 
         <div class="input-group">

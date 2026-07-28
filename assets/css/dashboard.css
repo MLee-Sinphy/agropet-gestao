@@ -1,0 +1,204 @@
+/* ==========================================================
+   Inteligência - AgroPets Gestão. Minimalista, direto, sem excesso de
+   decoração. Regra 35 de docs/regras-negocio.md.
+   ========================================================== */
+
+.dash-container {
+    padding: 20px 30px 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.dash-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dash-kpi {
+    background: #ffffff;
+    border: 1px solid #ececec;
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .04);
+}
+
+.dash-kpi .kpi-label {
+    font-size: .82rem;
+    color: #6b7671;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.dash-kpi .kpi-valor {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #23282a;
+}
+
+.dash-kpi .kpi-sub {
+    font-size: .78rem;
+    color: #9aa39d;
+    margin-top: 4px;
+}
+
+.dash-kpi.kpi-alerta .kpi-valor {
+    color: #b5533d;
+}
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.dash-card-wide {
+    grid-column: 1 / -1;
+}
+
+.dash-card {
+    background: #ffffff;
+    border: 1px solid #ececec;
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .04);
+}
+
+.dash-card h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: #23282a;
+}
+
+.dash-card-ajuda {
+    font-size: .82rem;
+    color: #9aa39d;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.dash-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f1f0;
+    font-size: .9rem;
+}
+
+.dash-linha:last-child {
+    border-bottom: none;
+}
+
+.dash-linha .nome {
+    font-weight: 600;
+    color: #23282a;
+}
+
+.dash-linha .valor {
+    font-weight: 700;
+}
+
+.dash-linha .sub {
+    font-size: .78rem;
+    color: #9aa39d;
+}
+
+.dash-barra-wrap {
+    flex: 1;
+    background: #f2f4f2;
+    height: 6px;
+    border-radius: 3px;
+    margin: 0 12px;
+    overflow: hidden;
+}
+
+.dash-barra {
+    height: 100%;
+    background: #2f8f5b;
+    border-radius: 3px;
+}
+
+.dash-vazio {
+    color: #9aa39d;
+    font-size: .88rem;
+    text-align: center;
+    padding: 12px 0;
+}
+
+/* --- gráfico de barras simples de vendas por mês --- */
+
+.dash-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 160px;
+    padding-top: 10px;
+}
+
+.dash-chart .barra-mes {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.dash-chart .barra-visual {
+    width: 100%;
+    background: linear-gradient(180deg, #4caf7d, #2f8f5b);
+    border-radius: 8px 8px 3px 3px;
+    min-height: 4px;
+}
+
+.dash-chart .barra-valor {
+    font-size: .74rem;
+    color: #52585a;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.dash-chart .barra-label {
+    font-size: .72rem;
+    color: #9aa39d;
+    margin-top: 6px;
+}
+
+/* --- tabela de correlação espécie x categoria --- */
+
+#tabela-correlacao table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .86rem;
+}
+
+#tabela-correlacao th,
+#tabela-correlacao td {
+    padding: 9px 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f0;
+}
+
+#tabela-correlacao th {
+    color: #6b7671;
+    font-weight: 600;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+#tabela-correlacao td.destaque {
+    font-weight: 700;
+    color: #2f8f5b;
+}
+
+@media (max-width: 900px) {
+    .dash-kpis {
+        grid-template-columns: 1fr 1fr;
+    }
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+}

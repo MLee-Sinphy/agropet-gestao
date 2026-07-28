@@ -1,16 +1,20 @@
 /* ==========================================================
    Estoque - AgroPets Gestão
-   Movimentações de entrada/saída em lote, com detecção automática de
-   validade vencida e pergunta de motivo apenas quando necessário.
-   Ver docs/regras-negocio.md (seção Estoque) para as regras completas.
+   Movimentações de entrada/saída em lote (por validade — regra 31 de
+   docs/regras-negocio.md), cadastro completo de produto novo com gavetas
+   de campos secundários e geração de código de barras interno (regra 29).
    ========================================================== */
 
 let produtos = [];
 let movimentoIdCounter = 0;
 
 async function carregarProdutos() {
-    const r = await fetch("../assets/data/produtos.json");
-    produtos = await r.json();
+    const dados = await AgroStore.carregarColecao("produtos", "../assets/data/produtos.json");
+    produtos = dados;
+}
+
+function persistirProdutos() {
+    AgroStore.salvar("produtos", produtos);
 }
 
 function normalizar(texto) {
@@ -21,13 +25,26 @@ function normalizar(texto) {
         .trim();
 }
 
+/* Regra 30: aceita busca tanto por descrição quanto por código/EAN, para
+   reconhecer bipagem de leitor óptico. */
 function buscarProdutos(texto) {
     const busca = normalizar(texto);
     if (busca.length === 0) return [];
     return produtos
-        .filter(p => normalizar(p.descricao).includes(busca))
+        .filter(p => normalizar(p.descricao).includes(busca)
+            || normalizar(p.codigo || "").includes(busca)
+            || normalizar(p.bling_extra?.gtin_ean || "").includes(busca))
         .sort((a, b) => normalizar(b.descricao).startsWith(busca) - normalizar(a.descricao).startsWith(busca))
         .slice(0, 8);
+}
+
+function produtoPorCodigoExato(texto) {
+    const busca = normalizar(texto);
+    if (busca.length < 3) return null;
+    return produtos.find(p =>
+        normalizar(p.codigo || "") === busca ||
+        normalizar(p.bling_extra?.gtin_ean || "") === busca
+    ) || null;
 }
 
 function produtoPorId(id) {
@@ -40,7 +57,7 @@ function renderizarEstoqueAtual(filtro) {
     const el = document.querySelector("#lista-estoque-atual");
     const busca = normalizar(filtro || "");
     const lista = busca
-        ? produtos.filter(p => normalizar(p.descricao).includes(busca))
+        ? produtos.filter(p => normalizar(p.descricao).includes(busca) || normalizar(p.codigo || "").includes(busca))
         : produtos.slice().sort((a, b) => a.descricao.localeCompare(b.descricao));
 
     if (lista.length === 0) {
@@ -49,13 +66,20 @@ function renderizarEstoqueAtual(filtro) {
     }
 
     el.innerHTML = lista.slice(0, 60).map(p => {
+        AgroLotes.garantirLotes(p);
         const baixo = p.estoque <= p.estoque_minimo;
         const unidadeTxt = p.vendido_a_granel ? "kg" : "un";
+        const lotesComValidade = p.lotes.filter(l => l.validade);
+        const proximaValidade = lotesComValidade.length
+            ? lotesComValidade.sort((a, b) => a.validade < b.validade ? -1 : 1)[0].validade
+            : null;
+        const validadeTxt = proximaValidade ? ` · validade mais próxima: ${proximaValidade}` : "";
+
         return `
             <div class="item-estoque">
                 <strong>${p.descricao}</strong>
                 <small class="${baixo ? "estoque-baixo" : ""}">
-                    ${p.estoque}${unidadeTxt} em estoque${baixo ? " ⚠ estoque baixo" : ""} · ${p.codigo}
+                    ${p.estoque}${unidadeTxt} em estoque${baixo ? " ⚠ estoque baixo" : ""} · ${p.codigo}${validadeTxt}
                 </small>
             </div>
         `;
@@ -89,6 +113,19 @@ function ligarAutocompleteProduto(item, campoProduto, areaSug) {
         });
 
         areaSug.classList.add("aberto");
+    });
+
+    // Regra 30: bipagem — Enter com código/EAN exato aplica direto, sem
+    // precisar abrir a lista de sugestões.
+    campoProduto.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        const prod = produtoPorCodigoExato(campoProduto.value);
+        if (prod) {
+            campoProduto.value = prod.descricao;
+            item.dataset.produtoId = prod.id;
+            areaSug.classList.remove("aberto");
+            e.preventDefault();
+        }
     });
 
     campoProduto.addEventListener("blur", () => {
@@ -128,6 +165,56 @@ function criarBlocoSaida() {
     item.querySelector(".remover-movimento").onclick = () => item.remove();
 
     document.querySelector("#lista-movimentos").appendChild(clone);
+}
+
+/* ---------------------- Cadastro de produto novo (regra 33) ----------------------
+   Usado quando o vendedor bipa ou digita algo que não bate com nenhum
+   produto já cadastrado — cadastro manual completo, com os campos
+   secundários em gaveta (fiscal, logística, código de barras interno). */
+
+let formProdutoNovoAtivo = null;
+
+function abrirCadastroProdutoNovo(nomeSugerido) {
+    const area = document.querySelector("#cadastro-produto-novo");
+    const container = document.querySelector("#produto-novo-form-container");
+    area.style.display = "block";
+
+    formProdutoNovoAtivo = AgroProdutoForm.criar(container, nomeSugerido ? { descricao: nomeSugerido } : null, {
+        produtoId: AgroStore.proximoId(produtos),
+    });
+
+    area.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function fecharCadastroProdutoNovo() {
+    document.querySelector("#cadastro-produto-novo").style.display = "none";
+    formProdutoNovoAtivo = null;
+}
+
+function confirmarCadastroProdutoNovo() {
+    if (!formProdutoNovoAtivo) return;
+    const { valido, erro, produto } = formProdutoNovoAtivo.coletar();
+
+    if (!valido) {
+        alert(erro);
+        return;
+    }
+
+    produto.id = AgroStore.proximoId(produtos);
+    if (!produto.codigo) {
+        produto.codigo = `AGP${String(produto.id).padStart(4, "0")}`;
+    }
+    produto.lotes = [];
+
+    produtos.push(produto);
+    persistirProdutos();
+
+    fecharCadastroProdutoNovo();
+    renderizarEstoqueAtual(document.querySelector("#busca-estoque").value);
+
+    const msg = document.querySelector("#msg-sucesso-estoque");
+    msg.style.display = "block";
+    msg.innerHTML = `✔ Produto "${produto.descricao}" cadastrado. Agora você pode dar entrada no estoque dele em "Movimentar Estoque".`;
 }
 
 /* ---------------------- Modal de motivo ---------------------- */
@@ -180,6 +267,9 @@ const LABELS_MOTIVO = {
     outro: "Outro",
 };
 
+/* Regra 31: entrada sempre cria um lote novo (com ou sem validade); saída
+   sempre consome por FIFO de validade, nunca decrementa um contador
+   genérico — importante para saber exatamente qual lote saiu. */
 async function atualizarEstoque() {
     const movimentos = Array.from(document.querySelectorAll(".movimento-item"));
     if (movimentos.length === 0) {
@@ -197,36 +287,44 @@ async function atualizarEstoque() {
 
         if (!nomeDigitado || qtd <= 0) continue;
 
+        if (!produto) {
+            resultados.push(`⚠ "${nomeDigitado}" não corresponde a um produto cadastrado — use "Cadastrar produto novo" antes de dar entrada.`);
+            continue;
+        }
+
         if (item.dataset.tipo === "entrada") {
-            if (produto) {
-                produto.estoque = Math.round((produto.estoque + qtd) * 100) / 100;
-            }
-            resultados.push(`+ ${qtd} ${produto?.vendido_a_granel ? "kg" : "un"} de ${nomeDigitado}`);
+            const validade = item.querySelector(".mov-validade")?.value || null;
+            AgroLotes.adicionarLote(produto, qtd, validade);
+            const validadeTxt = validade ? ` (validade ${validade})` : "";
+            resultados.push(`+ ${qtd} ${produto.vendido_a_granel ? "kg" : "un"} de ${produto.descricao}${validadeTxt}`);
         } else {
             // Saída: tenta deduzir o motivo automaticamente pela validade;
             // se não for possível, e o motivo não foi escolhido no select,
             // pergunta ao usuário (uma vez por item pendente).
-            const validade = item.querySelector(".mov-validade")?.value || "";
-            let motivo = motivoAutomaticoPorValidade(validade);
+            const validadeDigitada = item.querySelector(".mov-validade")?.value || "";
+            let motivo = motivoAutomaticoPorValidade(validadeDigitada);
 
             if (!motivo) {
                 const selecionado = item.querySelector(".mov-motivo")?.value || "";
-                motivo = selecionado || await perguntarMotivo(nomeDigitado || produto?.descricao || "item");
+                motivo = selecionado || await perguntarMotivo(nomeDigitado || produto.descricao);
             }
 
-            if (produto) {
-                produto.estoque = Math.round((produto.estoque - qtd) * 100) / 100;
-                if (produto.estoque < 0) produto.estoque = 0;
-            }
+            const { afetados, faltou } = AgroLotes.consumirFIFO(produto, qtd);
+            const detalheLotes = afetados
+                .map(a => `${a.quantidade}${produto.vendido_a_granel ? "kg" : "un"}${a.validade ? ` (val. ${a.validade})` : " (sem validade registrada)"}`)
+                .join(", ");
 
             const motivoLabel = LABELS_MOTIVO[motivo] || motivo;
-            resultados.push(`− ${qtd} ${produto?.vendido_a_granel ? "kg" : "un"} de ${nomeDigitado} (motivo: ${motivoLabel})`);
+            const faltaTxt = faltou > 0 ? ` — atenção: faltaram ${faltou} no estoque, ficou negativo/zerado.` : "";
+            resultados.push(`− ${qtd} ${produto.vendido_a_granel ? "kg" : "un"} de ${produto.descricao} (motivo: ${motivoLabel}) — lote(s) afetado(s): ${detalheLotes || "nenhum (estoque já estava vazio)"}${faltaTxt}`);
         }
     }
 
+    persistirProdutos();
+
     const msg = document.querySelector("#msg-sucesso-estoque");
     msg.style.display = "block";
-    msg.innerHTML = `✔ Estoque atualizado (protótipo, sem persistência real):<br>${resultados.join("<br>")}`;
+    msg.innerHTML = `✔ Estoque atualizado:<br>${resultados.join("<br>")}`;
 
     document.querySelector("#lista-movimentos").innerHTML = "";
     renderizarEstoqueAtual(document.querySelector("#busca-estoque").value);
@@ -243,6 +341,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#btn-add-entrada").onclick = criarBlocoEntrada;
     document.querySelector("#btn-add-saida").onclick = criarBlocoSaida;
     document.querySelector("#btn-atualizar-estoque").onclick = atualizarEstoque;
+
+    document.querySelector("#btn-cadastrar-produto-novo").onclick = () => abrirCadastroProdutoNovo();
+    document.querySelector("#btn-cancelar-produto-novo").onclick = fecharCadastroProdutoNovo;
+    document.querySelector("#btn-confirmar-produto-novo").onclick = confirmarCadastroProdutoNovo;
 
     document.querySelector("#busca-estoque").addEventListener("input", (e) => {
         renderizarEstoqueAtual(e.target.value);

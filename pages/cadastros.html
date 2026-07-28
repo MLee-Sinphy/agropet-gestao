@@ -5,7 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Cadastros - AgroPets Gestão</title>
+
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/produto-form.css">
+    <link rel="stylesheet" href="../assets/css/cadastros.css">
+
+    <script defer src="../assets/js/dados-store.js"></script>
+    <script defer src="../assets/js/lotes.js"></script>
+    <script defer src="../assets/js/barcode.js"></script>
+    <script defer src="../assets/js/produto-form.js"></script>
+    <script defer src="../assets/js/cadastros.js"></script>
 </head>
 
 <body>
@@ -17,15 +26,35 @@
     </nav>
 </header>
 
-<main style="padding: 40px;">
-    <h2>🗂️ Gerenciar Cadastros</h2>
-    <p style="margin-top: 14px; color:#666; max-width: 560px; line-height:1.6;">
-        Página em desenvolvimento. Aqui será possível corrigir, excluir e
-        adicionar responsáveis, pets e produtos manualmente — para os casos
-        em que o preenchimento automático feito durante a venda precisar de
-        um ajuste fino.
-    </p>
-    <p style="margin-top: 24px;"><a href="../index.html">← Voltar</a></p>
+<main class="cadastros-container">
+
+    <section class="painel painel-clientes">
+        <h2>👤 Clientes</h2>
+        <input type="text" class="busca-painel" id="busca-clientes" placeholder="Buscar cliente por nome ou telefone..." autocomplete="off">
+        <div class="lista-painel" id="lista-clientes"></div>
+        <div class="detalhe-painel" id="detalhe-cliente">
+            <p class="detalhe-vazio">Selecione um cliente na lista para ver e editar os dados completos.</p>
+        </div>
+    </section>
+
+    <section class="painel painel-pets">
+        <h2>🐶 Pets</h2>
+        <input type="text" class="busca-painel" id="busca-pets" placeholder="Buscar pet por nome..." autocomplete="off">
+        <div class="lista-painel" id="lista-pets"></div>
+        <div class="detalhe-painel" id="detalhe-pet">
+            <p class="detalhe-vazio">Selecione um pet na lista para ver e editar os dados completos.</p>
+        </div>
+    </section>
+
+    <section class="painel painel-produtos">
+        <h2>📦 Produtos</h2>
+        <input type="text" class="busca-painel" id="busca-produtos" placeholder="Buscar produto por nome ou código..." autocomplete="off">
+        <div class="lista-painel" id="lista-produtos-cad"></div>
+        <div class="detalhe-painel" id="detalhe-produto">
+            <p class="detalhe-vazio">Selecione um produto na lista para ver e editar todos os campos.</p>
+        </div>
+    </section>
+
 </main>
 
 </body>

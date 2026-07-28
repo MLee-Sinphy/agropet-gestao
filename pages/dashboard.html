@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inteligência - AgroPets Gestão</title>
+
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+
+    <script defer src="../assets/js/dados-store.js"></script>
+    <script defer src="../assets/js/dashboard.js"></script>
 </head>
 
 <body>
@@ -17,14 +22,55 @@
     </nav>
 </header>
 
-<main style="padding: 40px;">
-    <h2>📊 Inteligência</h2>
-    <p style="margin-top: 14px; color:#666; max-width: 560px; line-height:1.6;">
-        Página em desenvolvimento. Aqui entrarão relatórios e sugestões
-        automáticas baseadas no histórico de vendas e movimentação de
-        estoque.
-    </p>
-    <p style="margin-top: 24px;"><a href="../index.html">← Voltar</a></p>
+<main class="dash-container">
+
+    <section class="dash-kpis" id="dash-kpis"></section>
+
+    <section class="dash-grid">
+
+        <div class="dash-card dash-card-wide">
+            <h3>Vendas por mês</h3>
+            <div class="dash-chart" id="chart-vendas-mes"></div>
+        </div>
+
+        <div class="dash-card">
+            <h3>⚠ Clientes em risco (sem comprar há tempo)</h3>
+            <p class="dash-card-ajuda">Compravam com frequência e pararam — oportunidade de contato direto.</p>
+            <div id="lista-clientes-risco"></div>
+        </div>
+
+        <div class="dash-card">
+            <h3>🔁 Clientes mais fiéis</h3>
+            <p class="dash-card-ajuda">Maior número de compras — priorizar relacionamento e ofertas.</p>
+            <div id="lista-clientes-fieis"></div>
+        </div>
+
+        <div class="dash-card">
+            <h3>🏆 Produtos mais vendidos</h3>
+            <p class="dash-card-ajuda">Por receita total no período — garanta que nunca faltem.</p>
+            <div id="lista-produtos-top"></div>
+        </div>
+
+        <div class="dash-card">
+            <h3>🐌 Produtos parados</h3>
+            <p class="dash-card-ajuda">Estoque alto e nenhuma ou pouquíssima venda — capital empatado.</p>
+            <div id="lista-produtos-parados"></div>
+        </div>
+
+        <div class="dash-card">
+            <h3>📉 Estoque crítico</h3>
+            <p class="dash-card-ajuda">No mínimo ou abaixo — risco de perder venda por falta de produto.</p>
+            <div id="lista-estoque-critico"></div>
+        </div>
+
+        <div class="dash-card dash-card-wide">
+            <h3>🔗 Correlação espécie × categoria de produto</h3>
+            <p class="dash-card-ajuda">O que donos de cada espécie mais compram — para sugestão automática e compras direcionadas.</p>
+            <div id="tabela-correlacao"></div>
+        </div>
+
+    </section>
+
 </main>
 
 </body>

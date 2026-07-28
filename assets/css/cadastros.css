@@ -1,0 +1,227 @@
+/* ==========================================================
+   Gerenciar Cadastros - 3 painéis verticais (Cliente, Pet, Produto)
+   Regra 34 de docs/regras-negocio.md.
+   ========================================================== */
+
+.cadastros-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 20px 30px 50px;
+    align-items: start;
+}
+
+.painel {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 22px 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .04);
+    border: 1px solid #ececec;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.painel h2 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    color: #23282a;
+}
+
+.busca-painel {
+    width: 100%;
+    padding: 11px 13px;
+    border-radius: 10px;
+    border: 1px solid #dcdfdd;
+    margin-bottom: 12px;
+    font-size: .92rem;
+}
+
+.lista-painel {
+    max-height: 240px;
+    overflow-y: auto;
+    border: 1px solid #edeeec;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.lista-painel .item-lista {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f0;
+    font-size: .9rem;
+    line-height: 1.4;
+}
+
+.lista-painel .item-lista:last-child {
+    border-bottom: none;
+}
+
+.lista-painel .item-lista:hover {
+    background: #f4f5f4;
+}
+
+.lista-painel .item-lista.selecionado {
+    background: #e6f4ea;
+}
+
+.lista-painel .item-lista small {
+    color: #6b7280;
+    display: block;
+}
+
+.detalhe-vazio {
+    color: #9aa39d;
+    font-size: .9rem;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.detalhe-painel {
+    flex: 1;
+}
+
+.campo-detalhe {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.campo-detalhe label {
+    font-size: .82rem;
+    font-weight: 600;
+    color: #52585a;
+    margin-bottom: 5px;
+}
+
+.campo-detalhe input,
+.campo-detalhe select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #dcdfdd;
+    font-size: .92rem;
+}
+
+.detalhe-painel .btn-salvar-detalhe {
+    width: 100%;
+    margin-top: 6px;
+}
+
+.relacao-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 6px 0 14px;
+}
+
+.relacao-chip {
+    background: #f2f4f2;
+    border: 1px solid #dde4dd;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: .84rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.relacao-chip .remover-relacao {
+    cursor: pointer;
+    color: #b5533d;
+    font-weight: 700;
+}
+
+.add-relacao {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.add-relacao input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #dcdfdd;
+    font-size: .88rem;
+}
+
+.add-relacao .sugestoes {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e3e5e3;
+    border-radius: 10px;
+    margin-top: 4px;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 30;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+    display: none;
+}
+
+.add-relacao .sugestoes.aberto {
+    display: block;
+}
+
+.add-relacao .sugestao {
+    padding: 9px 12px;
+    cursor: pointer;
+    font-size: .88rem;
+    border-bottom: 1px solid #f1f1f0;
+}
+
+.add-relacao .sugestao:hover {
+    background: #f4f5f4;
+}
+
+.detalhe-titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #23282a;
+}
+
+.msg-salvo-detalhe {
+    background: #e6f4ea;
+    color: #2f8f5b;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: .85rem;
+    margin-bottom: 12px;
+    display: none;
+}
+
+button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+button.primary {
+    background: #2f8f5b;
+    color: white;
+}
+
+button.primary:hover {
+    background: #257a4c;
+}
+
+button.secondary {
+    background: #eceeec;
+    color: #3d443f;
+}
+
+button.secondary:hover {
+    background: #e0e3e0;
+}
+
+@media (max-width: 1100px) {
+    .cadastros-container {
+        grid-template-columns: 1fr;
+    }
+}

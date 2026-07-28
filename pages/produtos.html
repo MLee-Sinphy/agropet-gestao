@@ -8,7 +8,12 @@
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/estoque.css">
+    <link rel="stylesheet" href="../assets/css/produto-form.css">
 
+    <script defer src="../assets/js/dados-store.js"></script>
+    <script defer src="../assets/js/lotes.js"></script>
+    <script defer src="../assets/js/barcode.js"></script>
+    <script defer src="../assets/js/produto-form.js"></script>
     <script defer src="../assets/js/estoque.js"></script>
 </head>
 
@@ -49,6 +54,29 @@
             Atualizar Estoque
         </button>
 
+        <div class="bloco bloco-produto-novo">
+            <div class="bloco-titulo">
+                <h2>🆕 Produto novo (não reconhecido)</h2>
+                <p class="ajuda-estoque">
+                    Use quando bipar/digitar um produto e ele não aparecer na
+                    busca — cadastro manual completo, com campos secundários
+                    dentro das gavetas abaixo (fiscal, logística, código de
+                    barras interno). Depois de cadastrar, dê entrada nele
+                    normalmente em "Movimentar Estoque".
+                </p>
+            </div>
+
+            <button type="button" class="secondary" id="btn-cadastrar-produto-novo">+ Cadastrar produto novo</button>
+
+            <div id="cadastro-produto-novo" style="display:none; margin-top: 16px;">
+                <div id="produto-novo-form-container"></div>
+                <div class="pf-barcode-acoes">
+                    <button type="button" class="primary" id="btn-confirmar-produto-novo">Confirmar cadastro</button>
+                    <button type="button" class="secondary" id="btn-cancelar-produto-novo">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <aside class="resumo">
@@ -67,8 +95,8 @@
         <span class="tag-tipo tag-entrada">Entrada</span>
 
         <div class="input-group produto-campo">
-            <label>Produto</label>
-            <input type="text" class="mov-produto" placeholder="Digite o nome do produto..." autocomplete="off">
+            <label>Produto (digite o nome ou bipe o código/EAN)</label>
+            <input type="text" class="mov-produto" placeholder="Digite o nome ou bipe o código..." autocomplete="off">
             <div class="sugestoes mov-sugestoes-produto"></div>
         </div>
 
@@ -78,7 +106,7 @@
                 <input type="number" class="mov-qtd" value="1" min="0" step="1">
             </div>
             <div class="input-group">
-                <label>Validade (opcional)</label>
+                <label>Validade (opcional — cria um lote específico)</label>
                 <input type="date" class="mov-validade">
             </div>
         </div>
@@ -91,8 +119,8 @@
         <span class="tag-tipo tag-saida">Saída</span>
 
         <div class="input-group produto-campo">
-            <label>Produto</label>
-            <input type="text" class="mov-produto" placeholder="Digite o nome do produto..." autocomplete="off">
+            <label>Produto (digite o nome ou bipe o código/EAN)</label>
+            <input type="text" class="mov-produto" placeholder="Digite o nome ou bipe o código..." autocomplete="off">
             <div class="sugestoes mov-sugestoes-produto"></div>
         </div>
 
