@@ -419,3 +419,15 @@ Este documento (regras 20 a 25) absorve e substitui o antigo arquivo
 `requisitos_futuros.md`, que tratava dos mesmos temas de forma mais
 resumida e sem exemplos.
 
+---
+
+## Nota: melhorias pendentes de UI/dados (não implementadas)
+
+Uma lista detalhada de bugs de interface e do mapeamento completo das 59
+colunas do Bling/Excel usado pelo dono do petshop — incluindo a
+justificativa para manter a maioria delas invisível por padrão — está em
+`docs/melhorias-pendentes.md`. Consultar esse arquivo antes de começar a
+próxima rodada de implementação envolvendo Estoque, Perfil da Loja ou
+cadastro de Produto.
+
+
