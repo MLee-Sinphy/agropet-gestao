@@ -94,10 +94,19 @@
 .dash-linha .nome {
     font-weight: 600;
     color: #23282a;
+    flex: 0 0 150px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dash-linha .valor {
     font-weight: 700;
+    flex: 0 0 auto;
+    width: 80px;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .dash-linha .sub {

@@ -287,7 +287,7 @@ function renderizarClientesRisco() {
 
     el.innerHTML = lista.map(r => `
         <div class="dash-linha">
-            <span class="nome">${r.pessoa.nome}</span>
+            <span class="nome" title="${r.pessoa.nome}">${r.pessoa.nome}</span>
             <span class="sub">costuma comprar a cada ${r.mediaDias}d, já são ${r.diasDesde}d</span>
         </div>
     `).join("");
@@ -319,7 +319,7 @@ function renderizarClientesFieis() {
     const maxQtd = top[0].qtd;
     el.innerHTML = top.map(t => `
         <div class="dash-linha">
-            <span class="nome">${t.pessoa.nome}</span>
+            <span class="nome" title="${t.pessoa.nome}">${t.pessoa.nome}</span>
             <div class="dash-barra-wrap"><div class="dash-barra" style="width:${(t.qtd / maxQtd) * 100}%;"></div></div>
             <span class="valor">${t.qtd}x</span>
         </div>
@@ -357,7 +357,7 @@ function renderizarProdutosTop() {
     const maxReceita = top[0].receita;
     el.innerHTML = top.map(t => `
         <div class="dash-linha">
-            <span class="nome">${t.produto.descricao}</span>
+            <span class="nome" title="${t.produto.descricao}">${t.produto.descricao}</span>
             <div class="dash-barra-wrap"><div class="dash-barra" style="width:${(t.receita / maxReceita) * 100}%;"></div></div>
             <span class="valor">${formatarMoeda(t.receita)}</span>
         </div>
@@ -394,7 +394,7 @@ function renderizarProdutosParados() {
 
     el.innerHTML = lista.map(l => `
         <div class="dash-linha">
-            <span class="nome">${l.produto.descricao}</span>
+            <span class="nome" title="${l.produto.descricao}">${l.produto.descricao}</span>
             <span class="sub">${l.produto.estoque}${l.produto.vendido_a_granel ? "kg" : "un"} em estoque · vendeu ${l.vendido} no total</span>
         </div>
     `).join("");
@@ -416,7 +416,7 @@ function renderizarEstoqueCritico() {
 
     el.innerHTML = lista.map(p => `
         <div class="dash-linha">
-            <span class="nome">${p.descricao}</span>
+            <span class="nome" title="${p.descricao}">${p.descricao}</span>
             <span class="sub">${p.estoque}${p.vendido_a_granel ? "kg" : "un"} (mín. ${p.estoque_minimo})</span>
         </div>
     `).join("");
