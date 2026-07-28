@@ -7,6 +7,27 @@ não perder o que foi pedido.
 
 ---
 
+## 0. Padronização de barras comparativas do dashboard (melhorar no futuro)
+
+Em 28/07/2026 corrigimos (commit 97e2bcc) o problema de a largura das
+barras de "Clientes mais fiéis" e "Produtos mais vendidos" variar de forma
+enganosa por causa do tamanho do texto do nome/produto (nome curto sobrava
+mais espaço pra barra, nome longo roubava esse espaço). A correção atual
+fixou a largura das colunas de nome (150px, com corte "..." + tooltip) e
+valor (80px), tornando a trilha da barra sempre do mesmo tamanho/posição.
+
+Isso resolve o problema visual, mas é uma solução simples (larguras fixas
+"chutadas"). Melhorias futuras a considerar:
+- Tornar as larguras responsivas (não fixas em px) para não quebrar em
+  telas menores/mobile.
+- Revisar se 150px é suficiente para nomes de produto muito longos (ex:
+  "Ração Gatos Adulto a Granel Golden Gatos") sem cortar informação
+  importante demais no tooltip.
+- Aplicar o mesmo princípio de "coluna de largura fixa" em qualquer nova
+  seção de dashboard com barra comparativa que vier a ser criada.
+
+---
+
 ## 1. "Perfil da Loja" ausente ou inconsistente em algumas páginas
 
 - Na Home (`index.html`) o link "Perfil da Loja" não aparece em lugar
