@@ -1,5 +1,5 @@
 /* ==========================================================
-   Estoque - AgroPet Gestão
+   Estoque - AgroPets Gestão
    Movimentações de entrada/saída em lote, com detecção automática de
    validade vencida e pergunta de motivo apenas quando necessário.
    Ver docs/regras-negocio.md (seção Estoque) para as regras completas.

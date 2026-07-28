@@ -1,4 +1,4 @@
-# Requisitos - AgroPet Gestão
+# Requisitos - AgroPets Gestão
 
 ## Objetivo
 

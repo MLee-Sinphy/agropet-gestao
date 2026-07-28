@@ -1,4 +1,4 @@
-# Interface - AgroPet Gestão
+# Interface - AgroPets Gestão
 
 ## Filosofia
 

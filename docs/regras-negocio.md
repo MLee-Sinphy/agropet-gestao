@@ -1,4 +1,4 @@
-# Regras de Negócio - AgroPet Gestão
+# Regras de Negócio - AgroPets Gestão
 
 Este documento reúne as regras que guiam o comportamento do sistema.
 Cada regra é escrita de forma direta (a norma em si) seguida de um exemplo

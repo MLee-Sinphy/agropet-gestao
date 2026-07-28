@@ -1,4 +1,4 @@
-/* Perfil da Loja - AgroPet Gestão
+/* Perfil da Loja - AgroPets Gestão
    Salva dados da empresa e credenciais Bling no localStorage.
    Ver mapeamento de campos com o Bling em docs/regras-negocio.md. */
 

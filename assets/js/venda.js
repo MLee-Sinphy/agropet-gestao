@@ -1,5 +1,5 @@
 /* ==========================================================
-   Venda - AgroPet Gestão
+   Venda - AgroPets Gestão
    Autocomplete, resumo dinâmico, desambiguação de pets homônimos,
    múltiplos responsáveis por venda, forma de atendimento e
    persistência de rascunho (regras completas em docs/regras-negocio.md).

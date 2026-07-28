@@ -1,9 +1,9 @@
 ## Protótipo
 
 Acesse:
-https://mlee-sinphy.github.io/agropet-gestao/
+https://mlee-sinphy.github.io/agropets-gestao/
 
-# AgroPet Gestão
+# AgroPets Gestão
 
 Sistema para gestão de petshops com foco em cadastro inteligente, análise de dados e integração com o Bling.
 

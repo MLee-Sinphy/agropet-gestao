@@ -1,4 +1,4 @@
-# Melhorias Pendentes para a Próxima Atualização - AgroPet Gestão
+# Melhorias Pendentes para a Próxima Atualização - AgroPets Gestão
 
 Este documento reúne pontos levantados pelo usuário em 28/07/2026, após a
 última rodada de implementação (commit 7d4df68), para serem tratados na
@@ -39,7 +39,7 @@ não perder o que foi pedido.
 
 ## 3. Bug visual: switch de "Forma de Atendimento" mal alinhado verticalmente
 
-- Na página de Venda (https://mlee-sinphy.github.io/agropet-gestao/pages/venda.html),
+- Na página de Venda (https://mlee-sinphy.github.io/agropets-gestao/pages/venda.html),
   o switch de Presencial/Online (acima do título "AgroPet", no bloco
   "Forma de Atendimento") está com alinhamento vertical ruim — parece
   "baixo" comparado ao alinhamento do switch Unidade/Qtd. dentro do bloco
