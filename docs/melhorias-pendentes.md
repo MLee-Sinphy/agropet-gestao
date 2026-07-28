@@ -410,3 +410,38 @@ Não implementado agora — só a decisão de esquema fica registrada:
   o cadastro atual.
 - `codigo` (já existente) passa a ser usado ativamente na busca do
   autocomplete, não só exibido como texto informativo.
+
+---
+
+## 7. Bloco novo de pendências (28/07/2026, segunda rodada) — bipagem, desconto, código interno, gerenciar e Inteligência
+
+Registrado após confirmação do usuário sobre uso de Cosmos/Bluesoft,
+desconto por item, código de barras interno para produtos a granel,
+bipagem em Venda/Estoque, três painéis em Gerenciar, e a página de
+Inteligência. As regras de negócio completas (com exemplos) estão em
+`docs/regras-negocio.md`, regras 26 a 35. Resumo do que muda em cada
+tela quando isso for implementado:
+
+- **Cadastro de Produto**: adicionar campo obrigatório de preço de venda
+  desde já (regra 27); adicionar ação "Gerar código de barras" com
+  download/reimpressão (regra 29); casamento por EAN com
+  `catalogo_externo.json` baixado offline (regra 26).
+- **Venda**: manter leiaute atual; campo de produto passa a aceitar
+  bipagem (Enter automático do leitor) além de digitação manual (regra
+  30); cada item de produto ganha um botão de desconto percentual
+  (regra 28), com recálculo de total antes de confirmar.
+- **Estoque**: mesma lógica de bipagem da Venda (regra 30); a baixa por
+  venda/saída deve decrementar lotes/entradas específicos por
+  FIFO de validade, não um contador agregado (regra 31) — isso é uma
+  mudança de modelagem de dados, não só de tela, e precisa ser
+  considerada quando o storage real (banco de dados) for implementado.
+- **Gerenciar/Cadastros**: reestruturar em três painéis verticais
+  (Cliente, Pet, Produto), cada um mostrando o registro completo com
+  relações editáveis (regra 34) — hoje a tela não tem essa separação.
+- **Inteligência**: construir do zero seguindo os princípios da regra 35
+  (minimalista, direto, correlações que gerem lucro) — nenhuma
+  implementação existe ainda para essa página.
+- **Hardware**: leitor de código de barras dedicado da loja e maquininha
+  de cartão ficam para o final, mas já registrados (regra 32) — perguntar
+  ao dono o modelo exato de cada equipamento antes de iniciar essa parte.
+

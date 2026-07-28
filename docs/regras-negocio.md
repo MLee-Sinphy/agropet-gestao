@@ -421,6 +421,227 @@ resumida e sem exemplos.
 
 ---
 
+## 26. Catálogo externo (Cosmos/Bluesoft): download offline, nunca consulta em tempo real
+
+Regra: o sistema NUNCA deve consumir uma API externa (Cosmos/Bluesoft ou
+equivalente) em tempo de execução, a cada produto cadastrado. O fluxo
+correto é baixar, fora do programa, uma base de produtos típicos de
+petshop indexada por GTIN/EAN, e importar esse resultado como um arquivo
+de dados estático dentro do projeto (ex: `assets/data/catalogo_externo.json`).
+O casamento com o catálogo da própria loja (`produtos.json`) é feito
+sempre por GTIN/EAN como chave — nunca por nome, porque nome não é
+padronizado entre fornecedores. Isso elimina custo recorrente de API e
+dependência de internet durante o atendimento no balcão.
+
+Exemplo: uma vez por mês (ou quando necessário), faz-se um download/export
+manual de uma base de produtos pet por EAN e ela é gravada em
+`catalogo_externo.json`. Ao cadastrar "Ração Golden 15kg" com EAN
+7891234567890, o sistema busca esse EAN dentro do arquivo local — não faz
+nenhuma requisição HTTP para nenhum serviço externo nesse momento.
+
+---
+
+## 27. Preço é obrigatório desde o primeiro cadastro do produto
+
+Regra: todo produto, seja reconhecido automaticamente (por EAN/nome) ou
+cadastrado 100% manual, precisa ter preço de venda informado antes de ser
+salvo — não é um campo "avançado" nem opcional, é parte do Grupo A
+(dados de operação da loja, regra de organização definida junto com os
+grupos de campos do cadastro de produto).
+
+Exemplo: o vendedor cadastra uma ração nova que nunca existiu no sistema.
+Mesmo que descrição, unidade e categoria venham automaticamente do
+catálogo externo (regra 26), o campo de preço de venda fica vazio e
+obrigatório — o cadastro não é salvo sem ele.
+
+---
+
+## 28. Desconto percentual por item na venda
+
+Regra: cada item de produto dentro da venda tem seu próprio botão/controle
+de desconto, que permite selecionar uma porcentagem de desconto aplicada
+apenas àquele item (não à venda como um todo). Antes de confirmar a venda,
+a tela precisa mostrar, para cada item com desconto, o valor original, o
+percentual aplicado e o valor final — e o total geral da venda precisa
+refletir a soma já com os descontos aplicados.
+
+Exemplo: Maria compra dois produtos. No item "Ração Golden 15kg" (R$150),
+o vendedor aplica 10% de desconto pelo botão do próprio item — a linha
+passa a mostrar R$150 → R$135. O outro item não tem desconto. O total da
+venda antes de confirmar mostra R$135 + valor do segundo item, não R$150 +
+valor do segundo item.
+
+---
+
+## 29. Código de barras interno para produtos sem EAN de fábrica (ex: a granel)
+
+Regra: produtos que não têm código de barras de fábrica (ex: ração a
+granel, produtos fracionados pela própria loja) podem ter um código de
+barras interno gerado pelo próprio sistema no momento do cadastro. O
+sistema gera a imagem do código (formato compatível com leitor óptico
+comum, ex: Code128 ou EAN-13 com prefixo interno da loja), disponibiliza
+para download/impressão imediatamente, e a mesma imagem deve poder ser
+reimpressa depois a qualquer momento pela tela de gerenciar/editar aquele
+produto — sem gerar um código novo, sob risco de duplicar a identidade do
+produto (o código gerado uma vez é definitivo para aquele produto).
+
+Exemplo: "Ração Golden a Granel" não tem EAN de fábrica porque é vendida
+solta. No cadastro, o dono clica em "Gerar código de barras", baixa a
+imagem gerada e cola na embalagem/prateleira. Três meses depois, a
+etiqueta descola — ele acessa o mesmo produto em "Gerenciar Produtos" e
+clica em "Reimprimir etiqueta", obtendo a mesma imagem/código de antes,
+não um código diferente.
+
+---
+
+## 30. Bipagem por leitor de código de barras em Venda e Estoque
+
+Regra: o leiaute atual das telas de Venda e Estoque é mantido como está —
+a bipagem é um atalho, não uma tela nova. Um leitor óptico USB funciona
+simulando digitação seguida de Enter no campo de produto em foco. Quando
+o código bipado corresponde a um produto reconhecido, os campos de
+identificação daquele produto (descrição, preço etc.) são preenchidos
+automaticamente, sem precisar digitar nome nem escolher em lista de
+sugestão. Se o vendedor bipar um segundo produto diferente em seguida, um
+novo item de produto é adicionado automaticamente à venda (ou ao lote de
+movimentação, no Estoque) já preenchido — sem precisar clicar em
+"+ Adicionar produto" manualmente. Os campos de Qtd. e Pet continuam
+preenchidos manualmente pelo vendedor, EXCETO quando dois produtos
+idênticos são bipados em sequência — nesse caso a quantidade daquele item
+é incrementada automaticamente (ver regra 31 sobre o que isso significa
+por trás, no controle de estoque).
+
+Exemplo: o vendedor bipa "Ração Golden 15kg" — o item aparece na venda já
+com descrição e preço preenchidos, faltando escolher Pet e confirmar
+Qtd. Ele bipa em seguida "Areia Higiênica 4kg" — um segundo item é
+adicionado automaticamente à mesma venda, já preenchido, sem apagar o
+primeiro. Se ele bipar "Ração Golden 15kg" de novo (mesmo produto), o
+item já existente na tela passa a mostrar quantidade 2, em vez de criar
+um terceiro item duplicado.
+
+---
+
+## 31. A quantidade agregada na tela não corresponde a uma baixa agregada no estoque
+
+Regra: quando a interface mostra um único item com quantidade 2 (por
+bipagem repetida do mesmo produto, regra 30), o banco de dados por trás
+NÃO simplesmente decrementa "2 unidades" de um contador genérico daquele
+produto. A baixa real é feita unidade a unidade, contra lotes/movimentações
+de entrada específicos daquele produto (cada um com sua própria validade e
+identificação de entrada) — ou seja, o sistema precisa saber exatamente
+QUAIS unidades físicas (de qual lote/entrada) foram consumidas, não só
+"quantas". A ordem de consumo padrão, na ausência de outra informação, é
+FIFO por data de validade (consome primeiro o lote que vence mais cedo).
+
+Exemplo: em tela, o vendedor vê "Ração Golden 15kg — Qtd: 2". Por trás,
+existiam em estoque duas entradas distintas do mesmo produto: uma com
+validade 10/2026 (lote A) e outra com validade 03/2027 (lote B). A venda
+consome 1 unidade do lote A e 1 unidade do lote B (o que vence primeiro
+sai primeiro) — o estoque restante desses dois lotes específicos é
+reduzido, não um contador único e genérico do produto "Ração Golden
+15kg".
+
+---
+
+## 32. Hardware de balcão: leitor de código de barras dedicado e maquininha de cartão (integrações futuras)
+
+Regra: existem dois equipamentos físicos distintos a integrar no futuro,
+e não devem ser confundidos entre si:
+
+1. **Leitor de código de barras dedicado** — a loja já possui um
+   equipamento próprio (separado do leitor USB genérico assumido na
+   regra 30) que hoje é usado de forma manual/isolada, sem comunicação
+   com o sistema. A integração futura deve permitir que esse equipamento
+   se comunique diretamente com o programa, dispensando até a simulação
+   de digitação.
+2. **Maquininha de cartão de crédito/débito** — integração para
+   confirmar pagamento e valor da venda diretamente com a operadora
+   (Stone, Cielo, PagSeguro etc.), sem passo manual de conciliação.
+
+Ambas ficam para o final da implementação, mas precisam estar registradas
+desde já para não serem esquecidas e para influenciar decisões de
+arquitetura mais cedo (ex: escolher tecnologias que não dificultem essa
+integração depois). Antes de implementar, é necessário perguntar ao dono
+qual é exatamente o modelo/fabricante de cada equipamento, pois isso
+determina qual SDK/API está disponível.
+
+---
+
+## 33. Cadastro de produto totalmente novo (sem match externo): todos os campos disponíveis, organizados em gavetas
+
+Regra: quando um produto não bate com nenhuma base (nem catálogo externo
+por EAN, nem base local curada por nome — ver regra 26), o vendedor/dono
+precisa conseguir preencher manualmente TODOS os campos relevantes do
+produto, inclusive os secundários (fiscais, logística, fornecedor etc. —
+ver classificação completa em `docs/melhorias-pendentes.md`, seção 6).
+Esses campos secundários continuam organizados em gavetas fechadas por
+padrão, para não poluir a tela — mas nenhum deles fica bloqueado ou
+oculto de forma que impeça o preenchimento manual completo quando
+necessário.
+
+Exemplo: o dono do petshop começa a vender uma ração de uma marca
+totalmente nova, ainda não catalogada em nenhuma base. Ele preenche
+manualmente descrição, preço, unidade (campos sempre visíveis) e, se
+quiser, abre a gaveta "Dados fiscais" para digitar NCM/origem/EAN e a
+gaveta "Logística" para peso/dimensões — nada disso é obrigatório para
+salvar o cadastro básico, mas está disponível.
+
+---
+
+## 34. Tela de Cadastros/Gerenciar: três painéis verticais — Cliente, Pet, Produto
+
+Regra: a tela de Gerenciar/Cadastros é organizada em três colunas/painéis
+lado a lado (dispostos verticalmente cada um, ou seja, cada painel é uma
+lista rolável na vertical): Gerenciar Dono/Cliente, Gerenciar Pet,
+Gerenciar Produto. Ao selecionar um registro em qualquer um dos três
+painéis, TODAS as informações daquele registro aparecem para
+visualização e edição — incluindo relações com outras entidades (ex: um
+cliente relacionado a outro responsável do mesmo pet, um pet relacionado
+ao(s) seu(s) dono(s)) — e essas relações podem ser alteradas diretamente
+ali, não só visualizadas.
+
+Exemplo: ao clicar em "Maria" no painel de Clientes, aparecem todos os
+dados dela (telefone, endereço) e a lista de pets vinculados, incluindo o
+Rex — que por sua vez está também vinculado ao Paulo. É possível, nessa
+mesma tela, remover o vínculo do Paulo com o Rex ou adicionar um novo
+responsável, sem precisar ir à tela de Venda para isso. O mesmo vale para
+o painel de Produto: selecionar "Ração Golden 15kg" mostra todos os
+campos do cadastro (inclusive os que hoje ficam em gaveta) para correção
+de erros de digitação.
+
+---
+
+## 35. Página de Inteligência: minimalista, objetiva, orientada a correlações que gerem lucro
+
+Regra: a página de Inteligência é o entregável mais importante do sistema
+(reforça o objetivo geral do documento, seção introdutória) e por isso
+tem liberdade de design maior que as demais telas, mas dentro de
+princípios claros: poucas métricas na tela, todas de leitura direta (sem
+precisar interpretar/calcular mentalmente), gráficos escolhidos por
+eficácia de comunicação (não por variedade visual), e o critério de
+inclusão de qualquer gráfico/métrica nessa página é responder à pergunta
+"isso ajuda a loja a vender mais ou perder menos clientes?" — métricas
+que não respondem a essa pergunta não entram na página, mesmo que sejam
+interessantes tecnicamente.
+
+Áreas de correlação esperadas (não exaustivo, evolutivo):
+comportamento de compra por responsável/pet (frequência, recência,
+ticket médio, sinal de possível churn — já coberto pelas regras 16 e 17),
+padrão de produtos comprados juntos, sazonalidade de categorias, giro de
+estoque por produto/categoria (o que vende rápido vs. o que fica parado
+consumindo capital), e margem por produto/categoria (depende do campo de
+preço de custo, regra 23/Grupo do documento de melhorias pendentes).
+
+Exemplo: em vez de um dashboard genérico com 15 gráficos de todo tipo de
+contagem possível, a página de Inteligência mostra, por exemplo, um
+número direto ("12 clientes com padrão de compra quebrado este mês —
+provável risco de perda") ao lado de um gráfico simples mostrando quais
+produtos mais aparecem juntos na mesma venda (para orientar promoções
+combinadas) — cada elemento da tela responde a uma decisão prática que o
+dono do petshop pode tomar, não é uma vitrine de dados por si só.
+
+---
+
 ## Nota: melhorias pendentes de UI/dados (não implementadas)
 
 Uma lista detalhada de bugs de interface e do mapeamento completo das 59
